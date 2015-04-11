@@ -1,0 +1,40 @@
+.lobster{
+	font-family: 'Lobster', cursive;
+	font-size: 90px;
+	line-height: 50px;
+	margin-bottom: 50px;
+}
+
+.custom-nav{
+	background: none;
+	border: none;
+}
+
+body{
+	margin: 0 5%;
+}
+
+
+.half-page{
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+	text-align: center;
+	color: #666;
+//	-webkit-filter: grayscale(100%); if we choose a color scheme this would be nice
+//	filter: grayscale(100%);
+}
+
+.half-page:hover{
+	color: #555;
+	cursor: pointer;
+	background-color: #eee;
+//	-webkit-filter: none;
+//	filter: none;
+}
+
+.main-icon {
+	width:50%;
+	margin-bottom: 30px;
+	margin-top: 50px;
+}
