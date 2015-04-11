@@ -10,8 +10,33 @@
 	border: none;
 }
 
+.proflink{
+	padding: 0 15px 0 0;
+}
+
 body{
 	margin: 0 5%;
+}
+
+.search{
+	position: relative;
+	margin-top: 20px;
+}
+
+.login{
+	margin-top: 20px;
+}
+
+
+.search-icon{
+	position: absolute;
+	top: 10px;
+	right: 5px;
+}
+
+.search-bar{
+	line-height: 30px;
+	min-width: 250px;
 }
 
 
