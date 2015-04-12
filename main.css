@@ -1,8 +1,17 @@
-.lobster{
+.lobster-medium{
+	font-family: 'Lobster', cursive;
+	font-size: 24pt;
+}
+
+.lobster-large{
 	font-family: 'Lobster', cursive;
 	font-size: 90px;
 	line-height: 50px;
 	margin-bottom: 50px;
+}
+
+.pacifico {
+  font-family: 'Pacifico', cursive;
 }
 
 .custom-nav{

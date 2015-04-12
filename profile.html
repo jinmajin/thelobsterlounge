@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Lounge</title>
+
+<!-- Load style sheets -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet" type="text/css" href="profile.css" />
+
+<!-- Load any supplemental Javascript libraries here -->
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="profile.js"></script>
+
+</head>
+
+<body>
+
+<div class="header-group">
+  <nav class="navbar navbar-default custom-nav">
+      <div class="navbar-header">
+        <a class="navbar-brand lobster-medium" href="index.html">The Lounge</a>
+      </div>
+
+      <div class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Enter Performer's Name...">
+          </div>
+      </div>
+  </nav>
+
+  <!-- profile code here -->
+
+  <div class="row profile-header">
+    <h1 class="text-center pacifico" id="profile-name"></h1>
+  </div>
+
+  <div class="row profile-subheader">
+    <div class="col-md-4" id="location"></div>
+    <div class="col-md-4" id="genre"></div>
+    <div class="col-md-4" id="quote"><i></i></div>
+  </div>
+</div>
+
+<div class="row content-container">
+  <div class="col-md-3 sidebar">
+    <div class="row about-me">
+      <div class="row buttons">
+        <div class="col-md-6 text-center"><button class="btn btn-default" id="follow-btn">Follow</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-default" id="message-btn">Message</button></div>
+      </div>
+      <div class="row thumbnail-container text-center">
+        <a class="thumbnail">
+        </a>
+      </div>
+      <div class="row text-center">
+        <h2 id="about-me-label">About Me</h2>
+      </div>
+      <div class="row text-justify">
+        <p id="about-me-details"></p>
+      </div>
+    </div>
+
+    <div class="row upcoming-performances">
+      <div class="row text-center">
+        <h2 id="upcoming-performances-label">Upcoming Performances</h2>
+      </div>
+      <div class="row">
+        <ul id="upcoming-performances-list">
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-9 gallery">
+    <div class="row">
+      <div class="col-md-8 text-center"><h2 id="gallery-label">Gallery</h2></div>
+      <div class="col-md-4 text-right"><button class="btn btn-default" id="upload-media-btn">Upload Media</button></div>
+    </div>
+    <div id="media-container">
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
