@@ -11,11 +11,12 @@ $(document).ready(function() {
     $('#follow-btn').text(text === 'Follow' ? 'Following' : 'Follow');
   });
 
+  var media = $('.gallery .thumbnail').children().clone();
+  populateCarousel(media);
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
     var activeIndex = invoker.data('index');
-    var media = $('.gallery .thumbnail').children().clone();
-    populateCarousel(media, activeIndex);
+    setCarouselActiveIndex(activeIndex);
   });
 });
 
@@ -71,22 +72,28 @@ var fillInProfileInfo = function(profileInfo) {
   });
 };
 
-var populateCarousel = function(media, activeIndex) {
+var populateCarousel = function(media) {
   // Populate Indicators
   var indicators = [];
   media.each(function(i, m) {
-    indicators.push($('<li data-target="#gallery-carousel" data-slide-to="' + i + (activeIndex == i ? '" class="active' : '') + '">'));
+    indicators.push($('<li data-target="#gallery-carousel" data-slide-to="' + i + (i == 0 ? '" class="active' : '') + '">'));
   });
-  //$('.carousel-indicators').children().remove();
   $('.carousel-indicators').html(indicators);
 
   // Populate Slides
   var slides = [];
   media.each(function(i, m) {
-    slides.push($('<div class="item' + (activeIndex == i ? ' active' : '') + '">').html(m));
+    slides.push($('<div class="item' + (i == 0 ? ' active' : '') + '">').html(m));
   });
-  //$('.carousel-inner').children().remove();
   $('.carousel-inner').html(slides);
+};
+
+var setCarouselActiveIndex = function(activeIndex) {
+  $('.carousel-indicators .active').removeClass('active');
+  $('.carousel-indicators li').eq(activeIndex).addClass('active');
+
+  $('.carousel-inner .active').removeClass('active');
+  $('.carousel-inner .item').eq(activeIndex).addClass('active');
 };
 
 // Jeff Profile Info
