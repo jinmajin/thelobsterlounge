@@ -16,7 +16,7 @@
   border-bottom: solid 2px darkgrey;
 }
 
-.about-me button {
+.buttons > div > button {
   width: 80%;
 }
 

@@ -69,8 +69,27 @@ function logout(){
   <div class="col-md-3 sidebar">
     <div class="row about-me">
       <div class="row buttons">
-        <div class="col-md-6 text-center"><button class="btn btn-default" id="follow-btn">Follow</button></div>
-        <div class="col-md-6 text-center"><button class="btn btn-default" id="message-btn">Message</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary" id="follow-btn">Follow</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary" data-toggle="modal" data-target="#message-modal" id="message-btn">Message</button></div>
+        <!-- Modal -->
+        <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="Send Message" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Send Message</h4>
+              </div>
+              <div class="modal-body">
+                <textarea class="form-control" id="message-body" placeholder="Enter Message..." rows="6"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="row thumbnail-container text-center">
         <a class="thumbnail">
@@ -98,13 +117,96 @@ function logout(){
   <div class="col-md-9 gallery">
     <div class="row">
       <div class="col-md-8 text-center"><h2 id="gallery-label">Gallery</h2></div>
-      <div class="col-md-4 text-right"><button class="btn btn-default" id="upload-media-btn">Upload Media</button></div>
+      <div class="col-md-4 text-right"><button class="btn btn-default" id="upload-media-btn" data-toggle="modal" data-target="#upload-modal">Upload Media</button></div>
+      <!-- Modal --!>
+      <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-labelledby="Upload Media" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Upload Media</h4>
+            </div>
+            <div class="modal-body">
+              <form id="upload-media-form">
+                <div class="form-group">
+                  <label for="file-input" class="sr-only">File Selection</label>
+                  <input type="file" id="file-input" name="file">
+                </div>
+                <div class="form-group">
+                  <label for="title-input">Title</label>
+                  <input class="form-control" type="text" id="title-input" name="title" placeholder="Enter Title">
+                </div>
+                <div class="form-group">
+                  <label for="description-input" >Description</label>
+                  <textarea class="form-control" id="description-input" form="upload-media-form" name="description" placeholder="Enter Description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="location-input" >Location</label>
+                  <input class="form-control" type="text" id="location-input" name="location" placeholder="Enter Location">
+                </div>
+                <div class="form-group">
+                  <label for="date-input">Date<label>
+                  <input class="form-control" type="date" id="date-input" name="date">
+                </div>
+                <p>*Note: When uploading media to someone else's profile, it will be submitted for that user's approval</p>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Upload</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="media-container">
     </div>
   </div>
 </div>
 
+<!-- Gallery Carousel Modal -->
+<div class="modal fade" id="gallery-modal" tabindex="-1" role="dialog" aria-labelledby="Gallery Carousel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Gallery</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Gallery Carousel --!>
+        <div id="gallery-carousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#gallery-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#gallery-carousel" data-slide-to="1"></li>
+            <li data-target="#gallery-carousel" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <!--
+            <div id="media-fields">
+              <div><label for="date-field">Date: </label><span id="date-field">DATE HERE</span></div>
+              <div><label for="location-field">Location: </label><span id="location-field">LOCATION HERE</span></div>
+              <div><label for="description-field">Description: </label><span id="description-field">DESCRIPTION HERE</span></div>
+            </div>
+            --!>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#gallery-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#gallery-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
