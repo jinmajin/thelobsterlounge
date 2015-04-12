@@ -10,6 +10,13 @@ $(document).ready(function() {
     var text = $('#follow-btn').text();
     $('#follow-btn').text(text === 'Follow' ? 'Following' : 'Follow');
   });
+
+  $('#gallery-modal').on('show.bs.modal', function(event) {
+    var invoker = $(event.relatedTarget); // Media that triggered the modal
+    var activeIndex = invoker.data('index');
+    var media = $('.gallery .thumbnail').children().clone();
+    populateCarousel(media, activeIndex);
+  });
 });
 
 var setMediaHeight = function(ratio) {
@@ -37,11 +44,11 @@ var fillInProfileInfo = function(profileInfo) {
   $('#upcoming-performances-list').append(performances);
 
   mediaCollection = [];
-  profileInfo.media.forEach(function(media) {
+  profileInfo.media.forEach(function(media, i) {
     if (media.type === 'video') {
-      mediaCollection.push($('<div class="thumbnail media"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
+      mediaCollection.push($('<div class="thumbnail media" data-index="' + i + '"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
     } else {
-      mediaCollection.push($('<a class="thumbnail media"><img class="img-responsive" src="' + media.src + '">'));
+      mediaCollection.push($('<a class="thumbnail media" data-toggle="modal" data-target="#gallery-modal" data-index="' + i + '"><img class="img-responsive" src="' + media.src + '">'));
     }
   });
   mediaCollection.forEach(function(media, i) {
@@ -62,6 +69,24 @@ var fillInProfileInfo = function(profileInfo) {
       $('#media-container .row').last().append($('<div class="col-md-4">').html(media));
     }
   });
+};
+
+var populateCarousel = function(media, activeIndex) {
+  // Populate Indicators
+  var indicators = [];
+  media.each(function(i, m) {
+    indicators.push($('<li data-target="#gallery-carousel" data-slide-to="' + i + (activeIndex == i ? '" class="active' : '') + '">'));
+  });
+  //$('.carousel-indicators').children().remove();
+  $('.carousel-indicators').html(indicators);
+
+  // Populate Slides
+  var slides = [];
+  media.each(function(i, m) {
+    slides.push($('<div class="item' + (activeIndex == i ? ' active' : '') + '">').html(m));
+  });
+  //$('.carousel-inner').children().remove();
+  $('.carousel-inner').html(slides);
 };
 
 // Jeff Profile Info
