@@ -15,6 +15,36 @@ body {
     position: absolute;
 }
 
+.left_sidebar_container {
+    z-index: 1;
+    position: absolute;
+}
+
+.searchbar {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.filters {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.hide_bullets {
+    list-style-type: none;
+}
+
+.right_sidebar {
+    z-index: 1;
+    position: absolute;
+    float: right;
+    margin: 10px;
+    padding: 10px;
+    right: 0px;
+}
+
 /*Video Page */
 
 #video-wheel{
