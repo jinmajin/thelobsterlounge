@@ -1,6 +1,11 @@
 .lobster-medium{
 	font-family: 'Lobster', cursive;
-	font-size: 24pt;
+	font-size: 50px;
+	line-height: 50px;
+}
+
+nav{
+	margin-bottom: 0px !important;
 }
 
 .lobster-large{
