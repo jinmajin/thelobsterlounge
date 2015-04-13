@@ -26,10 +26,17 @@ function logout(){
 }
 
 <!-- video wheel -->
-window.onload = function(){
-// inserting stuff here
-
-}
+$(document).ready(function(){
+    console.log($('.arc'));
+    $('.arc').mouseenter(function(){
+        var underlineThis = '#text-' + this.id;
+        console.log(underlineThis);
+        $(underlineThis).addClass('hover');
+    });
+    $('.arc').mouseleave(function(){
+        $('.text').removeClass('hover');
+    });
+});
 
 
 </script>
@@ -57,11 +64,17 @@ window.onload = function(){
 
 <!-- insert video view -->
 <div id = 'video-wheel'>
-    <div id = 'top' class = 'arc'> </div>
-    <div id = 'left' class = 'arc'> </div>
-    <div id = 'bottom' class = 'arc'> </div>
+    <div id = 'top' class = 'arc'></div>
+    <div id = 'left' class = 'arc'></div>
+    <div id = 'bottom' class = 'arc'></div>
     <div id = 'right' class = 'arc'> </div>
+
+    <div id = 'text-top' class = 'text'>All Genres</div>
+    <div id = 'text-left' class = 'text'>Acrobatics</div>
+    <div id = 'text-bottom' class = 'text'>Music </div>
+    <div id = 'text-right' class = 'text'>Juggling</div>
 </div>
+
 
 
 </body>
