@@ -26,42 +26,42 @@ function logout(){
 }
 
 // video
-var vidID = 'O1mmOm-1X4Q';
-var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+// var vidID = 'O1mmOm-1X4Q';
+// var tag = document.createElement('script');
+// tag.src = 'https://www.youtube.com/iframe_api';
+// var firstScriptTag = document.getElementsByTagName('script')[0];
+// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player;
-    function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '315',
-        width: '560',
-        videoId: vidID,
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-    }
+// var player;
+//     function onYouTubeIframeAPIReady() {
+//     player = new YT.Player('player', {
+//         height: '315',
+//         width: '560',
+//         videoId: vidID,
+//         events: {
+//             'onReady': onPlayerReady,
+//             'onStateChange': onPlayerStateChange
+//           }
+//         });
+//     }
 
-var isReady = false;
-    function onPlayerReady(event) {
-        event.target.playVideo();
-        isReady = true;
-    }
+// var isReady = false;
+//     function onPlayerReady(event) {
+//         event.target.playVideo();
+//         isReady = true;
+//     }
 
-      var done = false;
-      function onPlayerStateChange(event) {
-        // if (event.data == YT.PlayerState.PLAYING && !done) {
-        //   setTimeout(stopVideo, 6000);
-        //   done = true;
-        // }
-      }
+//       var done = false;
+//       function onPlayerStateChange(event) {
+//         // if (event.data == YT.PlayerState.PLAYING && !done) {
+//         //   setTimeout(stopVideo, 6000);
+//         //   done = true;
+//         // }
+//       }
 
-      function stopVideo() {
-        player.stopVideo();
-      }
+//       function stopVideo() {
+//         player.stopVideo();
+//       }
 
 
 <!-- video wheel -->
@@ -78,12 +78,12 @@ $(document).ready(function(){
 
 
     $('.arc').mouseup(function(){
-        console.log('blah ', player);
-        console.log(isReady);
-        if (isReady){
-            console.log("WOO");
-            player.loadVideoById('eeHEGK0vaqA');
-        }
+        // console.log('blah ', player);
+        // console.log(isReady);
+        // if (isReady){
+        //     console.log("WOO");
+        //     player.loadVideoById('eeHEGK0vaqA');
+        // }
             // return false;
     });
 
@@ -151,9 +151,57 @@ $(document).ready(function(){
     
 </div>
 <div id = 'active-video'>
-    <div id = 'player' width = '560' height = '315'></div>
+
+    <!-- CAROUSEL -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <!-- <ol class="carousel-indicators"> -->
+    <!-- <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
+    <!-- <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
+    <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+  <!-- </ol> -->
+ 
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/O1mmOm-1X4Q" frameborder="0" ></iframe> 
+      <!-- <div class="carousel-caption">
+          <h3>Caption Text</h3>
+      </div> -->
+    </div>
+    <div class="item">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/eeHEGK0vaqA" frameborder="0" ></iframe> 
+     <!--  <div class="carousel-caption">
+          <h3>Caption Text</h3>
+      </div> -->
+    </div>
+    <div class="item">
+      <iframe width="450" height="300" src="https://www.youtube.com/embed/LaYEMUAPUf0" frameborder="0" ></iframe> 
+      <!-- <div class="carousel-caption">
+          <h3>Caption Text</h3>
+      </div> -->
+    </div>
+     <div class="item">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/AxHt4-GDvck" frameborder="0" ></iframe> 
+     <!--  <div class="carousel-caption">
+          <h3>Caption Text</h3>
+      </div> -->
+    </div>
+  </div>
+ 
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> <!-- Carousel -->
+    <!-- END CAROUSEL -->
+
+    <!-- <div id = 'player' width = '560' height = '315'></div> -->
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/O1mmOm-1X4Q" frameborder="0" allowfullscreen></iframe> -->
-    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; left: 50%; margin-top: 5%'> More Information</button>
+    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; margin-left: 240px; margin-top: 10px;'> More Information</button>
 </div>
 
 

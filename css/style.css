@@ -19,10 +19,11 @@ body {
 
 #video-wheel{
 	position: absolute;
-	top: 20%;
-	left: 25%;
+	top: 100px;
+	left: 350px;
 }
 .arc{
+	position: absolute;
 	text-align: center;
  width:500px; height:100px;  
   border: solid 100px #000;
@@ -33,27 +34,29 @@ body {
 }
 #top{
 	border-color: #B8D430 transparent transparent transparent;
-	margin-left: 3%;
+	/*margin-top: -1px;*/
+	/*margin-left: 3px;*/
 }
 #left{
 	border-color:#F35B20 transparent transparent transparent;
 	transform: rotate(270deg);
-	margin-left: -60%;
-	margin-top: 10%;
+	margin-left: -300px;
+	margin-top: 260px;
 }
 #bottom{
 	border-color:#CC0071 transparent transparent transparent;
 	transform: rotate(180deg);
-	margin-top: 7%;
+	margin-top: 500px;
 }
 #right{
 	border-color: #FEF200 transparent transparent transparent;
 	transform: rotate(90deg);
-	margin-top: -85%;
-	margin-left: 65%;
+	margin-top: 260px;
+	margin-left: 300px;
 }
 
 .text{
+	position: absolute;
 	pointer-events: none;
 	font-color: black;
 	font-family: Helvetica,Arial;
@@ -62,17 +65,21 @@ body {
 }
 
 #text-top{
-	margin-top: -22%;
+	margin-top: -60px;
+	margin-left: 80px;
 }
 #text-left{
-	margin-top: -22%;
+	margin-top: -60px;
+	margin-left: 80px;
 }
 #text-bottom{
 	transform: rotate(180deg);
-	margin-top: -25%;
+	margin-top: -70px;
+	margin-left: 110px;
 }
 #text-right{
-	margin-top: -22%;
+	margin-top: -70px;
+	margin-left: 100px;
 }
 
 .hover{
@@ -81,11 +88,14 @@ body {
 
 #active-video{
 	position: absolute;
-	left: 23.5%;
-	top: 55%;
-	height: 500px;
-	width: 400px;
+	margin-left: 300px;
+	margin-top: 240px;
+	height: 600px;
+	width: 600px;
 	/*background-color: blue;*/
 	/*z-index: 999;*/
 }
 
+.item {
+	text-align: center;
+}
