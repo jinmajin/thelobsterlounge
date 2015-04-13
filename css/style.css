@@ -17,12 +17,12 @@ body {
 
 /*Video Page */
 #topArc{
- width:500px; height:100px;  
-  border: solid 200px #000;
+	display: block;
+  width:500px; height:100px;  
+  border:solid 200px #000;
   border-color:#000 transparent transparent transparent;
-  -moz-border-radius: 70%/300px 300px 0 0;
-  -webkit-border-radius: 70%/300px 300px 0 0;
   border-radius: 70%/300px 300px 0 0;
+  /*transform: rotate(9deg);*/
 }
 /*#topArc{
  width:500px; height:100px;  
