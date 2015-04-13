@@ -49,7 +49,7 @@ body {
 #right{
 	border-color: #FEF200 transparent transparent transparent;
 	transform: rotate(90deg);
-	margin-top: -88%;
+	margin-top: -85%;
 	margin-left: 65%;
 }
 
@@ -82,10 +82,10 @@ body {
 #active-video{
 	position: absolute;
 	left: 23.5%;
-	top: 60%;
+	top: 55%;
 	height: 500px;
 	width: 400px;
 	/*background-color: blue;*/
-	z-index: 999;
+	/*z-index: 999;*/
 }
 
