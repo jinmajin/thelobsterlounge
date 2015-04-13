@@ -8,6 +8,7 @@
 
 .profile-subheader {
   font-size: 18pt;
+  padding-left: 0.5em;
 }
 
 .about-me, .upcoming-performances {
@@ -36,6 +37,14 @@ li {
   padding-top: 1em;
   padding-left: 2em;
   padding-right: 2em;
+}
+
+#quote {
+  font-style: italic;
+}
+
+#upload-media-btn {
+  margin-bottom: 1em;
 }
 
 iframe {
