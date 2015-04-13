@@ -1,0 +1,48 @@
+.profile-header, .profile-subheader {
+  border-bottom: solid 2px darkgrey;
+}
+
+.profile-header {
+  padding: 1em;
+}
+
+.profile-subheader {
+  font-size: 18pt;
+}
+
+.about-me, .upcoming-performances {
+  padding: 1em;
+  border-right: solid 2px darkgrey;
+  border-bottom: solid 2px darkgrey;
+}
+
+.buttons > div > button {
+  width: 80%;
+}
+
+.gallery, p, ul {
+  padding: 1em;
+}
+
+li {
+  font-weight: bold;
+}
+
+.dot {
+  font-weight: bold;
+}
+
+.thumbnail-container {
+  padding-top: 1em;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  margin-top: 0px;
+}

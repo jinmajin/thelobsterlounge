@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Lounge</title>
+
+<!-- Load style sheets -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<!-- Load any supplemental Javascript libraries here -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+
+function login(){
+	$("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
+}
+function logout(){
+	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
+}
+
+// video
+var vidID = 'O1mmOm-1X4Q';
+var tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+    function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '315',
+        width: '560',
+        videoId: vidID,
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+    }
+
+var isReady = false;
+    function onPlayerReady(event) {
+        event.target.playVideo();
+        isReady = true;
+    }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        // if (event.data == YT.PlayerState.PLAYING && !done) {
+        //   setTimeout(stopVideo, 6000);
+        //   done = true;
+        // }
+      }
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+
+<!-- video wheel -->
+$(document).ready(function(){
+    
+    $('.arc').mouseenter(function(){
+        var underlineThis = '#text-' + this.id;
+        $(underlineThis).addClass('hover');
+    });
+    
+    $('.arc').mousedown(function(){
+            console.log('clicked..');
+    });
+
+
+    $('.arc').mouseup(function(){
+        console.log('blah ', player);
+        console.log(isReady);
+        if (isReady){
+            console.log("WOO");
+            player.loadVideoById('eeHEGK0vaqA');
+        }
+            // return false;
+    });
+
+
+    $('.arc').mouseleave(function(){
+        $('.text').removeClass('hover');
+    });
+
+
+
+    $('#more-info').click(function(){
+        var path = ""
+        if (vidID === 'O1mmOm-1X4Q'){
+            path = 'usTheDuo';
+        }
+        window.location.href='profile.html?profile=' + path;
+    });
+});
+
+
+</script>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-default custom-nav">
+    <div class="navbar-header">
+      <a class="navbar-brand lobster-medium" href="index.html">The Lounge</a>
+    </div>
+	<div class="navbar-form navbar-right" role="userinfo">
+        <div id="userinfo" class="nav pull-right login">
+            <a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">
+        </div>
+    </div>
+	<div class="navbar-form navbar-right" role="search">
+        <div class="search">
+          <input type="text" class="search-bar form-control" placeholder="Enter Performer's Name...">
+		  <i class="glyphicon glyphicon-search search-icon"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- video view -->
+<div id = 'video-wheel'>
+    <div id = 'top' class = 'arc'>
+        <div id = 'text-top' class = 'text'>All Genres</div>
+    </div>
+
+    <div id = 'left' class = 'arc'>
+        <div id = 'text-left' class = 'text'>Acrobatics</div>
+    </div>
+
+    <div id = 'bottom' class = 'arc'>
+        <div id = 'text-bottom' class = 'text'>Music </div>
+    </div>
+
+    <div id = 'right' class = 'arc'>
+        <div id = 'text-right' class = 'text'>Juggling</div>
+    </div>
+
+    
+    
+    
+    
+</div>
+<div id = 'active-video'>
+    <div id = 'player' width = '560' height = '315'></div>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/O1mmOm-1X4Q" frameborder="0" allowfullscreen></iframe> -->
+    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; left: 50%; margin-top: 5%'> More Information</button>
+</div>
+
+
+
+</body>
+
+</html>
