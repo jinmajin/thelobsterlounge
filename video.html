@@ -30,7 +30,6 @@ $(document).ready(function(){
     console.log($('.arc'));
     $('.arc').mouseenter(function(){
         var underlineThis = '#text-' + this.id;
-        console.log(underlineThis);
         $(underlineThis).addClass('hover');
     });
     $('.arc').mouseleave(function(){
@@ -64,15 +63,30 @@ $(document).ready(function(){
 
 <!-- insert video view -->
 <div id = 'video-wheel'>
-    <div id = 'top' class = 'arc'></div>
-    <div id = 'left' class = 'arc'></div>
-    <div id = 'bottom' class = 'arc'></div>
-    <div id = 'right' class = 'arc'> </div>
+    <div id = 'top' class = 'arc'>
+        <div id = 'text-top' class = 'text'>All Genres</div>
+    </div>
 
-    <div id = 'text-top' class = 'text'>All Genres</div>
-    <div id = 'text-left' class = 'text'>Acrobatics</div>
-    <div id = 'text-bottom' class = 'text'>Music </div>
-    <div id = 'text-right' class = 'text'>Juggling</div>
+    <div id = 'left' class = 'arc'>
+        <div id = 'text-left' class = 'text'>Acrobatics</div>
+    </div>
+
+    <div id = 'bottom' class = 'arc'>
+        <div id = 'text-bottom' class = 'text'>Music </div>
+    </div>
+
+    <div id = 'right' class = 'arc'>
+        <div id = 'text-right' class = 'text'>Juggling</div>
+    </div>
+
+    
+    
+    
+    
+</div>
+<div id = 'active-video'>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/JzrFtImnuqI" frameborder="0" allowfullscreen></iframe>
+    <button id= 'more-info' style = 'position: absolute; left: 50%; margin-top: 5%'> More Information</button>
 </div>
 
 
