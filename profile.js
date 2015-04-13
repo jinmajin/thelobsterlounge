@@ -37,8 +37,8 @@ var setMediaHeight = function(ratio) {
 var fillInProfileInfo = function(profileInfo) {
   $('#profile-name').text(profileInfo.profileName);
   $('#location').text(profileInfo.location);
-  $('#genre').text(profileInfo.genre).prepend($('<span class="dot">').text('\267'));
-  $('#quote').text(profileInfo.quote).prepend($('<span class="dot">').text('\267'));
+  $('#genre').text(profileInfo.genre);
+  $('#quote').text(profileInfo.quote);
   $('#about-me-details').text(profileInfo.aboutMe);
 
   $('.about-me .thumbnail').append($('<img class="img-responsive" src="' + profileInfo.profilePic.src + '">'));
@@ -116,7 +116,7 @@ var profileJeff = {
   profileName: "Jazzy Jeff's Jumpin' Jam",
   location: "Boston, MA",
   genre: "Music",
-  quote: "To play is to live",
+  quote: '"To play is to live"',
   aboutMe: "I've been playing jazz in the Boston area for about 7 years now. " +
     "Before that, I used to play in Central Park NYC for 12 years. I love playing the guitar and the piano.",
   upcomingPerformances: [
@@ -140,7 +140,7 @@ var profileUsTheDuo = {
   profileName: "Us The Duo",
   location: "New York, NY",
   genre: "Music",
-  quote: "We like to play music",
+  quote: '"We like to play music"',
   aboutMe: "Three years ago, two emerging solo artists from opposite sides of the country randomly collided, fell in love, and combined their talents to form Us The Duo. A few successful YouTube videos (28+ million views) encouraged these pop songwriters to write their own music together, leading them to produce their first self-titled album. After its release, Michael & Carissa got married and have been traveling and playing music together ever since.",
   upcomingPerformances: [
     {date: "April 13, 2015", location: "Central Park", details: "We'll be playing some wicked sweet jams."},
