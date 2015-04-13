@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -35,9 +36,9 @@ window.onload = function(){
     function drawVideoWheel() {
       var canvas = document.getElementById("video-canvas");
       if (canvas.getContext) {
-        var outsideRadius = 250;
-        var textRadius = 190;
-        var insideRadius = 150;
+        var outsideRadius = 300;
+        var textRadius = 230;
+        var insideRadius = 200;
 
         ctx = canvas.getContext("2d");
         ctx.clearRect(0,0,500,500);
@@ -52,15 +53,15 @@ window.onload = function(){
           ctx.fillStyle = colors[i];
 
           ctx.beginPath();
-          ctx.arc(300, 300, outsideRadius, angle, angle + arc, false);
-          ctx.arc(300, 300, insideRadius, angle + arc, angle, true);
+          ctx.arc(500, 350, outsideRadius, angle, angle + arc, false);
+          ctx.arc(500, 350, insideRadius, angle + arc, angle, true);
           ctx.stroke();
           ctx.fill();
 
           ctx.save();
           ctx.fillStyle = "black";
-          ctx.translate(300 + Math.cos(angle + arc / 2) * textRadius, 
-                        300 + Math.sin(angle + arc / 2) * textRadius);
+          ctx.translate(500 + Math.cos(angle + arc / 2) * textRadius, 
+                        350 + Math.sin(angle + arc / 2) * textRadius);
           ctx.rotate(angle + arc / 2 + Math.PI / 2);
           var text = genres[i];
           ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
@@ -70,7 +71,15 @@ window.onload = function(){
       }
     }
     drawVideoWheel();
+
+    var test = document.getElementById('topArc');
+
+
+    document.getElementById("video-canvas").addEventListener("mousedown", function(e){
+    console.log(e);
+    });
 }
+
 
 </script>
 
@@ -96,7 +105,13 @@ window.onload = function(){
 </nav>
 
 <!-- insert video view -->
+<div id = 'topArc'> </div>
+<!-- <div id = 'bottomArc'> </div> -->
+
+
+
 <canvas id = 'video-canvas' width = "1000" height = "1000"> </canvas>
+
 
 </body>
 
