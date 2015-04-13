@@ -1,5 +1,11 @@
 $(document).ready(function() {
-  var profileInfo = profileJeff;
+  var profile = getParameterByName('profile');
+  var profileInfo;
+  if (profile == 'usTheDuo') {
+    profileInfo = profileUsTheDuo;
+  } else {
+    profileInfo = profileJeff;
+  }
   fillInProfileInfo(profileInfo);
   
   // Give all media a 4:3 ratio
@@ -96,6 +102,15 @@ var setCarouselActiveIndex = function(activeIndex) {
   $('.carousel-inner .item').eq(activeIndex).addClass('active');
 };
 
+// CODE PROVIDED FROM:
+// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 // Jeff Profile Info
 var profileJeff = {
   profileName: "Jazzy Jeff's Jumpin' Jam",
@@ -118,4 +133,24 @@ var profileJeff = {
     {type: 'image', src: "http://nyulocal.com/wp-content/uploads/2012/04/1054.jpg"},
   ],
   profilePic: {src: "http://doge2048.com/meta/doge-600.png"},
+};
+
+// Us The Duo Profile Info
+var profileUsTheDuo = {
+  profileName: "Us The Duo",
+  location: "New York, NY",
+  genre: "Music",
+  quote: "We like to play music",
+  aboutMe: "Three years ago, two emerging solo artists from opposite sides of the country randomly collided, fell in love, and combined their talents to form Us The Duo. A few successful YouTube videos (28+ million views) encouraged these pop songwriters to write their own music together, leading them to produce their first self-titled album. After its release, Michael & Carissa got married and have been traveling and playing music together ever since.",
+  upcomingPerformances: [
+    {date: "April 13, 2015", location: "Central Park", details: "We'll be playing some wicked sweet jams."},
+    {date: "April 14, 2015", location: "Central Park", details: "We'll be playing some moderately tasty jams."},
+  ],
+  media: [
+    {type: 'video', src: "https://www.youtube.com/embed/F20Ssabgf70"},
+    {type: 'video', src: "https://www.youtube.com/embed/zbyLADjgpik"},
+    {type: 'video', src: "https://www.youtube.com/embed/2nPpR_VbquA"},
+    {type: 'image', src: "http://www.ustheduo.com/files/2014/12/UsTheDuoSingapore.jpg"},
+  ],
+  profilePic: {src: "http://www.ustheduo.com/files/2014/05/UsTheDuoFeaturedImage-283x270.jpg"},
 };
