@@ -8,6 +8,7 @@
 <!-- Load style sheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 
@@ -25,50 +26,16 @@ function logout(){
 	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
 }
 
-// video
-// var vidID = 'O1mmOm-1X4Q';
-// var tag = document.createElement('script');
-// tag.src = 'https://www.youtube.com/iframe_api';
-// var firstScriptTag = document.getElementsByTagName('script')[0];
-// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// var player;
-//     function onYouTubeIframeAPIReady() {
-//     player = new YT.Player('player', {
-//         height: '315',
-//         width: '560',
-//         videoId: vidID,
-//         events: {
-//             'onReady': onPlayerReady,
-//             'onStateChange': onPlayerStateChange
-//           }
-//         });
-//     }
-
-// var isReady = false;
-//     function onPlayerReady(event) {
-//         event.target.playVideo();
-//         isReady = true;
-//     }
-
-//       var done = false;
-//       function onPlayerStateChange(event) {
-//         // if (event.data == YT.PlayerState.PLAYING && !done) {
-//         //   setTimeout(stopVideo, 6000);
-//         //   done = true;
-//         // }
-//       }
-
-//       function stopVideo() {
-//         player.stopVideo();
-//       }
-
 
 <!-- video wheel -->
 $(document).ready(function(){
    var vidIndex = 0;
    var vidIDs = ['O1mmOm-1X4Q', 'AxHt4-GDvck','eeHEGK0vaqA','LaYEMUAPUf0'];
    var paths = ['usTheDuo', 'jugglingGeorge', 'jazzyJeff', 'acrobaticAdam'];
+   var labelNames = ['Us The Duo', 'Juggling George', 'Jazzy Jeff', 'Acrobatic Adam'];
+
+   var topLabel= document.getElementById('label');
+   topLabel.innerHTML = labelNames[0];
    var clickThis = false;
     $('.carousel').carousel({
       interval: 90000 //make it an object instead of iframe so can get duration of video?
@@ -91,18 +58,22 @@ $(document).ready(function(){
       if (this.id === 'top'){
         $('.carousel').carousel(0);
         vidIndex = 0;
+        topLabel.innerHTML = labelNames[0];
       }
       else if (this.id === 'right'){
         $('.carousel').carousel(1);
         vidIndex = 1;
+        topLabel.innerHTML = labelNames[vidIndex];
       }
       else if (this.id === 'bottom'){
         $('.carousel').carousel(2);
         vidIndex = 2;
+        topLabel.innerHTML = labelNames[vidIndex];
       }
       else{
         $('.carousel').carousel(3);
         vidIndex = 3;
+        topLabel.innerHTML = labelNames[vidIndex];
       }
     });
 
@@ -119,12 +90,6 @@ $(document).ready(function(){
         }
     });
 
-    $('.carousel-control').click(function(){
-      // $('iframe').each(function(){
-      //   $(this).stopVideo();
-      //   // $(this).attr('src', $(this).attr('src'));
-      // });
-    });
 
     $('#more-info').click(function(){
         window.location.href='profile.html?profile=' + paths[vidIndex];
@@ -157,6 +122,7 @@ $(document).ready(function(){
 
 <!-- video view -->
 <div id = 'video-wheel'>
+  <div id = 'label'> </div>
     <div id = 'top' class = 'arc'>
         <div id = 'text-top' class = 'text'>All Genres</div>
     </div>
