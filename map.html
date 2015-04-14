@@ -15,6 +15,7 @@
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
 
 
 <script type="text/javascript">
@@ -27,6 +28,83 @@ function logout(){
 }
 
 
+// Google Maps API stuff
+// - search bar autocomplete
+// - custom places markers
+// - info window for each marker
+
+
+// custom search bar and places
+//function initialize() {
+//
+//  var markers = [];
+//  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+//    mapTypeId: google.maps.MapTypeId.ROADMAP
+//  });
+//
+//  var defaultBounds = new google.maps.LatLngBounds(
+//      // MIT lat long
+//      new google.maps.LatLng(42.358430, -71.090684),
+//      new google.maps.LatLng(-33.8474, 151.2631));
+//  map.fitBounds(defaultBounds);
+//
+//  // Create the search box and link it to the UI element.
+//  var input = /** @type {HTMLInputElement} */(
+//      document.getElementById('pac-input'));
+//  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+//
+//  var searchBox = new google.maps.places.SearchBox(
+//    /** @type {HTMLInputElement} */(input));
+//
+//  // Listen for the event fired when the user selects an item from the
+//  // pick list. Retrieve the matching places for that item.
+//  google.maps.event.addListener(searchBox, 'places_changed', function() {
+//    var places = searchBox.getPlaces();
+//
+//    if (places.length == 0) {
+//      return;
+//    }
+//    for (var i = 0, marker; marker = markers[i]; i++) {
+//      marker.setMap(null);
+//    }
+//
+//    // For each place, get the icon, place name, and location.
+//    markers = [];
+//    var bounds = new google.maps.LatLngBounds();
+//    for (var i = 0, place; place = places[i]; i++) {
+//      var image = {
+//        url: place.icon,
+//        size: new google.maps.Size(71, 71),
+//        origin: new google.maps.Point(0, 0),
+//        anchor: new google.maps.Point(17, 34),
+//        scaledSize: new google.maps.Size(25, 25)
+//      };
+//
+//      // Create a marker for each place.
+//      var marker = new google.maps.Marker({
+//        map: map,
+//        icon: image,
+//        title: place.name,
+//        position: place.geometry.location
+//      });
+//
+//      markers.push(marker);
+//
+//      bounds.extend(place.geometry.location);
+//    }
+//
+//    map.fitBounds(bounds);
+//  });
+//
+//  // Bias the SearchBox results towards places that are within the bounds of the
+//  // current map's viewport.
+//  google.maps.event.addListener(map, 'bounds_changed', function() {
+//    var bounds = map.getBounds();
+//    searchBox.setBounds(bounds);
+//  });
+//}
+//
+//google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
 
@@ -71,12 +149,15 @@ function logout(){
                 </ul>
             </div>
         </div>
-        <div class="map">
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<!--        <div id="map-canvas"></div>-->
+        <div id="map-canvas">
             <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23584.76868697093!2d-71.09012595789827!3d42.36179149093713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1428689138625"></iframe>
         </div>  
         <div class="right_sidebar">
             <input type="button" class="btn btn-primary" onclick="" value="View As List"> 
         </div>
     </div>
+    <base href="http://maps.gstatic.com/mapfiles/openhand_8_8.cur" target="_blank" >
   </body>
 </html>
