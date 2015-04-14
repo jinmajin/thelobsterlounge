@@ -11,21 +11,17 @@
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="profile-resources.js"></script>
+<script type="text/javascript" src="titlebar.js"></script>
 
 
 <script type="text/javascript">
-
-function login(){
-	$("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
-}
-function logout(){
-	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
-}
-
 
 <!-- video wheel -->
 $(document).ready(function(){
@@ -165,7 +161,7 @@ $(document).ready(function(){
     </div>
 	<div class="navbar-form navbar-right" role="search">
         <div class="search">
-          <input type="text" class="search-bar form-control" placeholder="Enter Performer's Name...">
+          <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
 		  <i class="glyphicon glyphicon-search search-icon"></i>
         </div>
     </div>
