@@ -34,11 +34,10 @@ $(document).ready(function(){
    var paths = ['usTheDuo', 'jugglingGeorge', 'jazzyJeff', 'acrobaticAdam'];
    var labelNames = ['Us The Duo', 'Juggling George', 'Jazzy Jeff', 'Acrobatic Adam'];
 
-   var topLabel= document.getElementById('label');
-   topLabel.innerHTML = labelNames[0];
-   var clickThis = false;
+
+   var clickThis = true;
     $('.carousel').carousel({
-      interval: 90000 //make it an object instead of iframe so can get duration of video?
+      interval: 5000 //make it an object instead of iframe so can get duration of video?
     });
 
     $('#top').addClass('hover');
@@ -46,7 +45,6 @@ $(document).ready(function(){
     $('.arc').mouseenter(function(){
         var underlineThis = '#text-' + this.id;
         $(underlineThis).addClass('hoverText');
-        // $(this).addClass('hover');
     });
     
     $('.arc').mousedown(function(){
@@ -60,22 +58,18 @@ $(document).ready(function(){
       if (this.id === 'top'){
         $('.carousel').carousel(0);
         vidIndex = 0;
-        topLabel.innerHTML = labelNames[0];
       }
       else if (this.id === 'right'){
         $('.carousel').carousel(1);
         vidIndex = 1;
-        topLabel.innerHTML = labelNames[vidIndex];
       }
       else if (this.id === 'bottom'){
         $('.carousel').carousel(2);
         vidIndex = 2;
-        topLabel.innerHTML = labelNames[vidIndex];
       }
       else{
         $('.carousel').carousel(3);
         vidIndex = 3;
-        topLabel.innerHTML = labelNames[vidIndex];
       }
     });
 
@@ -92,6 +86,61 @@ $(document).ready(function(){
         }
     });
 
+    $('.change-label-right').click(function(e){
+      console.log(e);
+      if (vidIndex < 3){
+        vidIndex = vidIndex + 1;
+      }else{
+        vidIndex = 0;
+      }
+
+      if (vidIndex == 0){
+        $('#left').removeClass('hover');
+        $('#right').removeClass('hover');
+        $('#top').addClass('hover');
+      }else if (vidIndex == 1){
+        $('#top').removeClass('hover');
+        $('#bottom').removeClass('hover');
+        $('#right').addClass('hover');
+
+      }else if (vidIndex ==2){
+        $('#right').removeClass('hover');
+        $('#left').removeClass('hover');
+        $('#bottom').addClass('hover');
+      }else{
+        $('#bottom').removeClass('hover');
+        $('#top').removeClass('hover');
+        $('#left').addClass('hover');
+      }
+    });
+
+    $('.change-label-left').click(function(e){
+      console.log(e);
+      if (vidIndex > 0){
+        vidIndex = vidIndex - 1;
+      }else{
+        vidIndex = 3;
+      }
+
+      if (vidIndex == 0){
+        $('#left').removeClass('hover');
+        $('#right').removeClass('hover');
+        $('#top').addClass('hover');
+      }else if (vidIndex == 1){
+        $('#top').removeClass('hover');
+        $('#bottom').removeClass('hover');
+        $('#right').addClass('hover');
+
+      }else if (vidIndex ==2){
+        $('#right').removeClass('hover');
+        $('#left').removeClass('hover');
+        $('#bottom').addClass('hover');
+      }else{
+        $('#bottom').removeClass('hover');
+        $('#top').removeClass('hover');
+        $('#left').addClass('hover');
+      }
+    });
 
     $('#more-info').click(function(){
         window.location.href='profile.html?profile=' + paths[vidIndex];
@@ -148,28 +197,34 @@ $(document).ready(function(){
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-        <iframe width="450" height="300" src="https://www.youtube.com/embed/O1mmOm-1X4Q?enablejsapi=1" frameborder="0" ></iframe> 
+      <div id = 'label' class = 'carousel-caption'> Us The Duo </div>
+     <!--    <div id = 'space' width = '450' height = '400'> -->
+          <iframe width="450" height="300" src="https://www.youtube.com/embed/O1mmOm-1X4Q?enablejsapi=1" frameborder="0" ></iframe> 
+        <!-- </div> -->
     </div>
 
     <div class="item">
+        <div id = 'label' class = 'carousel-caption'> Juggling George</div>
         <iframe width="450" height="300" src="https://www.youtube.com/embed/AxHt4-GDvck?enablejsapi=1" frameborder="0" ></iframe> 
     </div>
 
     <div class="item">
+        <div id = 'label' class = 'carousel-caption'> Jazzy Jeff</div>
         <iframe width="450" height="300" src="https://www.youtube.com/embed/eeHEGK0vaqA?enablejsapi=1" frameborder="0" ></iframe> 
     </div>
 
     <div class="item">
+      <div id = 'label' class = 'carousel-caption'> Acrobatic Adam</div>
       <iframe width="450" height="300" src="https://www.youtube.com/embed/LaYEMUAPUf0?enablejsapi=1" frameborder="0" ></iframe> 
     </div>
 
   </div>
  
   <!-- Controls -->
-  <a class="left carousel-control" href="#video-carousel" role="button" data-slide="prev">
+  <a class="left carousel-control change-label-left" href="#video-carousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
   </a>
-  <a class="right carousel-control" href="#video-carousel" role="button" data-slide="next">
+  <a class="right carousel-control change-label-right" href="#video-carousel" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right"></span>
   </a>
 </div> 

@@ -47,14 +47,15 @@ body {
 
 /*Video Page */
 #label{
-	position: absolute;
-	height: 50px;
-	width: 500px;
-	margin-top: 140px;
+	/*position: absolute;*/
+/*	height: 50px;
+	width: 500px;*/
+	/*margin-top: -150px;*/
+	/*margin-right: 5px;*/
 	font-family: 'Pacifico';
 	font-size: 36px;
-	vertical-align: middle;
-	text-align: center;
+/*	vertical-align: middle;
+	text-align: center;*/
 	color: #A0908C;
 }
 
@@ -134,11 +135,20 @@ body {
 #active-video{
 	position: absolute;
 	margin-left: 300px;
-	margin-top: 240px;
-	height: 375px;
+	margin-top: 160px;
+	height: 400px;
 	width: 600px;
 }
 
 .item {
 	text-align: center;
+	margin-top: 110px;
 }
+
+.carousel-caption{
+	top: -100px;
+	bottom: auto;
+	/*margin-top: -200px;*/
+	/*margin-left: -100px;*/
+}
+
