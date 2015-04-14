@@ -46,6 +46,17 @@ body {
 }
 
 /*Video Page */
+#label{
+	position: absolute;
+	height: 50px;
+	width: 500px;
+	margin-top: 140px;
+	font-family: 'Pacifico';
+	font-size: 36px;
+	vertical-align: middle;
+	text-align: center;
+	color: #A0908C;
+}
 
 #video-wheel{
 	position: absolute;
