@@ -47,15 +47,8 @@ body {
 
 /*Video Page */
 #label{
-	/*position: absolute;*/
-/*	height: 50px;
-	width: 500px;*/
-	/*margin-top: -150px;*/
-	/*margin-right: 5px;*/
 	font-family: 'Pacifico';
 	font-size: 36px;
-/*	vertical-align: middle;
-	text-align: center;*/
 	color: #A0908C;
 }
 
@@ -148,7 +141,12 @@ body {
 .carousel-caption{
 	top: -100px;
 	bottom: auto;
-	/*margin-top: -200px;*/
-	/*margin-left: -100px;*/
 }
 
+.carousel-control.left, .carousel-control.right{
+	background-image: none;
+}
+
+.glyphicon{
+	background-color:#A0908C;
+}
