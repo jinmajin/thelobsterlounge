@@ -41,6 +41,8 @@ $(document).ready(function(){
       interval: 90000 //make it an object instead of iframe so can get duration of video?
     });
 
+    $('#top').addClass('hover');
+
     $('.arc').mouseenter(function(){
         var underlineThis = '#text-' + this.id;
         $(underlineThis).addClass('hoverText');
