@@ -8,6 +8,7 @@
 <!-- Load style sheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 
@@ -25,81 +26,75 @@ function logout(){
 	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
 }
 
-// video
-var vidID = 'O1mmOm-1X4Q';
-var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-    function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '315',
-        width: '560',
-        videoId: vidID,
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-    }
-
-var isReady = false;
-    function onPlayerReady(event) {
-        event.target.playVideo();
-        isReady = true;
-    }
-
-      var done = false;
-      function onPlayerStateChange(event) {
-        // if (event.data == YT.PlayerState.PLAYING && !done) {
-        //   setTimeout(stopVideo, 6000);
-        //   done = true;
-        // }
-      }
-
-      function stopVideo() {
-        player.stopVideo();
-      }
-
 
 <!-- video wheel -->
 $(document).ready(function(){
-    
+   var vidIndex = 0;
+   var vidIDs = ['O1mmOm-1X4Q', 'AxHt4-GDvck','eeHEGK0vaqA','LaYEMUAPUf0'];
+   var paths = ['usTheDuo', 'jugglingGeorge', 'jazzyJeff', 'acrobaticAdam'];
+   var labelNames = ['Us The Duo', 'Juggling George', 'Jazzy Jeff', 'Acrobatic Adam'];
+
+   var topLabel= document.getElementById('label');
+   topLabel.innerHTML = labelNames[0];
+   var clickThis = false;
+    $('.carousel').carousel({
+      interval: 90000 //make it an object instead of iframe so can get duration of video?
+    });
+
+    $('#top').addClass('hover');
+
     $('.arc').mouseenter(function(){
         var underlineThis = '#text-' + this.id;
-        $(underlineThis).addClass('hover');
+        $(underlineThis).addClass('hoverText');
+        // $(this).addClass('hover');
     });
     
     $('.arc').mousedown(function(){
-            console.log('clicked..');
+      if (clickThis == false){
+        clickThis = true;
+      }else{
+        $('.arc').removeClass('hover');
+        clickThis = false;
+        clickThis = true;
+      }
+      if (this.id === 'top'){
+        $('.carousel').carousel(0);
+        vidIndex = 0;
+        topLabel.innerHTML = labelNames[0];
+      }
+      else if (this.id === 'right'){
+        $('.carousel').carousel(1);
+        vidIndex = 1;
+        topLabel.innerHTML = labelNames[vidIndex];
+      }
+      else if (this.id === 'bottom'){
+        $('.carousel').carousel(2);
+        vidIndex = 2;
+        topLabel.innerHTML = labelNames[vidIndex];
+      }
+      else{
+        $('.carousel').carousel(3);
+        vidIndex = 3;
+        topLabel.innerHTML = labelNames[vidIndex];
+      }
     });
 
 
     $('.arc').mouseup(function(){
-        console.log('blah ', player);
-        console.log(isReady);
-        if (isReady){
-            console.log("WOO");
-            player.loadVideoById('eeHEGK0vaqA');
-        }
-            // return false;
+        $(this).addClass('hover');
     });
 
 
     $('.arc').mouseleave(function(){
-        $('.text').removeClass('hover');
+        $('.text').removeClass('hoverText');
+        if (clickThis == false){
+          $(this).removeClass('hover');
+        }
     });
 
 
-
     $('#more-info').click(function(){
-        var path = ""
-        if (vidID === 'O1mmOm-1X4Q'){
-            path = 'usTheDuo';
-        }
-        window.location.href='profile.html?profile=' + path;
+        window.location.href='profile.html?profile=' + paths[vidIndex];
     });
 });
 
@@ -129,6 +124,7 @@ $(document).ready(function(){
 
 <!-- video view -->
 <div id = 'video-wheel'>
+  <div id = 'label'> </div>
     <div id = 'top' class = 'arc'>
         <div id = 'text-top' class = 'text'>All Genres</div>
     </div>
@@ -143,17 +139,45 @@ $(document).ready(function(){
 
     <div id = 'right' class = 'arc'>
         <div id = 'text-right' class = 'text'>Juggling</div>
+    </div>    
+</div>
+
+<div id = 'active-video'>
+    <!-- CAROUSEL -->
+    <div id="video-carousel" class="carousel slide" data-ride="carousel">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/O1mmOm-1X4Q?enablejsapi=1" frameborder="0" ></iframe> 
     </div>
 
-    
-    
-    
-    
-</div>
-<div id = 'active-video'>
-    <div id = 'player' width = '560' height = '315'></div>
+    <div class="item">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/AxHt4-GDvck?enablejsapi=1" frameborder="0" ></iframe> 
+    </div>
+
+    <div class="item">
+        <iframe width="450" height="300" src="https://www.youtube.com/embed/eeHEGK0vaqA?enablejsapi=1" frameborder="0" ></iframe> 
+    </div>
+
+    <div class="item">
+      <iframe width="450" height="300" src="https://www.youtube.com/embed/LaYEMUAPUf0?enablejsapi=1" frameborder="0" ></iframe> 
+    </div>
+
+  </div>
+ 
+  <!-- Controls -->
+  <a class="left carousel-control" href="#video-carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#video-carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div> 
+    <!-- END CAROUSEL -->
+
+    <!-- <div id = 'player' width = '560' height = '315'></div> -->
     <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/O1mmOm-1X4Q" frameborder="0" allowfullscreen></iframe> -->
-    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; left: 50%; margin-top: 5%'> More Information</button>
+    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; margin-left: 240px; margin-top: 10px;'> More Information</button>
 </div>
 
 
