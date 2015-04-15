@@ -14,28 +14,19 @@
 
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
+<script type="text/javascript" src="profile-resources.js"></script>
 <script type="text/javascript" src="profile.js"></script>
 
-<script type="text/javascript">
-
-function login(){
-	$("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
-}
-function logout(){
-	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
-}
-
-</script>
+<script type="text/javascript" src="titlebar.js"></script>
 
 </head>
 
 <body>
-
-<div class="header-group">
-
-  <nav class="navbar navbar-default custom-nav">
+<nav class="navbar navbar-default custom-nav">
       <div class="navbar-header">
         <a class="navbar-brand lobster-medium" href="index.html">The Lounge</a>
       </div>
@@ -46,22 +37,33 @@ function logout(){
       </div>
     <div class="navbar-form navbar-right" role="search">
           <div class="search">
-            <input type="text" class="search-bar form-control" placeholder="Enter Performer's Name...">
+          <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
         <i class="glyphicon glyphicon-search search-icon"></i>
           </div>
       </div>
-  </nav>
-
+</nav>
+<div class="main">
+<div class="header-group">
   <!-- profile code here -->
 
-  <div class="row profile-header">
-    <h1 class="text-center pacifico" id="profile-name"></h1>
+  <div class="row text-center profile-header pacifico">
+    <h1 class="editable" id="profile-name"></h1>
+    <input class="form-control edit-hidden hidden" id="profile-name-input" type="text" placeholder="Profile Name">
   </div>
 
   <div class="row profile-subheader">
-    <div class="col-md-4 text-left" id="location"></div>
-    <div class="col-md-4 text-center" id="quote"></div>
-    <div class="col-md-4 text-right" id="genre"></div>
+    <div class="col-md-4 text-left">
+      <span class="editable" id="location"></span>
+      <input class="form-control edit-hidden hidden" id="location-input" type="text" placeholder="Location">
+    </div>
+    <div class="col-md-4 text-center">
+      <span class="editable" id="quote"></span>
+      <input class="form-control edit-hidden hidden" id="quote-input" type="text" placeholder="Quote">
+    </div>
+    <div class="col-md-4 text-right">
+      <span class="editable" id="genre"></span>
+      <input class="form-control edit-hidden hidden" id="genre-input" type="text" placeholder="Genre">
+    </div>
   </div>
 </div>
 
@@ -69,8 +71,8 @@ function logout(){
   <div class="col-md-3 sidebar">
     <div class="row about-me">
       <div class="row buttons">
-        <div class="col-md-6 text-center"><button class="btn btn-primary" id="follow-btn">Follow</button></div>
-        <div class="col-md-6 text-center"><button class="btn btn-primary" data-toggle="modal" data-target="#message-modal" id="message-btn">Message</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" id="follow-btn">Follow</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" data-toggle="modal" data-target="#message-modal" id="message-btn">Message</button></div>
         <!-- Modal -->
         <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="Send Message" aria-hidden="true">
           <div class="modal-dialog">
@@ -91,15 +93,18 @@ function logout(){
         </div>
 
       </div>
-      <div class="row thumbnail-container text-center">
-        <a class="thumbnail">
-        </a>
+      <div class="row thumbnail text-center">
       </div>
       <div class="row text-center">
-        <h2 id="about-me-label">About Me</h2>
+        <div class="col-md-12">
+          <h2 id="about-me-label">About Me</h2>
+        </div> 
       </div>
       <div class="row text-justify">
-        <p id="about-me-details"></p>
+        <div class="col-md-12">
+          <p class="editable" id="about-me-details"></p>
+          <textarea class="edit-hidden hidden form-control" id="about-me-details-input" rows="6"></textarea>
+        </div>
       </div>
     </div>
 
@@ -108,8 +113,11 @@ function logout(){
         <h2 id="upcoming-performances-label">Upcoming Performances</h2>
       </div>
       <div class="row">
-        <ul id="upcoming-performances-list">
-        </ul>
+        <div class="col-md-12">
+          <ul id="upcoming-performances-list">
+          </ul>
+          <button class="btn btn-success glyphicon glyphicon-plus edit-hidden hidden" id="add-performance-btn"></button>
+        </div>
       </div>
     </div>
   </div>
@@ -174,7 +182,7 @@ function logout(){
       </div>
       <div class="modal-body">
         <!-- Gallery Carousel --!>
-        <div id="gallery-carousel" class="carousel slide" data-ride="carousel">
+        <div id="gallery-carousel" class="carousel slide" data-interval="false" data-ride="carousel">
           <!-- Indicators -->
           <ol class="carousel-indicators">
             <li data-target="#gallery-carousel" data-slide-to="0" class="active"></li>
@@ -206,6 +214,7 @@ function logout(){
       </div>
     </div>
   </div>
+</div>
 </div>
 </body>
 

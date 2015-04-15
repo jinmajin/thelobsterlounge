@@ -9,22 +9,15 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="profile-resources.js"></script>
 
-
-<script type="text/javascript">
-
-function login(){
-	$("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
-}
-function logout(){
-	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
-}
-
-</script>
+<script type="text/javascript" src="titlebar.js"></script>
 
 </head>
 
@@ -41,7 +34,7 @@ function logout(){
     </div>
 	<div class="navbar-form navbar-right" role="search">
         <div class="search">
-          <input type="text" class="search-bar form-control" placeholder="Enter Performer's Name...">
+          <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
 		  <i class="glyphicon glyphicon-search search-icon"></i>
         </div>
     </div>
@@ -51,12 +44,12 @@ function logout(){
 <a href="video.html">
 <div class="half-page">
 	<img class="main-icon" src="experience-icon.png" />
-	<div class="lobster-large">Experience</div>
+	<div class="large">Experience</div>
 </div></a>
 <a href="map.html">
 <div class="half-page">
 	<img class="main-icon" src="location-icon.png" />
-	<div class="lobster-large">Location</div>
+	<div class="large">Location</div>
 </div></a>
 </div>
 

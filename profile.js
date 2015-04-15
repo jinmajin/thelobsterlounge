@@ -1,12 +1,12 @@
 $(document).ready(function() {
   var profile = getParameterByName('profile');
-  var profileInfo;
-  if (profile == 'usTheDuo') {
-    profileInfo = profileUsTheDuo;
-  } else {
-    profileInfo = profileJeff;
-  }
+  var profileInfo = profileResources[profile] || profileResources.jazzyJeff;
   fillInProfileInfo(profileInfo);
+
+  if (!profile || profile == 'jazzyJeff') {
+    displayEditButton();
+    displayQRButton();
+  }
   
   // Give all media a 4:3 ratio
   setMediaHeight();
@@ -17,7 +17,27 @@ $(document).ready(function() {
     $('#follow-btn').text(text === 'Follow' ? 'Following' : 'Follow');
   });
 
-  var media = $('.gallery .thumbnail').children().clone();
+  $('#add-performance-btn').click(function() {
+    var i = $('#upcoming-performances-list').children().length;
+    var date = $('<span>').addClass('editable hidden').attr('id', 'performance-date-' + i);
+    var divider = $('<span>').addClass('editable hidden').text(' -- ');
+    var location = $('<span>').addClass('editable hidden').attr('id', 'performance-location-' + i);
+
+    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
+    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
+    var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
+
+    var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
+
+    var details = $('<span>').addClass('editable hidden').attr('id', 'performance-details-' + i);
+
+    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
+
+    $('#upcoming-performances-list').append($('<span>').append(dateLoc).append(details).append(detailsInput));
+  });
+
+  var media = $('.gallery .thumbnail').children('img, iframe').clone();
+  console.log(media);
   populateCarousel(media);
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
@@ -25,6 +45,58 @@ $(document).ready(function() {
     setCarouselActiveIndex(activeIndex);
   });
 });
+
+var displayEditButton = function() {
+  var editButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'edit-profile-btn').text('Edit Profile');
+  editButton.click(function() { toggleEditMode() });
+  $('#userinfo a').remove();
+  $('#userinfo').prepend(editButton);
+};
+
+var displaySaveCancelButtons = function() {
+  var saveButton = $('<button>').addClass('btn btn-primary edit-control').attr('id', 'save-profile-btn').text('Save Profile');
+  saveButton.click(function() { toggleEditMode(true) });
+  var cancelButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'cancel-profile-btn').text('Cancel');
+  cancelButton.click(function() { toggleEditMode(false) });
+  $('#userinfo').prepend(saveButton);
+  $('#userinfo').prepend(cancelButton);
+}
+
+var displayQRButton = function() {
+  var qrButton = $('<button>').addClass('btn btn-primary about-me-btn').attr('id', 'generate-qr-btn').text('Generate QR Code For This Page');
+  qrButton.click(function() {
+    window.location.href = 'https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href + '&size=600x600';
+  });
+  var container = $('<div>').addClass('col-md-12').html(qrButton);
+  $('.buttons').html(container);
+}
+
+var toggleEditableFields = function(nowEditable, save) {
+  $('.edit-hidden').toggleClass('hidden');
+  $('.editable').each(function(i, element) {
+    $(element).toggleClass('hidden');
+    var input = $('#' + $(element).attr('id') + '-input');
+    if (nowEditable) {
+      input.val($(element).text());
+    } else if (save) {
+      $(element).text(input.val());
+    }
+  });
+}
+
+var toggleEditMode = (function() {
+  var editMode = false;
+  return (function(save) {
+    editMode = !editMode;
+    $('.edit-control').remove();
+    toggleEditableFields(editMode, save);
+    if (editMode) {
+      displaySaveCancelButtons();
+    } else {
+      displayEditButton();
+    }
+  });
+})();
 
 var setMediaHeight = function(ratio) {
   // Default ratio is 4:3
@@ -41,39 +113,67 @@ var fillInProfileInfo = function(profileInfo) {
   $('#quote').text(profileInfo.quote);
   $('#about-me-details').text(profileInfo.aboutMe);
 
-  $('.about-me .thumbnail').append($('<img class="img-responsive" src="' + profileInfo.profilePic.src + '">'));
+  $('.about-me .thumbnail').html($('<img>').addClass('img-responsive').attr('src', profileInfo.profilePic.src));
 
+  // Populate Performances List
   var performances = [];
-  profileInfo.upcomingPerformances.forEach(function(performance) {
-    performances.push($('<li>').text(performance.date + ' -- ' + performance.location));
-    performances.push(performance.details);
-  });
-  $('#upcoming-performances-list').append(performances);
+  profileInfo.upcomingPerformances.forEach(function(performance, i) {
+    var date = $('<span>').addClass('editable').attr('id', 'performance-date-' + i).text(performance.date);
+    var divider = $('<span>').addClass('editable').text(' -- ');
+    var location = $('<span>').addClass('editable').attr('id', 'performance-location-' + i).text(performance.location);
+    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
+    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
+    var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
+    var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
+    var details = $('<span>').addClass('editable').attr('id', 'performance-details-' + i).text(performance.details);
+    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
+
+    var performanceListing = $('<span>').append(dateLoc).append(details).append(detailsInput);
+
+    var removeButton = $('<div>').addClass('form-group').html($('<button>').addClass('form-control hidden edit-hidden btn btn-danger glyphicon glyphicon-remove'));
+    removeButton.click(function() {
+      performanceListing.remove();
+    });
+    performanceListing.append(removeButton);
+    performances.push(performanceListing);
+  });
+  $('#upcoming-performances-list').html(performances);
+
+  // Populate Gallery With Media
   mediaCollection = [];
   profileInfo.media.forEach(function(media, i) {
+    var anchor = $('<a>').addClass('thumbnail media').attr('data-toggle', 'modal').attr('data-target', '#gallery-modal').attr('data-index', i);
+    var removeButton = $('<button>').addClass('btn btn-danger hidden edit-hidden media-remove-btn glyphicon glyphicon-remove');
+    removeButton.click(function(event) {
+      event.stopPropagation();
+      $('[data-index="' + i + '"]').remove();
+      $('#gallery-modal').modal('hide');
+    });
     if (media.type === 'video') {
-      mediaCollection.push($('<div class="thumbnail media" data-index="' + i + '"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
+      var iframe = $('<iframe>').attr('src', media.src + '?controls=0').attr('frameborder', '0').attr('allowfullscreen', '');
+      mediaCollection.push(anchor.append(iframe).append(removeButton));
     } else {
-      mediaCollection.push($('<a class="thumbnail media" data-toggle="modal" data-target="#gallery-modal" data-index="' + i + '"><img class="img-responsive" src="' + media.src + '">'));
+      var img = $('<img>').addClass('img-responsive').attr('src', media.src);
+      mediaCollection.push(anchor.append(img).append(removeButton));
     }
   });
   mediaCollection.forEach(function(media, i) {
     if (i == 0) {
       // Put into the big frame
-      $('#media-container').append($('<div class="row">').html($('<div class="col-md-8">').html(media)));
+      $('#media-container').append($('<div>').addClass('row').html($('<div>').addClass('col-md-8').html(media)));
     } else if (i == 1) {
       // Put into side frame
-      $('#media-container .row').append($('<div class="col-md-4">').html(media));
+      $('#media-container .row').append($('<div>').addClass('col-md-4').html(media));
     } else if (i == 2) {
       // Put into side fram
       $('#media-container .col-md-4').append(media);
     } else if (i % 3 == 0) {
       // Add a new row and append
-      $('#media-container').append($('<div class="row">').html($('<div class="col-md-4">').html(media)));
+      $('#media-container').append($('<div>').addClass('row').html($('<div>').addClass('col-md-4').html(media)));
     } else {
       // Append to last row
-      $('#media-container .row').last().append($('<div class="col-md-4">').html(media));
+      $('#media-container .row').last().append($('<div>').addClass('col-md-4').html(media));
     }
   });
 };
@@ -82,14 +182,14 @@ var populateCarousel = function(media) {
   // Populate Indicators
   var indicators = [];
   media.each(function(i, m) {
-    indicators.push($('<li data-target="#gallery-carousel" data-slide-to="' + i + (i == 0 ? '" class="active' : '') + '">'));
+    indicators.push($('<li>').addClass(i == 0 ? 'active' : '').attr('data-target', '#gallery-carousel').attr('data-slide-to', i).attr('data-index', i));
   });
   $('.carousel-indicators').html(indicators);
 
   // Populate Slides
   var slides = [];
   media.each(function(i, m) {
-    slides.push($('<div class="item' + (i == 0 ? ' active' : '') + '">').html(m));
+    slides.push($('<div>').addClass('item').addClass(i == 0 ? 'active' : '').addClass($(m).prop('tagName') == 'IFRAME' ? 'video' : '').attr('data-index', i).html(m));
   });
   $('.carousel-inner').html(slides);
 };
@@ -110,47 +210,3 @@ function getParameterByName(name) {
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
-// Jeff Profile Info
-var profileJeff = {
-  profileName: "Jazzy Jeff's Jumpin' Jam",
-  location: "Boston, MA",
-  genre: "Music",
-  quote: '"To play is to live"',
-  aboutMe: "I've been playing jazz in the Boston area for about 7 years now. " +
-    "Before that, I used to play in Central Park NYC for 12 years. I love playing the guitar and the piano.",
-  upcomingPerformances: [
-    {date: "March 5, 2015", location: "Harvard Square", details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"},
-    {date: "March 10, 2015", location: "Kendall Station", details: "I'll play my guitar on the inbound platform all day long"},
-    {date: "April 1, 2015", location: "Boston Commons", details: "I'll be playing guitar by the green line station entrance"}
-  ],
-  media: [
-    {type: 'video', src: "https://www.youtube.com/embed/EXOyjENFQMc"},
-    {type: 'image', src: "http://www.conquerblog.com/wp-content/uploads/2013/01/street-performer.jpg"},
-    {type: 'image', src: "http://diymusician.cdbaby.com/wp-content/uploads/2012/05/shutterstock_82623235.jpg"},
-    {type: 'image', src: "https://lifeintheblueridges.files.wordpress.com/2012/07/img_3765.jpg"},
-    {type: 'image', src: "http://quirkytravelguy.com/wp-content/uploads/2012/06/street-performer.jpg"},
-    {type: 'image', src: "http://nyulocal.com/wp-content/uploads/2012/04/1054.jpg"},
-  ],
-  profilePic: {src: "http://doge2048.com/meta/doge-600.png"},
-};
-
-// Us The Duo Profile Info
-var profileUsTheDuo = {
-  profileName: "Us The Duo",
-  location: "New York, NY",
-  genre: "Music",
-  quote: '"We like to play music"',
-  aboutMe: "Three years ago, two emerging solo artists from opposite sides of the country randomly collided, fell in love, and combined their talents to form Us The Duo. A few successful YouTube videos (28+ million views) encouraged these pop songwriters to write their own music together, leading them to produce their first self-titled album. After its release, Michael & Carissa got married and have been traveling and playing music together ever since.",
-  upcomingPerformances: [
-    {date: "April 13, 2015", location: "Central Park", details: "We'll be playing some wicked sweet jams."},
-    {date: "April 14, 2015", location: "Central Park", details: "We'll be playing some moderately tasty jams."},
-  ],
-  media: [
-    {type: 'video', src: "https://www.youtube.com/embed/F20Ssabgf70"},
-    {type: 'video', src: "https://www.youtube.com/embed/zbyLADjgpik"},
-    {type: 'video', src: "https://www.youtube.com/embed/2nPpR_VbquA"},
-    {type: 'image', src: "http://www.ustheduo.com/files/2014/12/UsTheDuoSingapore.jpg"},
-  ],
-  profilePic: {src: "http://www.ustheduo.com/files/2014/05/UsTheDuoFeaturedImage-283x270.jpg"},
-};
