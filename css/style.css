@@ -150,3 +150,7 @@ body {
 .glyphicon{
 	background-color:#A0908C;
 }
+
+.glyphicon-search {
+	background-color: transparent; 
+}

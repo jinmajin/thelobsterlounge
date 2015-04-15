@@ -1,3 +1,7 @@
+.bold{
+	font-weight: bold;
+}
+
 .lobster-medium{
 	font-family: 'Lobster', cursive;
 	font-size: 50px;
