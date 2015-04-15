@@ -2,6 +2,10 @@ $(document).ready(function() {
   var profile = getParameterByName('profile');
   var profileInfo = profileResources[profile] || profileResources.jazzyJeff;
   fillInProfileInfo(profileInfo);
+
+  if (!profile || profile == 'jazzyJeff') {
+    displayEditButton();
+  }
   
   // Give all media a 4:3 ratio
   setMediaHeight();
@@ -20,6 +24,36 @@ $(document).ready(function() {
     setCarouselActiveIndex(activeIndex);
   });
 });
+
+var displayEditButton = function() {
+  var editButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'edit-profile-btn').text('Edit Profile');
+  editButton.click(function() { toggleEditMode() });
+  $('#userinfo a').remove();
+  $('#userinfo').prepend(editButton);
+};
+
+var displaySaveCancelButtons = function() {
+  var saveButton = $('<button>').addClass('btn btn-primary edit-control').attr('id', 'save-profile-btn').text('Save Profile');
+  saveButton.click(function() { toggleEditMode() });
+  var cancelButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'cancel-profile-btn').text('Cancel');
+  cancelButton.click(function() { toggleEditMode() });
+  $('#userinfo').prepend(saveButton);
+  $('#userinfo').prepend(cancelButton);
+}
+  
+
+var toggleEditMode = (function() {
+  var editMode = false;
+  return (function() {
+    editMode = !editMode;
+    $('.edit-control').remove();
+    if (editMode) {
+      displaySaveCancelButtons();
+    } else {
+      displayEditButton();
+    }
+  });
+})();
 
 var setMediaHeight = function(ratio) {
   // Default ratio is 4:3
@@ -48,7 +82,8 @@ var fillInProfileInfo = function(profileInfo) {
   mediaCollection = [];
   profileInfo.media.forEach(function(media, i) {
     if (media.type === 'video') {
-      mediaCollection.push($('<div class="thumbnail media" data-index="' + i + '"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
+      mediaCollection.push($('<a class="thumbnail media" data-toggle="modal" data-target="#gallery-modal" data-index="' + i + '"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
+      //mediaCollection.push($('<div class="thumbnail media" data-index="' + i + '"><iframe src="' + media.src + '" frameborder="0" allowfullscreen>'));
     } else {
       mediaCollection.push($('<a class="thumbnail media" data-toggle="modal" data-target="#gallery-modal" data-index="' + i + '"><img class="img-responsive" src="' + media.src + '">'));
     }
@@ -84,7 +119,7 @@ var populateCarousel = function(media) {
   // Populate Slides
   var slides = [];
   media.each(function(i, m) {
-    slides.push($('<div class="item' + (i == 0 ? ' active' : '') + '">').html(m));
+    slides.push($('<div class="item' + (i == 0 ? ' active' : '') + ($(m).prop('tagName') == 'IFRAME' ? ' video' : '') + '">').html(m));
   });
   $('.carousel-inner').html(slides);
 };
