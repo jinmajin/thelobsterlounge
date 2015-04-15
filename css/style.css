@@ -54,14 +54,8 @@ html, body {
 
 /*Video Page */
 #label{
-	position: absolute;
-	height: 50px;
-	width: 500px;
-	margin-top: 140px;
 	font-family: 'Pacifico';
 	font-size: 36px;
-	vertical-align: middle;
-	text-align: center;
 	color: #A0908C;
 }
 
@@ -141,11 +135,29 @@ html, body {
 #active-video{
 	position: absolute;
 	margin-left: 300px;
-	margin-top: 240px;
-	height: 375px;
+	margin-top: 160px;
+	height: 400px;
 	width: 600px;
 }
 
 .item {
 	text-align: center;
+	margin-top: 80px;
+}
+
+.carousel-caption{
+	top: -100px;
+	bottom: auto;
+}
+
+.carousel-control.left, .carousel-control.right{
+	background-image: none;
+}
+
+.glyphicon{
+	background-color:#A0908C;
+}
+
+.glyphicon-search {
+	background-color: transparent; 
 }
