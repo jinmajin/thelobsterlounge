@@ -17,7 +17,6 @@ $(document).ready(function(){
 	//set up autocomplete
 	$("#titlebar-search").autocomplete({
 		source : users,
-		minLength : 2,
 		select : function(event, ui){
 			window.location.href = "profile.html?profile="+profNameToUser[ui.item.value];
 		}
