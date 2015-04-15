@@ -2,21 +2,40 @@
 	font-weight: bold;
 }
 
-.lobster-medium{
-	font-family: 'Lobster', cursive;
-	font-size: 50px;
-	line-height: 50px;
-}
 
 nav{
 	margin-bottom: 0px !important;
+	background-color: #D89067;
+	position: fixed;
+	padding: 0 5%;
 }
 
-.lobster-large{
+.main{
+	padding: 0 5%;
+}
+
+
+.lobster-large,.lobster-medium{
 	font-family: 'Lobster', cursive;
 	font-size: 90px;
 	line-height: 50px;
 	margin-bottom: 50px;
+	color:#d89067 !important;
+	-webkit-filter: grayscale(100%); 
+	filter: grayscale(100%);
+}
+
+.lobster-medium{
+	font-size: 50px;
+}
+
+.lobster-large:hover, .lobster-medium:hover{
+	-webkit-filter: none; 
+	filter: none;
+}
+
+.large{
+	font-size: 90px;
 }
 
 .pacifico {
@@ -30,10 +49,6 @@ nav{
 
 .proflink{
 	padding: 0 15px 0 0;
-}
-
-body{
-	margin: 0 5%;
 }
 
 .search{
@@ -63,17 +78,16 @@ body{
 	width: 49%;
 	vertical-align: top;
 	text-align: center;
-	color: #666;
-//	-webkit-filter: grayscale(100%); if we choose a color scheme this would be nice
-//	filter: grayscale(100%);
+	color: #d89067 !important;
+	-webkit-filter: grayscale(100%); 
+	filter: grayscale(100%);
 }
 
 .half-page:hover{
-	color: #555;
 	cursor: pointer;
-	background-color: #eee;
-//	-webkit-filter: none;
-//	filter: none;
+//	box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+	-webkit-filter: none;
+	filter: none;
 }
 
 .main-icon {
