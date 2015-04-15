@@ -8,7 +8,6 @@
 
 .profile-subheader {
   font-size: 18pt;
-  padding-left: 0.5em;
 }
 
 .about-me, .upcoming-performances {
@@ -21,12 +20,20 @@
   width: 100%;
 }
 
-.gallery, p, ul {
+.gallery {
   padding: 1em;
+}
+
+ul {
+  padding-left: 0px;
 }
 
 li {
   font-weight: bold;
+}
+
+li div {
+  font-weight: normal;
 }
 
 .about-me .thumbnail {
@@ -43,6 +50,10 @@ li {
   margin-bottom: 1em;
 }
 
+#add-performance-btn {
+  width: 100%;
+}
+
 iframe {
   width: 100%;
   height: 100%;
@@ -50,6 +61,10 @@ iframe {
 
 h2 {
   margin-top: 0px;
+}
+
+.gallery .thumbnail {
+  position: relative;
 }
 
 .gallery img {
@@ -63,10 +78,21 @@ h2 {
   pointer-events: none;
 }
 
+.gallery a {
+  cursor: pointer;
+}
+
 .carousel-inner .video {
   height: 400px;
 }
 
 .edit-control {
   margin-right: 1em;
+}
+
+.media-remove-btn {
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
