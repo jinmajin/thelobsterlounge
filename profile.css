@@ -17,8 +17,8 @@
   border-bottom: solid 2px darkgrey;
 }
 
-.buttons > div > button {
-  width: 80%;
+.about-me-btn {
+  width: 100%;
 }
 
 .gallery, p, ul {
@@ -29,14 +29,10 @@ li {
   font-weight: bold;
 }
 
-.dot {
-  font-weight: bold;
-}
-
-.thumbnail-container {
-  padding-top: 1em;
-  padding-left: 2em;
-  padding-right: 2em;
+.about-me .thumbnail {
+  margin-top: 1em;
+  margin-left: 0em;
+  margin-right: 0em;
 }
 
 #quote {
@@ -54,4 +50,23 @@ iframe {
 
 h2 {
   margin-top: 0px;
+}
+
+.gallery img {
+  max-height: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gallery iframe {
+  pointer-events: none;
+}
+
+.carousel-inner .video {
+  height: 400px;
+}
+
+.edit-control {
+  margin-right: 1em;
 }
