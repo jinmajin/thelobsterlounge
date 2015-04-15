@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Lounge: Map</title>
 
-    <!-- Load style sheets -->
+<!-- Load style sheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
@@ -21,12 +21,14 @@
 
 <script type="text/javascript">
 
-function login(){
-	$("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
-}
-function logout(){
-	$("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
-}
+    function login(){
+        $("#userinfo").html('<a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">');
+    }
+    function logout(){
+        $("#userinfo").html('<input type="button" class="btn" onclick="login()" value="Login">');
+    }
+
+</script>
 
 
 </head>
@@ -54,7 +56,6 @@ function logout(){
     <div class="content">
         <h1>Gigs Near You</h1>
 
-<!--        add search bar stuff from here: http://www.w3schools.com/jquerymobile/tryit.asp?filename=tryjqmob_lists_filter-->
         <div class="left_sidebar_container">
             <div class="searchbar">
                 <h2>Searchbar</h2>
