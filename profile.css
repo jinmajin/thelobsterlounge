@@ -96,3 +96,13 @@ h2 {
   top: 0px;
   right: 0px;
 }
+
+.btn-primary {
+  background-color: #D89067;
+  border-color: #AF6A49;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #AF6A49;
+  border-color: #8D5A46;
+}
