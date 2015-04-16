@@ -64,9 +64,15 @@
                 <h3>Filters </h3>
                 <h4>Genres</h4>
                 <ul class="hide_bullets">
-                    <li><input type="checkbox" id="checkbox_music"> Music</li>
-                    <li><input type="checkbox" id="checkbox_acrobatics"> Acrobatics</li>
-                    <li><input type="checkbox" id="checkbox_juggling"> Juggling</li>
+                    <li><img class="checkbox_toggle" id="checkbox_music" > Music</li>
+                    <li><img class="checkbox_toggle" id="checkbox_acrobatics" src="assets/map/checkbox_unselected.png"> Acrobatics</li>
+                    <li><img class="checkbox_toggle" id="checkbox_juggling" src="assets/map/checkbox_unselected.png"> Juggling</li>
+                </ul>
+                <h4>Time</h4>
+                <ul class="hide_bullets">
+                    <li><img class="checkbox_toggle" id="checkbox_morning" src="assets/map/checkbox_unselected.png"> Morning</li>
+                    <li><img class="checkbox_toggle" id="checkbox_afternoon" src="assets/map/checkbox_unselected.png"> Afternoon</li>
+                    <li><img class="checkbox_toggle" id="checkbox_evening" src="assets/map/checkbox_unselected.png"> Evening</li>
                 </ul>
             </div>
         </div>
@@ -103,7 +109,23 @@
     
         </div>  
         <div class="right_sidebar">
-            <input type="button" class="btn btn-primary" onclick="" value="View As List"> 
+            <input type="button" class="btn btn-primary" id="view_performance_list" onclick="showPerformanceList()" value="View As List"> 
+            <div class="performance_list">
+                <h4>Jazzy Jeff's Jumpin' Jam</h4>
+                <p>Genre: Music</p>
+                <p>Date: March 5, 2015</p>
+                <p>Details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"</p>
+                <hr>
+                <h4>Juggling George</h4>
+                <p>Genre: Juggling</p>
+                <p>Date: April 13, 2015</p>
+                <p>Details: "I'll be juggling and playing my piano in the outbound side of the T-station."</p>
+                <hr>
+                <h4>Juggling George</h4>
+                <p>Genre: Juggling</p>
+                <p>Date: April 14, 2015</p>
+                <p>Details: "I'll be joining the MIT Juggling Club to do some amazing juggling."</p>
+            </div>
         </div>
     </div>
   </body>

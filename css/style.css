@@ -22,9 +22,11 @@ html, body {
     position: absolute;
 }
 
+/*left sidebar*/
 .left_sidebar_container {
     z-index: 1;
     position: absolute;
+    width: 300px;
 }
 
 .searchbar {
@@ -43,6 +45,17 @@ html, body {
     list-style-type: none;
 }
 
+.checkbox_toggle {
+    position: inherit;
+    content:url('../assets/map/checkbox_unselected.png');
+}
+
+.checkbox_selected {
+    content:url('../assets/map/checkbox_selected.png');
+}
+
+
+/*right sidebar*/
 .right_sidebar {
     z-index: 1;
     position: absolute;
@@ -51,6 +64,14 @@ html, body {
     padding: 10px;
     right: 0px;
     top: 160px;
+    width: 300px;
+}
+
+.performance_list {
+    margin-top: 10px;
+    background: white;
+    padding: 10px;
+    visibility: hidden;
 }
 
 

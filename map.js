@@ -56,7 +56,7 @@ $(document).ready(function(){
 	});
     
     
-    
+    // clicking on markers will show info box for that marker
     $('#marker-harvard-square').click(function() {
         $('#marker-info-harvard-square').toggleClass('show');
     });
@@ -68,4 +68,36 @@ $(document).ready(function(){
     $('#marker-kresge').click(function() {
         $('#marker-info-kresge').toggleClass('show');
     });
+
 });	
+
+
+
+// left sidebar filter toggle checkboxes
+//$('#checkbox-music').click(function() {
+//    console.log('checkbox-music clicked');
+//    $('#marker-info-harvard-square').toggleClass('show');
+//    $(this).toggleClass('checkbox_selected');
+//}) 
+
+//$('#checkbox-music').attr("onClick", function() {
+//    console.log('checkbox-music clicked');
+//    $('#marker-info-harvard-square').toggleClass('show');
+//    $(this).toggleClass('checkbox_selected');
+//}); 
+//
+//
+//
+//$('#checkbox-juggling').click(function() {
+//    $('#marker-info-kendall').toggleClass('show');
+//    $('#marker-info-kresge').toggleClass('show');
+//})
+
+
+// right sidebar "View As List" button
+var showPerformanceList = function() {
+    console.log("showing performance list")
+//    $('#view_performance_list').click(function() {
+        $('.performance_list').toggleClass('show');
+//    })
+};
