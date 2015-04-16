@@ -71,6 +71,24 @@ $(document).ready(function(){
 
 });	
 
+function filter(){
+	$('#marker-info-harvard-square').removeClass('show');
+	$('#marker-info-kendall').removeClass('show');
+	$('#marker-info-kresge').removeClass('show');
+	$("input:checkbox:checked").each(function(){
+		// add $(this).val() to your array
+		if(this.id == "checkbox_music" || this.id == "checkbox_late"){
+			$('#marker-info-harvard-square').addClass('show');
+		}
+		if(this.id == "checkbox_jugg"|| this.id == "checkbox_pm"){
+			$('#marker-info-kresge').addClass('show');		
+		}
+		if(this.id == "checkbox_jugg" || this.id == "checkbox_am"){
+			$('#marker-info-kendall').addClass('show');
+		}
+		
+	});
+}
 
 
 // left sidebar filter toggle checkboxes
