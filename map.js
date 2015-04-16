@@ -41,9 +41,6 @@ $(document).ready(function(){
 	$("#map-search-input").autocomplete({
 		source : allPerformanceLocations,
 		select : function(event, ui){
-//			window.location.href = "profile.html?profile="+profNameToUser[ui.item.value];
-//            var new_map_url = "http://maps.google.com/maps?q=description+(name)+%4046.080271,6.465248";
-            console.log(ui.item.value)
             if(ui.item.value === "Harvard Square") {
                 $('#marker-info-harvard-square').removeClass('hide').addClass('show');
             } if(ui.item.value === "Kendall Square" || ui.item.value === "Kendall Station") {
@@ -71,6 +68,8 @@ $(document).ready(function(){
 
 });	
 
+
+// left sidebar toggle checkboxes
 function filter(){
 	$('#marker-info-harvard-square').removeClass('show');
 	$('#marker-info-kendall').removeClass('show');
@@ -89,28 +88,6 @@ function filter(){
 		
 	});
 }
-
-
-// left sidebar filter toggle checkboxes
-//$('#checkbox-music').click(function() {
-//    console.log('checkbox-music clicked');
-//    $('#marker-info-harvard-square').toggleClass('show');
-//    $(this).toggleClass('checkbox_selected');
-//}) 
-
-//$('#checkbox-music').attr("onClick", function() {
-//    console.log('checkbox-music clicked');
-//    $('#marker-info-harvard-square').toggleClass('show');
-//    $(this).toggleClass('checkbox_selected');
-//}); 
-//
-//
-//
-//$('#checkbox-juggling').click(function() {
-//    $('#marker-info-kendall').toggleClass('show');
-//    $('#marker-info-kresge').toggleClass('show');
-//})
-
 
 // right sidebar "View As List" button
 var showPerformanceList = function() {
