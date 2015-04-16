@@ -42,11 +42,30 @@ $(document).ready(function(){
 		source : allPerformanceLocations,
 		select : function(event, ui){
 //			window.location.href = "profile.html?profile="+profNameToUser[ui.item.value];
-            console.log(event, ui)
+//            var new_map_url = "http://maps.google.com/maps?q=description+(name)+%4046.080271,6.465248";
+            console.log(ui.item.value)
+            if(ui.item.value === "Harvard Square") {
+                $('#marker-info-harvard-square').removeClass('hide').addClass('show');
+            } if(ui.item.value === "Kendall Square" || ui.item.value === "Kendall Station") {
+                $('#marker-info-kendall').removeClass('hide').addClass('show');
+            } if(ui.item.value === "MIT's Kresge Field") {
+                $('#marker-info-kresge').removeClass('hide').addClass('show');
+            }
+            
 		}
 	});
     
-//        .data("ui-autocomplete")._renderItem = function(ul, item){
-//		var boldedText = String(item.value).toLowerCase().replace(this.term, "<span class='bold'>"+this.term+"</span>");
-//		return $("<li>").data("ui-autocomplete-item", item).append("<a href='profile.html?profile="+profNameToUser[item.value]+"'>" + boldedText + "</a>").appendTo(ul);
+    
+    
+    $('#marker-harvard-square').click(function() {
+        $('#marker-info-harvard-square').toggleClass('show');
+    });
+    
+    $('#marker-kendall').click(function() {
+        $('#marker-info-kendall').toggleClass('show');
+    });
+    
+    $('#marker-kresge').click(function() {
+        $('#marker-info-kresge').toggleClass('show');
+    });
 });	
