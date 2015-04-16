@@ -57,7 +57,7 @@
                 <h2>Searchbar</h2>
                 <div class="map_search">
                     <input type="text" id="map-search-input" class="search-bar form-control">
-                    <i class="glyphicon glyphicon-search search-icon"></i>
+                    <i class="glyphicon glyphicon-search map-search-icon"></i>
                 </div>
             </div>
             <div class="filters">
@@ -71,7 +71,36 @@
             </div>
         </div>
         <div id="map-canvas">
-            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23584.76868697093!2d-71.09012595789827!3d42.36179149093713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1428689138625"></iframe>
+<!--            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23584.76868697093!2d-71.09012595789827!3d42.36179149093713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1428689138625"></iframe>-->
+            <img src="assets/map/map_fake.png"></img>
+            <div class="marker">
+                <img class="map-marker" id="marker-harvard-square" src="assets/map/map_marker.png"></img>
+                <div class="marker-info hide" id="marker-info-harvard-square">
+                    <h4>Jazzy Jeff's Jumpin' Jam</h4>
+                    <p>Genre: Music</p>
+                    <p>Date: March 5, 2015</p>
+                    <p>Details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"</p>
+                </div>
+            </div>
+            <div class="marker">
+                <img class="map-marker" id="marker-kendall" src="assets/map/map_marker.png"></img>
+                <div class="marker-info hide" id="marker-info-kendall">
+                    <h4>Juggling George</h4>
+                    <p>Genre: Juggling</p>
+                    <p>Date: April 13, 2015</p>
+                    <p>Details: "I'll be juggling and playing my piano in the outbound side of the T-station."</p>
+                </div>
+            </div>
+            <div class="marker">
+                <img class="map-marker" id="marker-kresge" src="assets/map/map_marker.png"></img>
+                <div class="marker-info hide" id="marker-info-kresge">
+                    <h4>Juggling George</h4>
+                    <p>Genre: Juggling</p>
+                    <p>Date: April 14, 2015</p>
+                    <p>Details: "I'll be joining the MIT Juggling Club to do some amazing juggling."</p>
+                </div>
+            </div>
+    
         </div>  
         <div class="right_sidebar">
             <input type="button" class="btn btn-primary" onclick="" value="View As List"> 

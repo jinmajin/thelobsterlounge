@@ -1,4 +1,4 @@
-/*General*/
+/*-------------------------------------------General-----------------------------------------------*/
 
 html, body {
     margin: 0;
@@ -7,7 +7,7 @@ html, body {
 }
 
 
-/*Map*/
+/*----------------------------------------------Map------------------------------------------------*/
 
 #map-canvas { 
     height: 100%; 
@@ -50,9 +50,86 @@ html, body {
     margin: 10px;
     padding: 10px;
     right: 0px;
+    top: 160px;
 }
 
-/*Video Page */
+
+/*Map search*/
+
+.map-search {
+    width: 80%
+}
+
+.map-search-icon {
+	position: absolute;
+	top: 95px;
+	right: 25px;
+}
+
+.map-marker {
+    z-index: 1;
+    position: absolute;
+    top: 150px;
+    width: 60px;
+    height: 50px;
+}
+
+#marker-harvard-square {
+    top: 350px;
+    left: 507px;
+}
+
+#marker-kendall {
+    top: 530px;
+    left: 890px;
+}
+
+#marker-kresge {
+    top: 610px;
+    left: 760px;
+}
+
+.marker-info {
+    z-index: 1;
+    width: 300px;
+    height: 150px;
+    position: absolute;
+    background-color: white;
+    visibility: hidden;
+    padding-left: 7px;
+    padding-right: 1px;
+}
+
+#marker-info-harvard-square {
+    top: 190px;
+    left: 520px;
+}
+
+#marker-info-kendall {
+    top: 370px;
+    left: 905px;
+}
+
+#marker-info-kresge {
+    top: 450px;
+    left: 775px;
+}
+
+.show {
+    visibility: visible;
+}
+
+.btn-primary {
+  background-color: #D89067;
+  border-color: #AF6A49;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #AF6A49;
+  border-color: #8D5A46;
+}
+
+/*-----------------------------------------------Video Page -----------------------------------------------*/
 #label{
 	font-family: 'Pacifico';
 	font-size: 36px;
