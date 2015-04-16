@@ -64,15 +64,14 @@
                 <h3>Filters </h3>
                 <h4>Genres</h4>
                 <ul class="hide_bullets">
-                    <li><img class="checkbox_toggle" id="checkbox_music" > Music</li>
-                    <li><img class="checkbox_toggle" id="checkbox_acrobatics" src="assets/map/checkbox_unselected.png"> Acrobatics</li>
-                    <li><img class="checkbox_toggle" id="checkbox_juggling" src="assets/map/checkbox_unselected.png"> Juggling</li>
+                    <li><input type="checkbox" id="checkbox_music" onclick="filter()"> Music</li>
+                    <li><input type="checkbox" id="checkbox_jugg" onclick="filter()"> Juggling</li>
                 </ul>
                 <h4>Time</h4>
                 <ul class="hide_bullets">
-                    <li><img class="checkbox_toggle" id="checkbox_morning" src="assets/map/checkbox_unselected.png"> Morning</li>
-                    <li><img class="checkbox_toggle" id="checkbox_afternoon" src="assets/map/checkbox_unselected.png"> Afternoon</li>
-                    <li><img class="checkbox_toggle" id="checkbox_evening" src="assets/map/checkbox_unselected.png"> Evening</li>
+                    <li><input type="checkbox" id="checkbox_am" onclick="filter()"> Morning</li>
+                    <li><input type="checkbox" id="checkbox_pm" onclick="filter()"> Afternoon</li>
+                    <li><input type="checkbox" id="checkbox_late" onclick="filter()"> Evening</li>
                 </ul>
             </div>
         </div>
@@ -84,8 +83,8 @@
                 <div class="marker-info hide" id="marker-info-harvard-square">
                     <a href="profile.html"><h4>Jazzy Jeff's Jumpin' Jam</h4></a>
                     <p>Genre: Music</p>
-                    <p>Date: March 5, 2015</p>
-                    <p>Details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"</p>
+                    <p>Date: March 5, 2015 7-9PM</p>
+                    <p>Details: "I'll be playing my piano in the middle of the square from 7:00pm to 9:00pm"</p>
                 </div>
             </div>
             <div class="marker">
@@ -93,7 +92,7 @@
                 <div class="marker-info hide" id="marker-info-kendall">
                     <a href="profile.html?profile=jugglingGeorge"><h4>Juggling George</h4></a>
                     <p>Genre: Juggling</p>
-                    <p>Date: April 13, 2015</p>
+                    <p>Date: April 13, 2015 10-11AM</p>
                     <p>Details: "I'll be juggling and playing my piano in the outbound side of the T-station."</p>
                 </div>
             </div>
@@ -102,7 +101,7 @@
                 <div class="marker-info hide" id="marker-info-kresge">
                     <a href="profile.html?profile=jugglingGeorge"><h4>Juggling George</h4></a>
                     <p>Genre: Juggling</p>
-                    <p>Date: April 14, 2015</p>
+                    <p>Date: April 14, 2015 3-4PM</p>
                     <p>Details: "I'll be joining the MIT Juggling Club to do some amazing juggling."</p>
                 </div>
             </div>
@@ -113,17 +112,17 @@
             <div class="performance_list">
                 <a href="profile.html"><h4>Jazzy Jeff's Jumpin' Jam</h4></a>
                 <p>Genre: Music</p>
-                <p>Date: March 5, 2015</p>
-                <p>Details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"</p>
+                <p>Date: March 5, 2015  7-9PM</p>
+                <p>Details: "I'll be playing my piano in the middle of the square from 7:00pm to 9:00pm"</p>
                 <hr>
                 <a href="profile.html?profile=jugglingGeorge"><h4>Juggling George</h4></a>
                 <p>Genre: Juggling</p>
-                <p>Date: April 13, 2015</p>
+                <p>Date: April 13, 2015 10-11AM</p>
                 <p>Details: "I'll be juggling and playing my piano in the outbound side of the T-station."</p>
                 <hr>
                 <a href="profile.html?profile=jugglingGeorge"><h4>Juggling George</h4></a>
                 <p>Genre: Juggling</p>
-                <p>Date: April 14, 2015</p>
+                <p>Date: April 14, 2015 3-4PM</p>
                 <p>Details: "I'll be joining the MIT Juggling Club to do some amazing juggling."</p>
             </div>
         </div>
