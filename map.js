@@ -21,8 +21,8 @@ $(document).ready(function(){
 	var users = [];
 	var keys = Object.keys(profileResources);
 	var perfLocsToUser = {};
-    var allPerformanceLocations = [];
-	for(var i = 0; i < keys.length; i++){
+    var allPerformanceLocations = ["Harvard Square", "Kendall Square", "MIT's Kresge Field"];
+/*	for(var i = 0; i < keys.length; i++){
 		var currentUser = profileResources[keys[i]];
         users.push(currentUser["profileName"]);
         var perfs = currentUser["upcomingPerformances"];
@@ -34,7 +34,7 @@ $(document).ready(function(){
             allPerformanceLocations.push(currentPerfLoc);
         }
         perfLocsToUser[currentUser["profileName"]] = perfLocs;
-	}
+	} */
     
     // TO DO: make place markers hide
 	//set up autocomplete
