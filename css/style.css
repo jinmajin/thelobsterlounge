@@ -149,6 +149,7 @@ html, body {
 .carousel-caption{
 	top: -100px;
 	bottom: auto;
+	text-shadow: none;
 }
 
 .carousel-control.left, .carousel-control.right{
@@ -161,4 +162,13 @@ html, body {
 
 .glyphicon-search {
 	background-color: transparent; 
+}
+
+.btn{
+  background-color: #A0908C !important; 
+  border-color: #A0908C !important;
+}
+
+.btn:hover, .btn:focus {
+  text-decoration: underline;
 }
