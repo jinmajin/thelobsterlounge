@@ -9,6 +9,7 @@
 <!-- Load style sheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
@@ -17,11 +18,13 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+      
+<!--Custom JS-->
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>-->
 <script type="text/javascript" src="map.js"></script>
 <script type="text/javascript" src="profile-resources.js"></script>
 <script type="text/javascript" src="titlebar.js"></script>
 
-<!--<base href="http://maps.gstatic.com/mapfiles/openhand_8_8.cur" target="_blank" >-->
       
 </head>
 
@@ -47,12 +50,15 @@
 
 
     <div class="content">
-        <h1>Gigs Near You</h1>
+        <h1 class="pacifico">Gigs Near You</h1>
 
         <div class="left_sidebar_container">
             <div class="searchbar">
                 <h2>Searchbar</h2>
-                <input type="text" id="list" />
+                <div class="map_search">
+                    <input type="text" id="map-search-input" class="search-bar form-control">
+                    <i class="glyphicon glyphicon-search search-icon"></i>
+                </div>
             </div>
             <div class="filters">
                 <h3>Filters </h3>
