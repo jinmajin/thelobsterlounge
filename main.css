@@ -2,10 +2,20 @@
 	font-weight: bold;
 }
 
+#userinfo input{
+	color: white;
+	background-color: #A0908C !important; 
+	border-color: #A0908C !important;
+}
+
+#userinfo input:hover{
+  text-decoration: underline;
+}
+
+
 
 nav{
 	margin-bottom: 0px !important;
-	background-color: #D89067;
 	position: fixed;
 	padding: 0 5%;
 }
@@ -20,9 +30,7 @@ nav{
 	font-size: 90px;
 	line-height: 50px;
 	margin-bottom: 50px;
-	color:#d89067 !important;
-	-webkit-filter: grayscale(100%); 
-	filter: grayscale(100%);
+	color: #A0908C !important;
 }
 
 .lobster-medium{
@@ -30,8 +38,7 @@ nav{
 }
 
 .lobster-large:hover, .lobster-medium:hover{
-	-webkit-filter: none; 
-	filter: none;
+	color: #D89067 !important;
 }
 
 .large{
@@ -78,14 +85,15 @@ nav{
 	width: 49%;
 	vertical-align: top;
 	text-align: center;
-	color: #d89067 !important;
-	-webkit-filter: grayscale(100%); 
-	filter: grayscale(100%);
+	color: #A0908C !important;
 }
 
 .half-page:hover{
 	cursor: pointer;
-//	box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+	text-decoration: underline;
+}
+
+.half-page:hover .main-icon{
 	-webkit-filter: none;
 	filter: none;
 }
@@ -94,4 +102,7 @@ nav{
 	width:50%;
 	margin-bottom: 30px;
 	margin-top: 50px;
+	-webkit-filter: grayscale(100%); 
+	filter: grayscale(100%);
 }
+
