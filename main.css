@@ -4,7 +4,14 @@
 
 #userinfo input{
 	color: white;
+	background-color: #A0908C !important; 
+	border-color: #A0908C !important;
 }
+
+#userinfo input:hover{
+  text-decoration: underline;
+}
+
 
 
 nav{
@@ -98,3 +105,4 @@ nav{
 	-webkit-filter: grayscale(100%); 
 	filter: grayscale(100%);
 }
+

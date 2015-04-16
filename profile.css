@@ -97,11 +97,11 @@ h2 {
   right: 0px;
 }
 
-.btn{
+.btn-primary{
   background-color: #A0908C !important; 
   border-color: #A0908C !important;
 }
 
-.btn:hover, .btn:focus {
+.btn-primary:hover {
   text-decoration: underline;
 }
