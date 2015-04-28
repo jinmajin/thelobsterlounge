@@ -27,5 +27,26 @@ $(document).ready(function(){
 
   // Initialize all tooltips
   $('[data-toggle="tooltip"]').tooltip();
-  $('[data-toggle="popover"]').popover();
+
+  // Set up followed users
+  var followedUsersList = $('<div>').addClass('list-group');
+  profileResources['jazzyJeff'].following.forEach(function(user) {
+    followedUsersList.append($('<a>').addClass('list-group-item').text(user).attr('href', 'profile.html?profile=' + user));
+  });
+  $('#show-followed-btn').popover({
+    content: followedUsersList,
+    html: true,
+  });
+
+  // Set up inbox
+  var messagesList = $('<div>').addClass('list-group');
+  profileResources['jazzyJeff'].messages.forEach(function(message) {
+    var from = $('<div>').append($('<a>').text(message.from).attr('href', 'profile.html?profile=' + message.from));
+    var body = $('<p>').text(message.body);
+    messagesList.append($('<div>').addClass('list-group-item').append(from).append(body));
+  });
+  $('#show-inbox-btn').popover({
+    content: messagesList,
+    html: true,
+  });
 });	
