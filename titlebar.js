@@ -27,4 +27,5 @@ $(document).ready(function(){
 
   // Initialize all tooltips
   $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
 });	

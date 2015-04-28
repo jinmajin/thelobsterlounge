@@ -12,9 +12,16 @@ $(document).ready(function() {
   setMediaHeight();
   $(window).resize(function() {setMediaHeight()});
 
-  $('#follow-btn').click(function() {
-    var text = $('#follow-btn').text();
-    $('#follow-btn').text(text === 'Follow' ? 'Following' : 'Follow');
+  $('#follow-btn').text((profileResources['jazzyJeff'].following.indexOf(profile) > -1) ? 'Following' : 'Follow')
+  .click(function() {
+    var index = profileResources['jazzyJeff'].following.indexOf(profile);
+    if (index > -1) {
+      profileResources['jazzyJeff'].following.splice(index, 1);
+      $('#follow-btn').text('Follow');
+    } else {
+      profileResources['jazzyJeff'].following.push(profile);
+      $('#follow-btn').text('Following');
+    }
   });
 
   $('#add-performance-btn').click(function() {
