@@ -12,7 +12,13 @@
   text-decoration: underline;
 }
 
+.list-group {
+  margin-bottom: 0px;
+}
 
+.popover-content {
+  padding: 0px;
+}
 
 nav{
 	margin-bottom: 0px !important;
