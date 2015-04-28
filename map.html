@@ -31,22 +31,25 @@
     
 <body>
 
-    <nav class="navbar navbar-default custom-nav">
-        <div class="navbar-header">
-          <a class="navbar-brand lobster-medium" href="index.html">The Lounge</a>
-        </div>
-        <div class="navbar-form navbar-right" role="userinfo">
-            <div id="userinfo" class="nav pull-right login">
-                <a class="proflink" href="profile.html">Jazzy Jeff</a><input type="button" class="btn" onclick="logout()" value="Logout">
-            </div>
-        </div>
+  <nav class="navbar navbar-default custom-nav">
+    <div class="navbar-header">
+      <a class="navbar-brand lobster-medium" href="index.html">The Lounge</a>
     </div>
-	<div class="navbar-form navbar-right" role="search">
-        <div class="search">
-          <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
-		  <i class="glyphicon glyphicon-search search-icon"></i>
-        </div>
-    </nav>
+    <div class="navbar-form form-inline navbar-right">
+      <div class="search form-group">
+        <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
+        <i class="glyphicon glyphicon-search search-icon"></i>
+      </div>
+      <div id="userinfo" class="form-group">
+        <button class="btn btn-default hidden" id="edit-profile-btn">Edit Profile</button>
+        <button class="btn btn-default hidden" id="cancel-profile-btn">Cancel</button>
+        <button class="btn btn-primary hidden" id="save-profile-btn">Save Profile</button>
+        <a class="proflink" href="profile.html">Jazzy Jeff</a>
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="tooltip" data-placement="top" title="Followed Users"></button>
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-envelope" id="show-inbox-btn" data-toggle="tooltip" data-placement="top" title="Inbox"></button>
+      </div>
+    </div>
+  </nav>
 
 
     <div class="content">

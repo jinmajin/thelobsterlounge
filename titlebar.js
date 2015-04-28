@@ -24,4 +24,7 @@ $(document).ready(function(){
 		var boldedText = String(item.value).toLowerCase().replace(this.term, "<span class='bold'>"+this.term+"</span>");
 		return $("<li>").data("ui-autocomplete-item", item).append("<a href='profile.html?profile="+profNameToUser[item.value]+"'>" + boldedText + "</a>").appendTo(ul);
 	};
+
+  // Initialize all tooltips
+  $('[data-toggle="tooltip"]').tooltip();
 });	
