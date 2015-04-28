@@ -12,8 +12,12 @@
       <button class="btn btn-default hidden" id="cancel-profile-btn">Cancel</button>
       <button class="btn btn-primary hidden" id="save-profile-btn">Save Profile</button>
       <a class="proflink" href="profile.html">Jazzy Jeff</a>
-      <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="tooltip" data-placement="top" title="Followed Users"></button>
-      <button class="btn btn-primary navbar-btn glyphicon glyphicon-envelope" id="show-inbox-btn" data-toggle="tooltip" data-placement="top" title="Inbox"></button>
+      <span data-toggle="tooltip" data-placement="top" title="Followed Users">
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="popover" data-placement="bottom" title="Followed Users" data-trigger="focus"></button>
+      </span>
+      <span data-toggle="tooltip" data-placement="top" title="Inbox">
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-envelope" id="show-inbox-btn" data-toggle="popover" data-placement="bottom" title="Inbox" data-trigger="focus"></button>
+      </span>
     </div>
   </div>
 </nav>

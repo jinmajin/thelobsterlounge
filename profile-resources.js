@@ -21,6 +21,7 @@ var profileResources = {
       {type: 'image', src: "http://nyulocal.com/wp-content/uploads/2012/04/1054.jpg"},
     ],
     profilePic: {src: "http://doge2048.com/meta/doge-600.png"},
+    following: ["usTheDuo", "jugglingGeorge"],
   },
 
   // Us The Duo Profile Info
