@@ -55,15 +55,14 @@ nav{
 }
 
 .proflink{
-	padding: 0 15px 0 0;
+	padding: 0 15px 0 15px;
 }
 
 .search{
 	position: relative;
-	margin-top: 20px;
 }
 
-.login{
+.navbar-form{
 	margin-top: 20px;
 }
 

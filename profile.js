@@ -36,8 +36,11 @@ $(document).ready(function() {
     $('#upcoming-performances-list').append($('<span>').append(dateLoc).append(details).append(detailsInput));
   });
 
+  $('#edit-profile-btn').click(function() { toggleEditMode(); });
+  $('#cancel-profile-btn').click(function() { toggleEditMode(false); });
+  $('#save-profile-btn').click(function() { toggleEditMode(true); });
+
   var media = $('.gallery .thumbnail').children('img, iframe').clone();
-  console.log(media);
   populateCarousel(media);
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
@@ -47,19 +50,16 @@ $(document).ready(function() {
 });
 
 var displayEditButton = function() {
-  var editButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'edit-profile-btn').text('Edit Profile');
-  editButton.click(function() { toggleEditMode() });
-  $('#userinfo a').remove();
-  $('#userinfo').prepend(editButton);
+  $('#edit-profile-btn').removeClass('hidden');
+  $('#save-profile-btn').addClass('hidden');
+  $('#cancel-profile-btn').addClass('hidden');
+  $('#userinfo a').addClass('hidden');
 };
 
 var displaySaveCancelButtons = function() {
-  var saveButton = $('<button>').addClass('btn btn-primary edit-control').attr('id', 'save-profile-btn').text('Save Profile');
-  saveButton.click(function() { toggleEditMode(true) });
-  var cancelButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'cancel-profile-btn').text('Cancel');
-  cancelButton.click(function() { toggleEditMode(false) });
-  $('#userinfo').prepend(saveButton);
-  $('#userinfo').prepend(cancelButton);
+  $('#edit-profile-btn').addClass('hidden');
+  $('#save-profile-btn').removeClass('hidden');
+  $('#cancel-profile-btn').removeClass('hidden');
 }
 
 var displayQRButton = function() {
@@ -88,7 +88,6 @@ var toggleEditMode = (function() {
   var editMode = false;
   return (function(save) {
     editMode = !editMode;
-    $('.edit-control').remove();
     toggleEditableFields(editMode, save);
     if (editMode) {
       displaySaveCancelButtons();
