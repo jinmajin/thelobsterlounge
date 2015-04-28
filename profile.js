@@ -23,15 +23,15 @@ $(document).ready(function() {
     var divider = $('<span>').addClass('editable hidden').text(' -- ');
     var location = $('<span>').addClass('editable hidden').attr('id', 'performance-location-' + i);
 
-    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
-    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
+    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
+    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
 
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable hidden').attr('id', 'performance-details-' + i);
 
-    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
+    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
 
     $('#upcoming-performances-list').append($('<span>').append(dateLoc).append(details).append(detailsInput));
   });
