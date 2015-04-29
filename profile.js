@@ -22,6 +22,7 @@ $(document).ready(function() {
       profileResources['jazzyJeff'].following.push(profile);
       $('#follow-btn').text('Following');
     }
+    setUpFollowedUsers();
   });
 
   $('#add-performance-btn').click(function() {
