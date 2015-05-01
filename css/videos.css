@@ -20,15 +20,10 @@ body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-.portfolio-item {
+.videoThumb {
     margin-bottom: 25px;
 }
 
-.dropInitial{
-	left: 120%;
-}
-
-#word{
-	position: absolute;
-	left: 150px;
+footer {
+    margin: 50px 0;
 }

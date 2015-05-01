@@ -30,6 +30,47 @@
 
 <!-- videos -->
 $(document).ready(function(){
+    //Dropdowns
+
+//NEED TO ADD CARETS
+    $('#videoOption').click(function(){
+        $(".first:first-child").text($(this).text());
+        $('.first:first-child').val($(this).text());
+    });
+    $('#events').click(function(){
+        $(".first:first-child").text($(this).text());
+        $('.first:first-child').val($(this).text());
+        //pseudocode:
+        //change the text field
+        //remove the item in the dropdown menu
+        //add new item in dropdown menu
+
+        //changes to events but doesn't change it back..
+        // $(".btn:first-child").text($(this).text());
+        // $('.btn:first-child').val($(this).text());
+        console.log("CLICKITY CLICK");
+    });
+
+    $('#city').click(function(e){
+        console.log("city click woo");
+    });
+
+    // Filter buttons
+    $('#all').on('click', function(e){
+        console.log('all');
+    });
+    $('#music').on('click', function(e){
+        console.log('music');
+    });
+    $('#juggling').on('click', function(e){
+        console.log('juggling');
+    });
+    $('#acrobatics').on('click', function(e){
+        console.log('acrobatics');
+    });
+    $('#other').on('click', function(e){
+        console.log('other');
+    });
    
 });
 
@@ -71,50 +112,50 @@ $(document).ready(function(){
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Page Header -->
+        <!-- Dropdown Menu Row -->
         <div class="row">
             <div class="col-md-4">
                 <div class="btn-group">
-                    <button class="btn btn-default btn-lg dropdown-toggle dropInitial" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-default btn-lg dropdown-toggle dropdown first" type="button" data-toggle="dropdown" aria-expanded="false">
                         Videos <span class="caret"></span>
                     </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href = '#'> Events </a></li>
+                    <li><a href = '#' id = 'videoOption'> Videos </a></li>
+                    <li><a href = '#' id = 'events'> Events </a></li>
                 </ul>
                 </div> 
-            </div> 
-
+                <h1>
+                </h1> 
+            </div>  
             <div class = 'col-md-4'>
                 <h1 id = 'word'> in </h1>
             </div>
-            
-            <div class = 'col-md-4'>
+                <div class = 'col-md-4'>
                 <div class="btn-group">
-                    <button class="btn btn-default btn-lg dropdown-toggle dropInitial" type="button" data-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-default btn-lg dropdown-toggle dropdown second" type="button" data-toggle="dropdown" aria-expanded="false">
                         Boston <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href = '#'> New York </a></li>
+                        <li><a href = '#' id = 'city'> Boston</a></li>
+                        <li><a href = '#' id = 'city'> New York </a></li>
                     </ul>
                 </div>   
 
             </div>
-               
-        </div>
-         <h1 class="page-header">
+                <h1 class="page-header">
                 </h1> 
         </div>
-        <!-- /.row -->
+        <!-- End Dropdown Menu Row-->
 
         <!-- Button Row -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
-                  <a href="#" class="btn btn-default" role="button">All</a>
-                  <a href="#" class="btn btn-default" role="button">Music</a>
-                  <a href="#" class="btn btn-default" role="button">Juggling</a>
-                  <a href="#" class="btn btn-default" role="button">Acrobatics</a>
-                  <a href="#" class="btn btn-default" role="button">Other</a>
+                  <a id = 'all' href="#" class="btn btn-default" role="button">All</a>
+                  <a id = 'music' href="#" class="btn btn-default" role="button">Music</a>
+                  <a id = 'juggling' href="#" class="btn btn-default" role="button">Juggling</a>
+                  <a id = 'acrobatics' href="#" class="btn btn-default" role="button">Acrobatics</a>
+                  <a id = 'other' href="#" class="btn btn-default" role="button">Other</a>
                 </div>
                 <h1 class="page-header">
                 </h1>
@@ -122,9 +163,9 @@ $(document).ready(function(){
         </div>
         <!-- End Button Row -->
 
-        <!-- Projects Row -->
+        <!-- Video Row -->
         <div class="row">
-            <div class="col-md-4 portfolio-item">
+            <div class="col-md-4 videoThumb">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                 </a>
@@ -132,7 +173,7 @@ $(document).ready(function(){
                 </h3>
                 <p></p>
             </div>
-            <div class="col-md-4 portfolio-item">
+            <div class="col-md-4 videoThumb">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                 </a>
@@ -140,7 +181,7 @@ $(document).ready(function(){
                 </h3>
                 <p></p>
             </div>
-            <div class="col-md-4 portfolio-item">
+            <div class="col-md-4 videoThumb">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                 </a>
