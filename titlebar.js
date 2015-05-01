@@ -33,7 +33,16 @@ $(document).ready(function(){
 
   // Set up inbox
   setUpInbox();
+
+  $('.alert').hide();
 });	
+
+var showAlert = function(message) {
+  $('.alert').text(message).fadeIn();
+  setTimeout(function() {
+    $('.alert').fadeOut();
+  }, 5000);
+};
 
 var setUpFollowedUsers = function() {
   var followedUsersList = $('<div>').addClass('list-group');
