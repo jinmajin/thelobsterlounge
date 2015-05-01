@@ -23,124 +23,13 @@
 
 <script type="text/javascript">
 
+
+
+
+
 <!-- video wheel -->
 $(document).ready(function(){
-   var vidIndex = 0;
-   var vidIDs = ['O1mmOm-1X4Q', 'AxHt4-GDvck','eeHEGK0vaqA','LaYEMUAPUf0'];
-   var paths = ['usTheDuo', 'jugglingGeorge', 'jazzyJeff', 'acrobaticAdam'];
-   var labelNames = ['Us The Duo', 'Juggling George', 'Jazzy Jeff', 'Acrobatic Adam'];
-
-
-   var clickThis = true;
-    $('.carousel').carousel({
-      interval: 5000 //make it an object instead of iframe so can get duration of video?
-    });
-
-    $('#top').addClass('hover');
-
-    $('.arc').mouseenter(function(){
-        var underlineThis = '#text-' + this.id;
-        $(underlineThis).addClass('hoverText');
-    });
-    
-    $('.arc').mousedown(function(){
-      if (clickThis == false){
-        clickThis = true;
-      }else{
-        $('.arc').removeClass('hover');
-        clickThis = false;
-        clickThis = true;
-      }
-      if (this.id === 'top'){
-        $('.carousel').carousel(0);
-        vidIndex = 0;
-      }
-      else if (this.id === 'right'){
-        $('.carousel').carousel(1);
-        vidIndex = 1;
-      }
-      else if (this.id === 'bottom'){
-        $('.carousel').carousel(2);
-        vidIndex = 2;
-      }
-      else{
-        $('.carousel').carousel(3);
-        vidIndex = 3;
-      }
-    });
-
-
-    $('.arc').mouseup(function(){
-        $(this).addClass('hover');
-    });
-
-
-    $('.arc').mouseleave(function(){
-        $('.text').removeClass('hoverText');
-        if (clickThis == false){
-          $(this).removeClass('hover');
-        }
-    });
-
-    $('.change-label-right').click(function(e){
-      console.log(e);
-      if (vidIndex < 3){
-        vidIndex = vidIndex + 1;
-      }else{
-        vidIndex = 0;
-      }
-
-      if (vidIndex == 0){
-        $('#left').removeClass('hover');
-        $('#right').removeClass('hover');
-        $('#top').addClass('hover');
-      }else if (vidIndex == 1){
-        $('#top').removeClass('hover');
-        $('#bottom').removeClass('hover');
-        $('#right').addClass('hover');
-
-      }else if (vidIndex ==2){
-        $('#right').removeClass('hover');
-        $('#left').removeClass('hover');
-        $('#bottom').addClass('hover');
-      }else{
-        $('#bottom').removeClass('hover');
-        $('#top').removeClass('hover');
-        $('#left').addClass('hover');
-      }
-    });
-
-    $('.change-label-left').click(function(e){
-      console.log(e);
-      if (vidIndex > 0){
-        vidIndex = vidIndex - 1;
-      }else{
-        vidIndex = 3;
-      }
-
-      if (vidIndex == 0){
-        $('#left').removeClass('hover');
-        $('#right').removeClass('hover');
-        $('#top').addClass('hover');
-      }else if (vidIndex == 1){
-        $('#top').removeClass('hover');
-        $('#bottom').removeClass('hover');
-        $('#right').addClass('hover');
-
-      }else if (vidIndex ==2){
-        $('#right').removeClass('hover');
-        $('#left').removeClass('hover');
-        $('#bottom').addClass('hover');
-      }else{
-        $('#bottom').removeClass('hover');
-        $('#top').removeClass('hover');
-        $('#left').addClass('hover');
-      }
-    });
-
-    $('#more-info').click(function(){
-        window.location.href='profile.html?profile=' + paths[vidIndex];
-    });
+   
 });
 
 
@@ -168,69 +57,7 @@ $(document).ready(function(){
 </nav>
 
 <!-- video view -->
-<div id = 'video-wheel'>
-  <div id = 'label'> </div>
-    <div id = 'top' class = 'arc'>
-        <div id = 'text-top' class = 'text'>All Genres</div>
-    </div>
 
-    <div id = 'left' class = 'arc'>
-        <div id = 'text-left' class = 'text'>Acrobatics</div>
-    </div>
-
-    <div id = 'bottom' class = 'arc'>
-        <div id = 'text-bottom' class = 'text'>Music </div>
-    </div>
-
-    <div id = 'right' class = 'arc'>
-        <div id = 'text-right' class = 'text'>Juggling</div>
-    </div>    
-</div>
-
-<div id = 'active-video'>
-    <!-- CAROUSEL -->
-    <div id="video-carousel" class="carousel slide" data-ride="carousel">
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <div id = 'label' class = 'carousel-caption'> Us The Duo </div>
-     <!--    <div id = 'space' width = '450' height = '400'> -->
-          <iframe width="450" height="300" src="https://www.youtube.com/embed/O1mmOm-1X4Q?enablejsapi=1" frameborder="0" ></iframe> 
-        <!-- </div> -->
-    </div>
-
-    <div class="item">
-        <div id = 'label' class = 'carousel-caption'> Juggling George</div>
-        <iframe width="450" height="300" src="https://www.youtube.com/embed/AxHt4-GDvck?enablejsapi=1" frameborder="0" ></iframe> 
-    </div>
-
-    <div class="item">
-        <div id = 'label' class = 'carousel-caption'> Jazzy Jeff</div>
-        <iframe width="450" height="300" src="https://www.youtube.com/embed/eeHEGK0vaqA?enablejsapi=1" frameborder="0" ></iframe> 
-    </div>
-
-    <div class="item">
-      <div id = 'label' class = 'carousel-caption'> Acrobatic Adam</div>
-      <iframe width="450" height="300" src="https://www.youtube.com/embed/LaYEMUAPUf0?enablejsapi=1" frameborder="0" ></iframe> 
-    </div>
-
-  </div>
- 
-  <!-- Controls -->
-  <a class="left carousel-control change-label-left" href="#video-carousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control change-label-right" href="#video-carousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div> 
-    <!-- END CAROUSEL -->
-
-    <!-- <div id = 'player' width = '560' height = '315'></div> -->
-    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/O1mmOm-1X4Q" frameborder="0" allowfullscreen></iframe> -->
-    <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; margin-left: 240px; margin-top: 10px; background-color: #A0908C; border-color: #A0908C;'> More Information</button>
-  <!--   <button class = 'btn btn-primary' id= 'more-info' style = 'position: absolute; margin-left: 240px; margin-top: 10px; background-color: blue;'> More Information</button> -->
-</div>
 
 
 
