@@ -86,10 +86,6 @@ h2 {
   height: 400px;
 }
 
-.edit-control {
-  margin-right: 1em;
-}
-
 .media-remove-btn {
   z-index: 10;
   position: absolute;

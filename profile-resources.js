@@ -21,6 +21,11 @@ var profileResources = {
       {type: 'image', src: "http://nyulocal.com/wp-content/uploads/2012/04/1054.jpg"},
     ],
     profilePic: {src: "http://doge2048.com/meta/doge-600.png"},
+    following: ["usTheDuo", "jugglingGeorge"],
+    messages: [
+      {from: "usTheDuo", body: "Hey Jeff! We'd love to have you join our band! Come meet us this sunday"},
+      {from: "acrobaticAdam", body: "I saw you perform last Saturday. Love your work bro!"},
+    ],
   },
 
   // Us The Duo Profile Info
