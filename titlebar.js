@@ -24,4 +24,38 @@ $(document).ready(function(){
 		var boldedText = String(item.value).toLowerCase().replace(this.term, "<span class='bold'>"+this.term+"</span>");
 		return $("<li>").data("ui-autocomplete-item", item).append("<a href='profile.html?profile="+profNameToUser[item.value]+"'>" + boldedText + "</a>").appendTo(ul);
 	};
+
+  // Initialize all tooltips
+  $('[data-toggle="tooltip"]').tooltip();
+
+  // Set up followed users
+  setUpFollowedUsers();
+
+  // Set up inbox
+  setUpInbox();
 });	
+
+var setUpFollowedUsers = function() {
+  var followedUsersList = $('<div>').addClass('list-group');
+  profileResources['jazzyJeff'].following.forEach(function(user) {
+    followedUsersList.append($('<a>').addClass('list-group-item').text(user).attr('href', 'profile.html?profile=' + user));
+  });
+  $('#show-followed-btn').popover({
+    content: followedUsersList,
+    html: true,
+  });
+  $('#show-followed-btn').data('bs.popover').options.content = followedUsersList;
+}
+
+var setUpInbox = function() {
+  var messagesList = $('<div>').addClass('list-group');
+  profileResources['jazzyJeff'].messages.forEach(function(message) {
+    var from = $('<div>').append($('<a>').text(message.from).attr('href', 'profile.html?profile=' + message.from));
+    var body = $('<p>').text(message.body);
+    messagesList.append($('<div>').addClass('list-group-item').append(from).append(body));
+  });
+  $('#show-inbox-btn').popover({
+    content: messagesList,
+    html: true,
+  });
+}

@@ -12,9 +12,17 @@ $(document).ready(function() {
   setMediaHeight();
   $(window).resize(function() {setMediaHeight()});
 
-  $('#follow-btn').click(function() {
-    var text = $('#follow-btn').text();
-    $('#follow-btn').text(text === 'Follow' ? 'Following' : 'Follow');
+  $('#follow-btn').text((profileResources['jazzyJeff'].following.indexOf(profile) > -1) ? 'Following' : 'Follow')
+  .click(function() {
+    var index = profileResources['jazzyJeff'].following.indexOf(profile);
+    if (index > -1) {
+      profileResources['jazzyJeff'].following.splice(index, 1);
+      $('#follow-btn').text('Follow');
+    } else {
+      profileResources['jazzyJeff'].following.push(profile);
+      $('#follow-btn').text('Following');
+    }
+    setUpFollowedUsers();
   });
 
   $('#add-performance-btn').click(function() {
@@ -23,21 +31,24 @@ $(document).ready(function() {
     var divider = $('<span>').addClass('editable hidden').text(' -- ');
     var location = $('<span>').addClass('editable hidden').attr('id', 'performance-location-' + i);
 
-    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
-    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
+    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
+    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
 
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable hidden').attr('id', 'performance-details-' + i);
 
-    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
+    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
 
     $('#upcoming-performances-list').append($('<span>').append(dateLoc).append(details).append(detailsInput));
   });
 
+  $('#edit-profile-btn').click(function() { toggleEditMode(); });
+  $('#cancel-profile-btn').click(function() { toggleEditMode(false); });
+  $('#save-profile-btn').click(function() { toggleEditMode(true); });
+
   var media = $('.gallery .thumbnail').children('img, iframe').clone();
-  console.log(media);
   populateCarousel(media);
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
@@ -47,19 +58,16 @@ $(document).ready(function() {
 });
 
 var displayEditButton = function() {
-  var editButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'edit-profile-btn').text('Edit Profile');
-  editButton.click(function() { toggleEditMode() });
-  $('#userinfo a').remove();
-  $('#userinfo').prepend(editButton);
+  $('#edit-profile-btn').removeClass('hidden');
+  $('#save-profile-btn').addClass('hidden');
+  $('#cancel-profile-btn').addClass('hidden');
+  $('#userinfo a').addClass('hidden');
 };
 
 var displaySaveCancelButtons = function() {
-  var saveButton = $('<button>').addClass('btn btn-primary edit-control').attr('id', 'save-profile-btn').text('Save Profile');
-  saveButton.click(function() { toggleEditMode(true) });
-  var cancelButton = $('<button>').addClass('btn btn-default edit-control').attr('id', 'cancel-profile-btn').text('Cancel');
-  cancelButton.click(function() { toggleEditMode(false) });
-  $('#userinfo').prepend(saveButton);
-  $('#userinfo').prepend(cancelButton);
+  $('#edit-profile-btn').addClass('hidden');
+  $('#save-profile-btn').removeClass('hidden');
+  $('#cancel-profile-btn').removeClass('hidden');
 }
 
 var displayQRButton = function() {
@@ -88,7 +96,6 @@ var toggleEditMode = (function() {
   var editMode = false;
   return (function(save) {
     editMode = !editMode;
-    $('.edit-control').remove();
     toggleEditableFields(editMode, save);
     if (editMode) {
       displaySaveCancelButtons();
