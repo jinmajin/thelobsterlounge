@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var profile = getParameterByName('profile');
-  var profileInfo = profileResources[profile] || profileResources.jazzyJeff;
+  var profile = getParameterByName('profile') || 'jazzyJeff';
+  var profileInfo = profileResources[profile];
   fillInProfileInfo(profileInfo);
 
   if (!profile || profile == 'jazzyJeff') {
@@ -12,17 +12,33 @@ $(document).ready(function() {
   setMediaHeight();
   $(window).resize(function() {setMediaHeight()});
 
-  $('#follow-btn').text((profileResources['jazzyJeff'].following.indexOf(profile) > -1) ? 'Following' : 'Follow')
-  .click(function() {
+  $('#send-message-btn').click(function() { showAlert('Message sent!'); });
+  $('#upload-media-btn').click(function() { showAlert(profile == 'jazzyJeff' ? 'Media uploaded!' : 'Media has been sent for approval!'); });
+
+  if (profileResources['jazzyJeff'].following.indexOf(profile) > -1) {
+    $('#follow-btn').text('Following').addClass('btn-default');
+  } else {
+    $('#follow-btn').text('Follow').addClass('btn-primary');
+  }
+  $('#follow-btn').click(function() {
     var index = profileResources['jazzyJeff'].following.indexOf(profile);
     if (index > -1) {
+      $('#follow-btn').removeClass('btn-danger btn-default').addClass('btn-primary').text('Follow');
       profileResources['jazzyJeff'].following.splice(index, 1);
-      $('#follow-btn').text('Follow');
     } else {
       profileResources['jazzyJeff'].following.push(profile);
-      $('#follow-btn').text('Following');
+      $('#follow-btn').toggleClass('btn-primary btn-default').text('Following');
+      showAlert('Now Following ' + profile);
     }
     setUpFollowedUsers();
+  }).hover(function() {
+    if ($('#follow-btn').hasClass('btn-default')) {
+      $('#follow-btn').toggleClass('btn-default btn-danger').text('Unfollow');
+    }
+  }, function() {
+    if ($('#follow-btn').hasClass('btn-danger')) {
+      $('#follow-btn').toggleClass('btn-default btn-danger').text('Following');
+    }
   });
 
   $('#add-performance-btn').click(function() {
@@ -46,7 +62,7 @@ $(document).ready(function() {
 
   $('#edit-profile-btn').click(function() { toggleEditMode(); });
   $('#cancel-profile-btn').click(function() { toggleEditMode(false); });
-  $('#save-profile-btn').click(function() { toggleEditMode(true); });
+  $('#save-profile-btn').click(function() { toggleEditMode(true); showAlert('Changes saved'); });
 
   var media = $('.gallery .thumbnail').children('img, iframe').clone();
   populateCarousel(media);
