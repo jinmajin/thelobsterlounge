@@ -50,6 +50,7 @@
     </div>
   </div>
 </nav>
+<div class="alert alert-success"></div>
 <div class="main">
 <div class="header-group">
   <!-- profile code here -->
@@ -79,8 +80,8 @@
   <div class="col-md-3 sidebar">
     <div class="row about-me">
       <div class="row buttons">
-        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" id="follow-btn">Follow</button></div>
-        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" data-toggle="modal" data-target="#message-modal" id="message-btn">Message</button></div>
+        <div class="col-md-6 text-center"><button class="btn about-me-btn" id="follow-btn">Follow</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" data-toggle="modal" data-target="#message-modal">Message</button></div>
         <!-- Modal -->
         <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="Send Message" aria-hidden="true">
           <div class="modal-dialog">
@@ -94,7 +95,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="send-message-btn">Send</button>
               </div>
             </div>
           </div>
@@ -133,7 +134,7 @@
   <div class="col-md-9 gallery">
     <div class="row">
       <div class="col-md-8 text-center"><h2 id="gallery-label"></h2></div>
-      <div class="col-md-4 text-right"><button class="btn btn-primary" id="upload-media-btn" data-toggle="modal" data-target="#upload-modal">Upload Media</button></div>
+      <div class="col-md-4 text-right"><button class="btn btn-primary" data-toggle="modal" data-target="#upload-modal" id="trigger-upload-modal-btn">Upload Media</button></div>
       <!-- Modal --!>
       <div class="modal fade" id="upload-modal" tabindex="-1" role="dialog" aria-labelledby="Upload Media" aria-hidden="true">
         <div class="modal-dialog">
@@ -169,7 +170,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Upload</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" id="upload-media-btn">Upload</button>
             </div>
           </div>
         </div>
