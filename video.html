@@ -31,8 +31,6 @@
 <!-- videos -->
 $(document).ready(function(){
     //Dropdowns
-
-//NEED TO ADD CARETS
     $(".dropdown-menu li a").click(function(){
         var selText = $(this).text();
         $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
@@ -80,9 +78,11 @@ $(document).ready(function(){
     function hoverPlay(){
         $('video').mouseover(function(){
             console.log('play video now');
+            this.play();
         })
         $('video').mouseout(function(){
             console.log('pause video now');
+            this.pause();
         });
     }
     function switchFilter(genre){
