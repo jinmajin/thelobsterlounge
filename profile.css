@@ -54,11 +54,6 @@ li div {
   width: 100%;
 }
 
-iframe {
-  width: 100%;
-  height: 100%;
-}
-
 h2 {
   margin-top: 0px;
 }
@@ -74,7 +69,12 @@ h2 {
   transform: translateY(-50%);
 }
 
-.gallery iframe {
+video {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery video {
   pointer-events: none;
 }
 
@@ -84,6 +84,19 @@ h2 {
 
 .carousel-inner .video {
   height: 400px;
+}
+
+.play-btn {
+  z-index: 11;
+  font-size: 32pt;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  opacity: 0.5;
+}
+
+.play-btn:hover {
+  opacity: 1;
 }
 
 .media-remove-btn {
