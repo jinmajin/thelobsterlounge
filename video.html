@@ -54,39 +54,90 @@ $(document).ready(function(){
     });
 
     // Filter buttons
-    
-
     $('#all').on('click', function(e){
         switchFilter('all');
         console.log('all');
+        hoverPlay();
     });
     $('#music').on('click', function(e){
         switchFilter('music');
         console.log('music');
+        hoverPlay();
     });
     $('#juggling').on('click', function(e){
         switchFilter('juggling');
-        console.log('juggling');
+        hoverPlay();
     });
     $('#acrobatics').on('click', function(e){
         switchFilter('acrobatics');
-        console.log('acrobatics');
+        hoverPlay();
     });
     $('#other').on('click', function(e){
         switchFilter('other');
-        console.log('other');
+        hoverPlay();
     });
 
+    function hoverPlay(){
+        $('video').mouseover(function(){
+            console.log('play video now');
+        })
+        $('video').mouseout(function(){
+            console.log('pause video now');
+        });
+    }
     function switchFilter(genre){
         var visibleVids= document.getElementsByClassName('videoThumb');
         for (var i=0; i < visibleVids.length; i++){
             //remove all visible videos
-            visibleVids[i].removeChild(visibleVids[i].firstElementChild);
+            if (visibleVids[i].firstElementChild !=null){
+                visibleVids[i].removeChild(visibleVids[i].firstElementChild);
+            };
         }
+        if (genre === 'all'){
+            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+            addVideo(visibleVids, 2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", '#');
+            addVideo(visibleVids, 3,"assets/video/jazzyJeff/jazzyJeff1.mp4", '#');
+        }else if (genre === 'music') {
+            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", '#');
+            addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+        }else if (genre === 'juggling'){
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+        }else if (genre === 'acrobatics'){
+            addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", '#');
+        }else{
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+        }
+
+
+        /*
+                <a href="#">
+                    <video width="700" height="400" class = 'img-responsive'>
+                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
+                      Your browser does not support this video. Sorry!
+                    </video>
+                </a>
+        */
+    }
+
+    function addVideo(visibleVids, num, src, profileLink){
+        var a = document.createElement('a');
+        a.href = '#';
+        var video = document.createElement('video');
+        video.width = '700'; video.height = '400'; //video.type = "video/mp4";
+        video.className = 'img-responsive';
+        var source = document.createElement('source');
+        source.src = src;
+        video.appendChild(source);
+        a.appendChild(video);
+
+        visibleVids[num].appendChild(a);
     }
 
     //When first load page
     $(".selectedFirst").button("toggle");
+    hoverPlay();
    
 });
 
@@ -189,9 +240,9 @@ $(document).ready(function(){
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
-                <h3>
+         <!--        <h3>
                 </h3>
-                <p></p>
+                <p></p> -->
             </div>
             <div class="col-md-4 videoThumb">
                 <a href="#">
@@ -201,9 +252,9 @@ $(document).ready(function(){
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
-                <h3>
+            <!--     <h3>
                 </h3>
-                <p></p>
+                <p></p> -->
             </div>
             <div class="col-md-4 videoThumb">
                 <a href="#">
@@ -214,9 +265,9 @@ $(document).ready(function(){
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
-                <h3>
+       <!--          <h3>
                 </h3>
-                <p></p>
+                <p></p> -->
             </div>
         </div>
         <!-- /.row -->
@@ -231,9 +282,9 @@ $(document).ready(function(){
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
-                <h3>
+           <!--      <h3>
                 </h3>
-                <p></p>
+                <p></p> -->
             </div>
         </div>
         <!-- /.row -->
