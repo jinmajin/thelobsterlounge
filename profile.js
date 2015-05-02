@@ -85,6 +85,8 @@ $(document).ready(function() {
   });
 });
 
+var deletedElements = [];
+
 var displayEditButton = function() {
   $('#edit-profile-btn').removeClass('hidden');
   $('#save-profile-btn').addClass('hidden');
@@ -127,11 +129,31 @@ var toggleEditMode = (function() {
     toggleEditableFields(editMode, save);
     if (editMode) {
       displaySaveCancelButtons();
+      setMediaDraggable();
     } else {
       displayEditButton();
+      $('.media').draggable('destroy').droppable('destroy');
     }
   });
 })();
+
+var setMediaDraggable = function() {
+  $('.media').draggable({
+    zIndex: 100,
+    revert: 'invalid',
+  }).droppable({
+    drop: function(event, ui) {
+      var fromIndex = $(this).attr('data-index');
+      var toIndex = $(ui.draggable).attr('data-index');
+      var temp = profileResources.jazzyJeff.media[fromIndex];
+      profileResources.jazzyJeff.media[fromIndex] = profileResources.jazzyJeff.media[toIndex];
+      profileResources.jazzyJeff.media[toIndex] = temp;
+      populateGallery(profileResources.jazzyJeff.media, true);
+      setMediaDraggable();
+      populateCarousel($('.gallery .thumbnail').children('img, video').clone());
+    }
+  });
+};
 
 var setMediaHeight = function(ratio) {
   // Default ratio is 4:3
@@ -176,14 +198,21 @@ var fillInProfileInfo = function(profileInfo) {
   $('#upcoming-performances-list').html(performances);
 
   // Populate Gallery With Media
+  populateGallery(profileInfo.media);
+};
+
+var populateGallery = function(profileMedia, editable) {
   mediaCollection = [];
-  profileInfo.media.forEach(function(media, i) {
+  profileMedia.forEach(function(media, i) {
     var anchor = $('<a>').addClass('thumbnail media').attr('data-toggle', 'modal').attr('data-target', '#gallery-modal').attr('data-index', i);
-    var removeButton = $('<button>').addClass('btn btn-danger hidden edit-hidden media-remove-btn glyphicon glyphicon-remove');
+    var removeButton = $('<button>').addClass('btn btn-danger edit-hidden media-remove-btn glyphicon glyphicon-remove');
+    if (!editable) removeButton.addClass('hidden');
     removeButton.click(function(event) {
       event.stopPropagation();
-      $('[data-index="' + i + '"]').remove();
+      profileMedia.splice(i, 1);
       $('#gallery-modal').modal('hide');
+      populateGallery(profileMedia, true);
+      setMediaDraggable();
     });
     var playButton = createPlayButton(i);
     if (media.type === 'video') {
@@ -194,6 +223,7 @@ var fillInProfileInfo = function(profileInfo) {
       mediaCollection.push(anchor.append(img).append(removeButton));
     }
   });
+  $('#media-container').html('');
   mediaCollection.forEach(function(media, i) {
     if (i == 0) {
       // Put into the big frame
@@ -212,7 +242,8 @@ var fillInProfileInfo = function(profileInfo) {
       $('#media-container .row').last().append($('<div>').addClass('col-md-4').html(media));
     }
   });
-};
+  setMediaHeight();
+}
 
 var createPlayButton = function(index) {
   var playButton = $('<button>').addClass('btn btn-default glyphicon glyphicon-play play-btn').attr('data-index', index);
