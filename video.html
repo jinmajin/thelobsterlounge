@@ -38,46 +38,55 @@ $(document).ready(function(){
         $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
     });
 
-    // $('#videoOption').click(function(){
-
-    //     console.log($(".first:first-child").text($(this).text()));
-    //     $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+'<span class="caret"></span>');
-    //     $('.first:first-child').val($(this).text());
-    // });
+    $('#videoOption').click(function(){
+        console.log('clickedVideo')
+    });
     $('#events').click(function(){
-        // $(".first:first-child").text($(this).text());
-        // $('.first:first-child').val($(this).text());
-        //pseudocode:
-        //change the text field
-        //remove the item in the dropdown menu
-        //add new item in dropdown menu
-
-        //changes to events but doesn't change it back..
-        // $(".btn:first-child").text($(this).text());
-        // $('.btn:first-child').val($(this).text());
-        console.log("CLICKITY CLICK");
+        console.log("clickedEvent");
     });
 
-    $('#city').click(function(e){
-        console.log("city click woo");
+    $('#boston').click(function(e){
+        console.log("clicked boston");
+    });
+
+    $('#newyork').click(function(e){
+        console.log("clicked newyork");
     });
 
     // Filter buttons
+    
+
     $('#all').on('click', function(e){
+        switchFilter('all');
         console.log('all');
     });
     $('#music').on('click', function(e){
+        switchFilter('music');
         console.log('music');
     });
     $('#juggling').on('click', function(e){
+        switchFilter('juggling');
         console.log('juggling');
     });
     $('#acrobatics').on('click', function(e){
+        switchFilter('acrobatics');
         console.log('acrobatics');
     });
     $('#other').on('click', function(e){
+        switchFilter('other');
         console.log('other');
     });
+
+    function switchFilter(genre){
+        var visibleVids= document.getElementsByClassName('videoThumb');
+        for (var i=0; i < visibleVids.length; i++){
+            //remove all visible videos
+            visibleVids[i].removeChild(visibleVids[i].firstElementChild);
+        }
+    }
+
+    //When first load page
+    $(".selectedFirst").button("toggle");
    
 });
 
@@ -143,8 +152,8 @@ $(document).ready(function(){
                         Boston <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href = '#' id = 'city'> Boston</a></li>
-                        <li><a href = '#' id = 'city'> New York </a></li>
+                        <li><a href = '#' id = 'boston'> Boston</a></li>
+                        <li><a href = '#' id = 'newyork'> New York </a></li>
                     </ul>
                 </div>   
 
@@ -157,15 +166,15 @@ $(document).ready(function(){
         <!-- Button Row -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
-                  <a id = 'all' href="#" class="btn btn-default" role="button">All</a>
-                  <a id = 'music' href="#" class="btn btn-default" role="button">Music</a>
-                  <a id = 'juggling' href="#" class="btn btn-default" role="button">Juggling</a>
-                  <a id = 'acrobatics' href="#" class="btn btn-default" role="button">Acrobatics</a>
-                  <a id = 'other' href="#" class="btn btn-default" role="button">Other</a>
+                <div class="btn-group btn-group-justified" data-toggle="buttons">
+                  <label class="btn btn-default selectedFirst" id="all"><input type="radio" name="options">All</label>
+                  <label class="btn btn-default" id="music"><input type="radio" name="options">Music</label>
+                  <label class="btn btn-default" id="juggling"><input type="radio" name="options">Juggling</label>
+                  <label class="btn btn-default" id="acrobatics"><input type="radio" name="options" >Acrobatics</label>
+                  <label class="btn btn-default" id="other"><input type="radio" name="options">Other</label>
                 </div>
                 <h1 class="page-header">
-                </h1>
+                    </h1>
             </div>
         </div>
         <!-- End Button Row -->
@@ -174,7 +183,11 @@ $(document).ready(function(){
         <div class="row">
             <div class="col-md-4 videoThumb">
                 <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                    <video width="700" height="400" class = 'img-responsive'>
+                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
+                      Your browser does not support this video. Sorry!
+                    </video>
+                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
                 <h3>
                 </h3>
@@ -182,7 +195,11 @@ $(document).ready(function(){
             </div>
             <div class="col-md-4 videoThumb">
                 <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                    <video width="700" height="400" class = 'img-responsive'>
+                      <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4">
+                      Your browser does not support this video. Sorry!
+                    </video>
+                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
                 <h3>
                 </h3>
@@ -190,7 +207,12 @@ $(document).ready(function(){
             </div>
             <div class="col-md-4 videoThumb">
                 <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                    <video width="700" height="400" class = 'img-responsive'>
+                        <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4">
+                      <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
+                      Your browser does not support this video. Sorry!
+                    </video>
+                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
                 <h3>
                 </h3>
@@ -199,55 +221,15 @@ $(document).ready(function(){
         </div>
         <!-- /.row -->
 
-        <!-- Projects Row -->
+        <!-- Video Row -->
         <div class="row">
-            <div class="col-md-4 portfolio-item">
+            <div class="col-md-4 videoThumb">
                 <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-        </div>
-
-        <!-- Projects Row -->
-        <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                    <video width="700" height="400" class = 'img-responsive'>
+                      <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
+                      Your browser does not support this video. Sorry!
+                    </video>
+                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
                 <h3>
                 </h3>
@@ -256,7 +238,37 @@ $(document).ready(function(){
         </div>
         <!-- /.row -->
 
-        <hr>
+
+        <!-- Video Row -->
+<!--         <div class="row">
+            <div class="col-md-4 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                </a>
+                <h3>
+                </h3>
+                <p></p>
+            </div>
+            <div class="col-md-4 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                </a>
+                <h3>
+                </h3>
+                <p></p>
+            </div>
+            <div class="col-md-4 portfolio-item">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                </a>
+                <h3>
+                </h3>
+                <p></p>
+            </div>
+        </div> -->
+        <!-- /.row -->
+
+         <hr>
 
         <!-- /.row -->
 
