@@ -54,29 +54,37 @@ $(document).ready(function(){
     });
 
     // Filter buttons
-    
-
     $('#all').on('click', function(e){
         switchFilter('all');
         console.log('all');
+        hoverPlay();
     });
     $('#music').on('click', function(e){
         switchFilter('music');
         console.log('music');
+        hoverPlay();
     });
     $('#juggling').on('click', function(e){
         switchFilter('juggling');
-        console.log('juggling');
+        hoverPlay();
     });
     $('#acrobatics').on('click', function(e){
         switchFilter('acrobatics');
-        console.log('acrobatics');
+        hoverPlay();
     });
     $('#other').on('click', function(e){
         switchFilter('other');
-        console.log('other');
+        hoverPlay();
     });
 
+    function hoverPlay(){
+        $('video').mouseover(function(){
+            console.log('play video now');
+        })
+        $('video').mouseout(function(){
+            console.log('pause video now');
+        });
+    }
     function switchFilter(genre){
         var visibleVids= document.getElementsByClassName('videoThumb');
         for (var i=0; i < visibleVids.length; i++){
@@ -95,7 +103,7 @@ $(document).ready(function(){
             addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", '#');
             addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
         }else if (genre === 'juggling'){
-            addVideo(visibleVids, 0,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
         }else if (genre === 'acrobatics'){
             addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", '#');
         }else{
@@ -117,7 +125,7 @@ $(document).ready(function(){
         var a = document.createElement('a');
         a.href = '#';
         var video = document.createElement('video');
-        video.width = '700'; video.height = '400'; video.type = "video/mp4";
+        video.width = '700'; video.height = '400'; //video.type = "video/mp4";
         video.className = 'img-responsive';
         var source = document.createElement('source');
         source.src = src;
@@ -129,6 +137,7 @@ $(document).ready(function(){
 
     //When first load page
     $(".selectedFirst").button("toggle");
+    hoverPlay();
    
 });
 
