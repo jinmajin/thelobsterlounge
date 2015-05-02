@@ -13,7 +13,7 @@ var profileResources = {
       {date: "April 1, 2015", location: "Boston Commons", details: "I'll be playing guitar by the green line station entrance"}
     ],
     media: [
-      {type: 'video', src: "assets/videos/jazzyJeff/SYTAP 30 second guitar riff.mp4"},
+      {type: 'video', src: "assets/video/jazzyJeff/jazzyJeff1.mp4"},
       {type: 'image', src: "http://www.conquerblog.com/wp-content/uploads/2013/01/street-performer.jpg"},
       {type: 'image', src: "http://diymusician.cdbaby.com/wp-content/uploads/2012/05/shutterstock_82623235.jpg"},
       {type: 'image', src: "https://lifeintheblueridges.files.wordpress.com/2012/07/img_3765.jpg"},
@@ -40,9 +40,9 @@ var profileResources = {
       {date: "April 14, 2015", location: "Central Park", details: "We'll be playing some moderately tasty jams."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/usTheDuo/Us The Duo sings 'Thinking Out Loud, Outside, Wiggle & One Last Time' Teaser.mp4"},
-      {type: 'video', src: "assets/videos/usTheDuo/TV Show Medley- Part I - Us The Duo.mp4"},
-      {type: 'video', src: "assets/videos/usTheDuo/TV Show Medley- Part II - Us The Duo.mp4"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo1.mp4"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo2.mp4"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo3.mp4"},
       {type: 'image', src: "http://www.ustheduo.com/files/2014/12/UsTheDuoSingapore.jpg"},
     ],
     profilePic: {src: "http://www.ustheduo.com/files/2014/05/UsTheDuoFeaturedImage-283x270.jpg"},
@@ -60,8 +60,8 @@ var profileResources = {
       {date: "April 14, 2015", location: "MIT's Kresge Field", details: "I'll be joining the MIT Juggling Club to do some amazing juggling."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/jugglingGeorge/Worlds Fastest Piano Juggler Part - 2 The Son..mp4"},
-      {type: 'video', src: "assets/videos/jugglingGeorge/Worlds Fastest Piano Juggler Part 8 Christmas.mp4"},
+      {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge1.mp4"},
+      {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge2.mp4"},
       {type: 'image', src: "http://pianojuggler.com/press_photos/Piano_Juggler_19Print.jpg"},
     ],
     profilePic: {src: "http://pianojuggler.com/images/big/39-03-82Print.jpg"},
@@ -79,8 +79,8 @@ var profileResources = {
       {date: "April 14, 2015", location: "Central Park", details: "I'll be jumping over more things."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/acrobaticAdam/The New York City Acrobats at Battery Park Street Performers.mp4"},
-      {type: 'video', src: "assets/videos/acrobaticAdam/The New York City Acrobats Street Performers at Battery Park.mp4"},
+      {type: 'video', src: "assets/video/acrobaticAdam/acrobaticAdam1.mp4"},
+      {type: 'video', src: "assets/video/acrobaticAdam/acrobaticAdam2.mp4"},
       {type: 'image', src: "http://www.pxleyes.com/images/contests/street-performers-2/fullsize/Street-Performer-4ee18c0dc0ae9_hires.jpg"},
     ],
     profilePic: {src: "https://kategale.files.wordpress.com/2010/05/venice-beach-street-performers-picture.jpg"},
