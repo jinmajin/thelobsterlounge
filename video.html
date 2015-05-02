@@ -94,20 +94,20 @@ $(document).ready(function(){
             };
         }
         if (genre === 'all'){
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", '#');
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
-            addVideo(visibleVids, 2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", '#');
-            addVideo(visibleVids, 3,"assets/video/jazzyJeff/jazzyJeff1.mp4", '#');
+            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
+            addVideo(visibleVids, 2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
+            addVideo(visibleVids, 3,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
         }else if (genre === 'music') {
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", '#');
-            addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", '#');
-            addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
+            addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
+            addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
         }else if (genre === 'juggling'){
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
         }else if (genre === 'acrobatics'){
-            addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
         }else{
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", '#');
+            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
         }
 
 
@@ -123,7 +123,7 @@ $(document).ready(function(){
 
     function addVideo(visibleVids, num, src, profileLink){
         var a = document.createElement('a');
-        a.href = '#';
+        a.href = profileLink;
         var video = document.createElement('video');
         video.width = '700'; video.height = '400'; //video.type = "video/mp4";
         video.className = 'img-responsive';
@@ -233,7 +233,7 @@ $(document).ready(function(){
         <!-- Video Row -->
         <div class="row">
             <div class="col-md-4 videoThumb">
-                <a href="#">
+                <a href='profile.html?profile=usTheDuo'>
                     <video width="700" height="400" class = 'img-responsive'>
                       <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
@@ -245,7 +245,7 @@ $(document).ready(function(){
                 <p></p> -->
             </div>
             <div class="col-md-4 videoThumb">
-                <a href="#">
+                <a href='profile.html?profile=jugglingGeorge'>
                     <video width="700" height="400" class = 'img-responsive'>
                       <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
@@ -257,10 +257,9 @@ $(document).ready(function(){
                 <p></p> -->
             </div>
             <div class="col-md-4 videoThumb">
-                <a href="#">
+                <a href='profile.html?profile=acrobaticAdam'>
                     <video width="700" height="400" class = 'img-responsive'>
                         <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4">
-                      <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
@@ -275,7 +274,7 @@ $(document).ready(function(){
         <!-- Video Row -->
         <div class="row">
             <div class="col-md-4 videoThumb">
-                <a href="#">
+                <a href='profile.html?profile=jazzyJeff'>
                     <video width="700" height="400" class = 'img-responsive'>
                       <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
