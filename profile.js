@@ -2,14 +2,13 @@ $(document).ready(function() {
   var profile = getParameterByName('profile') || 'jazzyJeff';
   var profileInfo = profileResources[profile];
   fillInProfileInfo(profileInfo);
+  populateGallery(profileInfo.media);
 
   if (!profile || profile == 'jazzyJeff') {
     displayEditButton();
     displayQRButton();
   }
   
-  // Give all media a 4:3 ratio
-  setMediaHeight();
   $(window).resize(function() {setMediaHeight()});
 
   $('#send-message-btn').click(function() { showAlert('Message sent!'); });
@@ -61,11 +60,20 @@ $(document).ready(function() {
   });
 
   $('#edit-profile-btn').click(function() { toggleEditMode(); });
-  $('#cancel-profile-btn').click(function() { toggleEditMode(false); });
-  $('#save-profile-btn').click(function() { toggleEditMode(true); showAlert('Changes saved'); });
+  $('#cancel-profile-btn').click(function() {
+    toggleEditMode(false);
+    for (var element = deletedElements.pop(); element !== undefined; element = deletedElements.pop()) {
+      if (element.media !== undefined) {
+        profileResources.jazzyJeff.media.splice(element.index, 0, element.media);
+      } else if (element.performance !== undefined) {
+        profileResources.jazzyJeff.upcomingPerformances.splice(element.index, 0, element.performance);
+      }
+    };
+    populateGallery(profileResources.jazzyJeff.media);
+    populatePerformances(profileResources.jazzyJeff.upcomingPerformances);
+  });
+  $('#save-profile-btn').click(function() { toggleEditMode(true); showAlert('Changes saved'); deletedElements = [];});
 
-  var media = $('.gallery .thumbnail').children('img, video').clone();
-  populateCarousel(media);
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
     var activeIndex = invoker.data('index');
@@ -150,7 +158,6 @@ var setMediaDraggable = function() {
       profileResources.jazzyJeff.media[toIndex] = temp;
       populateGallery(profileResources.jazzyJeff.media, true);
       setMediaDraggable();
-      populateCarousel($('.gallery .thumbnail').children('img, video').clone());
     }
   });
 };
@@ -172,34 +179,39 @@ var fillInProfileInfo = function(profileInfo) {
 
   $('.about-me .thumbnail').html($('<img>').addClass('img-responsive').attr('src', profileInfo.profilePic.src));
 
-  // Populate Performances List
+  populatePerformances(profileInfo.upcomingPerformances);
+};
+
+var populatePerformances = function(upcomingPerformances, editable) {
   var performances = [];
-  profileInfo.upcomingPerformances.forEach(function(performance, i) {
+  upcomingPerformances.forEach(function(performance, i) {
     var date = $('<span>').addClass('editable').attr('id', 'performance-date-' + i).text(performance.date);
     var divider = $('<span>').addClass('editable').text(' -- ');
     var location = $('<span>').addClass('editable').attr('id', 'performance-location-' + i).text(performance.location);
-    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
-    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
+    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input').val(performance.date));
+    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input').val(performance.location));
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable').attr('id', 'performance-details-' + i).text(performance.details);
-    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
+    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input').val(performance.details));
 
     var performanceListing = $('<span>').append(dateLoc).append(details).append(detailsInput);
 
     var removeButton = $('<div>').addClass('form-group').html($('<button>').addClass('form-control hidden edit-hidden btn btn-danger glyphicon glyphicon-remove'));
     removeButton.click(function() {
-      performanceListing.remove();
+      deletedElements.push({index: i, performance: performance});
+      upcomingPerformances.splice(i, 1);
+      populatePerformances(upcomingPerformances, true);
     });
     performanceListing.append(removeButton);
+    if (editable) {
+      performanceListing.find('.editable, .edit-hidden').toggleClass('hidden');
+    }
     performances.push(performanceListing);
   });
   $('#upcoming-performances-list').html(performances);
-
-  // Populate Gallery With Media
-  populateGallery(profileInfo.media);
-};
+}
 
 var populateGallery = function(profileMedia, editable) {
   mediaCollection = [];
@@ -210,7 +222,7 @@ var populateGallery = function(profileMedia, editable) {
     removeButton.click(function(event) {
       event.stopPropagation();
       profileMedia.splice(i, 1);
-      $('#gallery-modal').modal('hide');
+      deletedElements.push({index: i, media: media});
       populateGallery(profileMedia, true);
       setMediaDraggable();
     });
@@ -243,6 +255,7 @@ var populateGallery = function(profileMedia, editable) {
     }
   });
   setMediaHeight();
+  populateCarousel();
 }
 
 var createPlayButton = function(index) {
@@ -258,7 +271,8 @@ var createPlayButton = function(index) {
   return playButton;
 } 
 
-var populateCarousel = function(media) {
+var populateCarousel = function() {
+  var media = $('.gallery .thumbnail').children('img, video').clone();
   // Populate Indicators
   var indicators = [];
   media.each(function(i, m) {
