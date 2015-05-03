@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>CODENAME LOBSTER</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <!-- Load style sheets -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+	<!-- Load any supplemental Javascript libraries here -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+      
+	<!--Custom JS-->
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>-->
+	<script type="text/javascript" src="profile-resources.js"></script>
+	<script type="text/javascript" src="infoWindowZ.js"></script>
+	<script>
+// This example displays a marker at the center of Australia.
+// When the user clicks the marker, an info window opens.
+
+var map;
+var geocoder;
+
+function initialize() {
+	geocoder = new google.maps.Geocoder();
+	var mapOptions = {
+		zoom: 16
+	};	
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	// Try HTML5 geolocation
+	if(navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+		  var pos = new google.maps.LatLng(position.coords.latitude,
+										   position.coords.longitude);
+
+		  var infowindow = new google.maps.InfoWindow({
+			map: map,
+			position: pos,
+			content: 'Location found using HTML5.'
+		  });
+
+		  map.setCenter(pos);
+		}, function() {
+		  handleNoGeolocation(true);
+		});
+	} else {
+		// Browser doesn't support Geolocation
+		handleNoGeolocation(false);
+	}
+		
+	
+	var users = [];
+	var profNameToUser = {};
+	var keys = Object.keys(profileResources);
+	for(var i = 0; i < keys.length; i++){
+		users.push(profileResources[keys[i]]);
+		profNameToUser[profileResources[keys[i]]["profileName"]] = keys[i];
+	}
+
+	function buildResponseFor(i,j, users, perfs) {
+		return function(results, status){
+			if(status == "OK"){
+				var loc = results[0]["geometry"]["location"];
+				
+				var contentString = '<div id="content">'+
+				'<h1 id="firstHeading" class="firstHeading"><a href="/profile.html?profile='+profNameToUser[users[i]["profileName"]]+'">'+users[i]["profileName"]+'</a></h1>'+
+				'<div id="bodyContent">'+
+				'<p>'+perfs[j]["location"]+'</p>'+
+				'<p>'+perfs[j]["date"]+'</p>'+
+				'<p>'+perfs[j]["details"]+'</p>'+
+				'</div>'+
+				'</div>';
+				
+				var infowindow = new google.maps.InfoWindowZ({
+					content: contentString
+				});
+
+				var marker = new google.maps.Marker({
+					position: loc,
+					map: map,
+					title: users[i]["profileName"]
+				});
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map,marker);
+				});
+			}
+		}
+	}
+	
+	for(var i = 0; i < users.length; i++){
+		perfs = users[i]["upcomingPerformances"];
+		for(var j = 0; j < perfs.length; j++){
+			geocoder.geocode({address : perfs[j]["location"] +" " + users[i]["location"].split(",")[1]}, buildResponseFor(i,j,users, perfs));	
+		}
+	}
+}
+
+function handleNoGeolocation(errorFlag) {
+	if (errorFlag) {
+		var content = 'Error: The Geolocation service failed.';
+	} else {
+		var content = 'Error: Your browser doesn\'t support geolocation.';
+	}
+
+	var options = {
+		map: map,
+		position: new google.maps.LatLng(42.360091, -71.09416),
+		content: content
+	};
+
+	var infowindow = new google.maps.InfoWindow(options);
+	map.setCenter(options.position);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
