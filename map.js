@@ -75,7 +75,6 @@ function filter(){
 	$('#marker-info-kendall').removeClass('show');
 	$('#marker-info-kresge').removeClass('show');
 	$("input:checkbox:checked").each(function(){
-		// add $(this).val() to your array
 		if(this.id == "checkbox_music" || this.id == "checkbox_late"){
 			$('#marker-info-harvard-square').addClass('show');
 		}
