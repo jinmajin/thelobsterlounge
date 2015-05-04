@@ -10,7 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
 <link rel="stylesheet" type="text/css" href="css/videos.css" />
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
@@ -26,11 +26,34 @@
 
 
 
-
-
+    
+    FILENAMES = {'usTheDuo/usTheDuo1.mp4': 'usTheDuo',
+     'usTheDuo/usTheDuo2.mp4':'usTheDuo', 
+     'usTheDuo/usTheDuo3.mp4': 'usTheDuo', 
+     'jugglingGeorge/jugglingGeorge1.mp4':'jugglingGeorge', 
+     'jazzyJeff/jazzyJeff1.mp4': 'jazzyJeff', 
+     'acrobaticAdam/acrobaticAdam1.mp4': 'acrobaticAdam', 
+     'acrobaticAdam/acrobaticAdam2.mp4': 'acrobaticAdam'};
+// addVideo("assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
 <!-- videos -->
 $(document).ready(function(){
-    // $('#theModal').modal('show');
+
+    function buildLinks(){
+        console.log('hola',FILENAMES[0]);
+        var vidSrcs = []
+        var profileLinks = []
+        var folders = 'assets/video/';
+        var link = 'profile.html?profile=';
+        for (var i = 0; i< FILENAMES.length; i++){
+            console.log(FILENAMES[i]);
+            vidSrcs.push(folders+FILENAMES[i,0]);
+            profileLinks.push(link+FILENAMES[i,1]);
+        }
+        console.log(vidSrcs, profileLinks);
+        return vidSrcs, profileLinks
+    }
+    var vidSrcs, profileLinks = buildLinks();
+    console.log(vidSrcs, profileLinks);
 
     //Dropdowns
     $(".dropdown-menu li a").click(function(){
@@ -79,7 +102,6 @@ $(document).ready(function(){
 
     // Modal 
     $('.vidModal').on('hide.bs.modal', function () {
-        removeModalVideo();
         // $('#videoInModal')[0].pause();
     });
     $('.vidModal').on('show.bs.modal', function (e) {  
@@ -109,33 +131,34 @@ $(document).ready(function(){
     });
     }
     function switchFilter(genre){
-        var visibleVids= document.getElementsByClassName('videoThumb');
-        for (var i=0; i < visibleVids.length; i++){
-            //remove all visible videos
-            if (visibleVids[i].firstElementChild !=null){
-                visibleVids[i].removeChild(visibleVids[i].firstElementChild);
-            };
-        }
-        if (genre === 'all'){
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-            addVideo(visibleVids, 2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
-            addVideo(visibleVids, 3,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
-        }else if (genre === 'music') {
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-            addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
-            addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }else if (genre === 'juggling'){
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }else if (genre === 'acrobatics'){
-            addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
-        }else{
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }
+        // var visibleVids= document.getElementsByClassName('videoThumb');
+        // for (var i=0; i < visibleVids.length; i++){
+        //     //remove all visible videos
+        //     if (visibleVids[i].firstElementChild !=null){
+        //         visibleVids[i].removeChild(visibleVids[i].firstElementChild);
+        //     };
+        // }
+        // if (genre === 'all'){
+        //     addVideo(0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
+        //     addVideo(1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
+        //     addVideo(2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
+        //     addVideo(3,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
+        // }else if (genre === 'music') {
+        //     addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
+        //     addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
+        //     addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
+        // }else if (genre === 'juggling'){
+        //     addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
+        // }else if (genre === 'acrobatics'){
+        //     addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
+        // }else{
+        //     addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
+        // }
 
         // console.log($('.vidClick'));
 
         /*
+        <div class="col-md-4 videoThumb"> 
             <a href = '#' data-toggle="modal" data-target=".vidModal"> 
                 <video width="700" height="400" class = 'img-responsive hover'>
                   <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
@@ -145,7 +168,13 @@ $(document).ready(function(){
         */
     }
 
-    function addVideo(visibleVids, num, src, profileLink){
+    function addVideo(src, profileLink){
+        //create div
+        var div = document.createElement('div');
+        div.className = 'col-md-4 videoThumb';
+        $('.videoRow').append(div);
+        console.log('hey');
+
         //link to modal
         var a = document.createElement('a');
         a.className = 'vidClick';
@@ -164,8 +193,12 @@ $(document).ready(function(){
         video.appendChild(source);
         a.appendChild(video);
 
-        visibleVids[num].appendChild(a);
+        div.appendChild(a);
     }
+
+
+
+    // addVideo("assets/video/usTheDuo/usTheDuo2.mp4",'profile.html?profile=usTheDuo' );
 
     //add Modal
     /*
@@ -190,34 +223,34 @@ $(document).ready(function(){
           </div>
         </div>
     */
-    function makeModal(video, name){
-        
-        if (true){ //change this to performer name
-            console.log($('#videoInModal'));
-            console.log($('#videoInModal')[0].firstElementChild); //need to remove existing video from modal
-            // if ($('#videoInModal')[0].firstElementChild!=null){
-            //     $('#videoInModal')[0].removeChild($('#videoInModal')[0].firstElementChild);
-            // };
-            console.log('holla', video);
-            video.className = 'modalSource';
-            $('#videoInModal').append(video);
-            $(video).load();
-            
-        }
+    function makeModal(src, name){
+        removeModalVideo();
+        var video = document.createElement('video');
+        video.width = '700'; video.height = '400'; //video.type = "video/mp4";
+        video.className = 'img-responsive videoInModal';
+        video.controls = true;
+
+        $('.modal-body').append(video);
+        src.className = 'modalSource';
+        $(video).append(src);
     }
 
     function removeModalVideo(){
-        var sources = document.getElementsByClassName('modalSource');
-
+        var sources = document.getElementsByClassName('videoInModal');
         for (var i=0; i < sources.length; i++){
             //remove all modal videos
             $(sources[i]).remove();
         }
-
     }
 
     //When first load page
     $(".selectedFirst").button("toggle");
+    for (var j = 0; j< FILENAMES.length; j++){
+        console.log("AUHG");
+        addVideo(vidSrcs[j], profileLinks[j]);
+    };
+
+    addVideo("assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
     hoverPlay();
    
 });
@@ -327,11 +360,7 @@ $(document).ready(function(){
                         </a>
                     </div>
                     <div class="modal-body">
-                        <video width="700" height="400" class = 'img-responsive' id = 'videoInModal' controls>
-                            <!-- <div class = 'videoDiv'></div> -->
-                          <!-- <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                          Your browser does not support this video. Sorry! -->
-                        </video>
+                        <!-- videos inserted here via jquery -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -343,91 +372,75 @@ $(document).ready(function(){
 
 
         <!-- Video Row -->
-        <div class="row">
-            <div class="col-md-4 videoThumb">
+        <div class="row videoRow">
+            <!-- <div class="col-md-4 videoThumb"> -->
                 <!-- <a href='profile.html?profile=usTheDuo'> -->
-                    <a href = '#' data-toggle="modal" data-target=".vidModal"> 
-                        <video width="700" height="400" class = 'img-responsive hover'>
-                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
+                    <!-- <a href = '#' data-toggle="modal" data-target=".vidModal">  -->
+                        <!-- <video width="700" height="400" class = 'img-responsive hover'> -->
+                      <!-- <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4"> -->
+                      <!-- Your browser does not support this video. Sorry! -->
+                    <!-- </video> -->
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
+                <!-- </a> -->
             
-            </div>
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=jugglingGeorge'>
-                    <video width="700" height="400" class = 'img-responsive hover'>
-                      <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
+            <!-- </div> -->
+            <!-- <div class="col-md-4 videoThumb"> -->
+                <!-- <a href='profile.html?profile=jugglingGeorge'> -->
+                    <!-- <video width="700" height="400" class = 'img-responsive hover'> -->
+                      <!-- <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4"> -->
+                      <!-- Your browser does not support this video. Sorry! -->
+                    <!-- </video> -->
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
+                <!-- </a> -->
             <!--     <h3>
                 </h3>
                 <p></p> -->
-            </div>
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=acrobaticAdam'>
-                    <video width="700" height="400" class = 'img-responsive hover'>
-                        <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
+            <!-- </div> -->
+            <!-- <div class="col-md-4 videoThumb"> -->
+                <!-- <a href='profile.html?profile=acrobaticAdam'> -->
+                    <!-- <video width="700" height="400" class = 'img-responsive hover'> -->
+                        <!-- <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4"> -->
+                      <!-- Your browser does not support this video. Sorry! -->
+                    <!-- </video> -->
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
+                <!-- </a> -->
        <!--          <h3>
                 </h3>
                 <p></p> -->
-            </div>
+            <!-- </div> -->
+
+                        <!-- <div class="col-md-4 videoThumb"> -->
+                <!-- <a href='profile.html?profile=jazzyJeff'> -->
+                    <!-- <video width="700" height="400" class = 'img-responsive hover'> -->
+                      <!-- <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4"> -->
+                      <!-- Your browser does not support this video. Sorry! -->
+                    <!-- </video> -->
+                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
+                <!-- </a> -->
+           <!--      <h3>
+                </h3>
+                <p></p> -->
+            <!-- </div> -->
         </div>
         <!-- /.row -->
 
         <!-- Video Row -->
-        <div class="row">
+<!--         <div class="row">
             <div class="col-md-4 videoThumb">
                 <a href='profile.html?profile=jazzyJeff'>
                     <video width="700" height="400" class = 'img-responsive hover'>
                       <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
-                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
+                    <!- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
+                <!-- </a> -->
            <!--      <h3>
                 </h3>
                 <p></p> -->
-            </div>
-        </div>
-        <!-- /.row -->
+            <!-- </div> -->
+        <!-- </div> -->
+      <!-- /.row -->
 
-
-        <!-- Video Row -->
-<!--         <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-        </div> -->
-        <!-- /.row -->
 
          <hr>
 
