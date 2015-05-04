@@ -33,13 +33,17 @@ h1 {
 .left_sidebar_container {
     z-index: 1;
     position: absolute;
-    width: 300px;
+    width: 200px;
 }
 
 .searchbar {
     background: white;
     margin: 10px;
     padding: 10px;
+}
+
+h2{
+    margin-top: 10px;
 }
 
 .filters {
@@ -70,7 +74,7 @@ h1 {
     margin: 10px;
     padding: 10px;
     right: 0px;
-    top: 170px;
+    top: 0px;
     width: 300px;
 }
 
@@ -147,16 +151,30 @@ h1 {
 }
 
 .show {
-    visibility: visible;
+    visibility: visible !important;
 }
 
-.btn-primary {
-  background-color: #D89067;
-  border-color: #AF6A49;
+.content{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.locationAndDate{
+    font-weight: bold;
+}
+body{
+    height: 100%;
+    overflow: hidden;
+}
+#performance_list{
+    background-color: white;
+    visibility: hidden;
+    margin-top: 45px;
+    overflow: scroll;
+}
+.italic{
+    font-style: italic;
 }
 
-.btn-primary:hover, .btn-primary:focus {
-  background-color: #AF6A49;
-  border-color: #8D5A46;
+label{
+    font-weight: normal;
 }
-
