@@ -60,7 +60,15 @@ $(document).ready(function() {
     populateGallery(profileResources.jazzyJeff.media);
     populatePerformances(profileResources.jazzyJeff.upcomingPerformances);
   });
-  $('#save-profile-btn').click(function() { toggleEditMode(true); showAlert('Changes saved'); deletedElements = [];});
+  $('#save-profile-btn').click(function() {
+    if (isValidPerformanceFields()) {
+      toggleEditMode(true);
+      showAlert('Changes saved');
+      deletedElements = [];
+    } else {
+      alert('Please fill all fields for each performance');
+    }
+  });
 
   $('#gallery-modal').on('show.bs.modal', function(event) {
     var invoker = $(event.relatedTarget); // Media that triggered the modal
@@ -94,6 +102,10 @@ var displayEditAndQRButtons = function() {
 var displaySaveCancelButtons = function() {
   $('#generate-qr-btn, #edit-profile-btn').addClass('hidden');
   $('#save-profile-btn, #cancel-profile-btn').removeClass('hidden');
+}
+
+var isValidPerformanceFields = function() {
+  return $('.performance-input').toArray().reduce(function(prev, input) { return prev && $(input).val(); }, true);
 }
 
 var toggleEditableFields = function(nowEditable, save) {
@@ -195,16 +207,16 @@ var populatePerformances = function(upcomingPerformances, editable) {
     var divider = $('<span>').addClass('editable').text(' -- ');
     var location = $('<span>').addClass('editable').attr('id', 'performance-location-' + i).text(performance.location);
     dateInput = $('<div>').addClass('form-group').html(
-      $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'date').attr('placeholder', 'Date').attr('data-field', 'date').attr('data-index', i).attr('id', 'performance-date-' + i + '-input'));
+      $('<input>').addClass('form-control hidden edit-hidden performance-input').attr('type', 'date').attr('placeholder', 'Date').attr('data-field', 'date').attr('data-index', i).attr('id', 'performance-date-' + i + '-input'));
     dateInput.find('input').val(dateChanges || toDateInputFormat(getFormattedPerformanceDate(performance)));
     locationInput = $('<div>').addClass('form-group').html(
-      $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Location').attr('data-field', 'location').attr('data-index', i).attr('id', 'performance-location-' + i + '-input'));
+      $('<input>').addClass('form-control hidden edit-hidden performance-input').attr('type', 'text').attr('placeholder', 'Location').attr('data-field', 'location').attr('data-index', i).attr('id', 'performance-location-' + i + '-input'));
     locationInput.find('input').val(locationChanges || performance.location);
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable').attr('id', 'performance-details-' + i).text(performance.details);
-    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('data-field', 'details').attr('data-index', i).attr('id', 'performance-details-' + i + '-input'));
+    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden performance-input').attr('rows', '3').attr('placeholder', 'Description').attr('data-field', 'details').attr('data-index', i).attr('id', 'performance-details-' + i + '-input'));
     detailsInput.find('textarea').val(detailsChanges || performance.details);
 
     var performanceListing = $('<span>').append(dateLoc).append(details).append(detailsInput);
