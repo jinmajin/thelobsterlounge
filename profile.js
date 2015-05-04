@@ -5,8 +5,7 @@ $(document).ready(function() {
   populateGallery(profileInfo.media);
 
   if (!profile || profile == 'jazzyJeff') {
-    displayEditButton();
-    displayQRButton();
+    displayEditAndQRButtons();
   }
   
   $(window).resize(function() {setMediaHeight()});
@@ -84,26 +83,17 @@ $(document).ready(function() {
 
 var deletedElements = [];
 
-var displayEditButton = function() {
+var displayEditAndQRButtons = function() {
   $('#edit-profile-btn').removeClass('hidden');
-  $('#save-profile-btn').addClass('hidden');
-  $('#cancel-profile-btn').addClass('hidden');
-  $('#userinfo a').addClass('hidden');
+  $('#generate-qr-btn').removeClass('hidden').click(function() {
+    window.location.href = 'https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href + '&size=600x600';
+  });
+  $('#save-profile-btn, #cancel-profile-btn, #follow-btn, #create-message-btn').addClass('hidden');
 };
 
 var displaySaveCancelButtons = function() {
-  $('#edit-profile-btn').addClass('hidden');
-  $('#save-profile-btn').removeClass('hidden');
-  $('#cancel-profile-btn').removeClass('hidden');
-}
-
-var displayQRButton = function() {
-  var qrButton = $('<button>').addClass('btn btn-primary about-me-btn').attr('id', 'generate-qr-btn').text('Generate QR Code'); 
-  qrButton.click(function() {
-    window.location.href = 'https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href + '&size=600x600';
-  });
-  var container = $('<div>').addClass('col-md-12').html(qrButton);
-  $('.buttons').html(container);
+  $('#generate-qr-btn, #edit-profile-btn').addClass('hidden');
+  $('#save-profile-btn, #cancel-profile-btn').removeClass('hidden');
 }
 
 var toggleEditableFields = function(nowEditable, save) {
@@ -150,7 +140,7 @@ var toggleEditMode = (function() {
       displaySaveCancelButtons();
       setMediaDraggable();
     } else {
-      displayEditButton();
+      displayEditAndQRButtons();
       $('.media').draggable('destroy').droppable('destroy');
     }
   });
