@@ -26,6 +26,8 @@ var profileResources = {
       {from: "usTheDuo", body: "Hey Jeff! We'd love to have you join our band! Come meet us this sunday"},
       {from: "acrobaticAdam", body: "I saw you perform last Saturday. Love your work bro!"},
     ],
+    shortVids: [{src: 'assets/short/jazzyJeff1.mp4'},
+    {src:'assets/short/jazzyJeff2.mp4'}],
   },
 
   // Us The Duo Profile Info
@@ -46,6 +48,9 @@ var profileResources = {
       {type: 'image', src: "http://www.ustheduo.com/files/2014/12/UsTheDuoSingapore.jpg"},
     ],
     profilePic: {src: "http://www.ustheduo.com/files/2014/05/UsTheDuoFeaturedImage-283x270.jpg"},
+    shortVids: [{src:'assets/short/usTheDuo1.mp4'}, 
+    {src: 'assets/short/usTheDuo2.mp4'}, 
+    {src: 'assets/short/usTheDuo3.mp4'}],
   },
 
   // Juggling George's Profile
@@ -65,6 +70,9 @@ var profileResources = {
       {type: 'image', src: "http://pianojuggler.com/press_photos/Piano_Juggler_19Print.jpg"},
     ],
     profilePic: {src: "http://pianojuggler.com/images/big/39-03-82Print.jpg"},
+    shortVids: [{src:'assets/short/jugglingGeorge1.mp4'}, 
+    {src: 'assets/short/jugglingGeorge2.mp4'}, 
+    {src: 'assets/short/jugglingGeorge3.mp4'}],
   },
 
   // Acrobatic Adam's Profile
@@ -84,5 +92,8 @@ var profileResources = {
       {type: 'image', src: "http://www.pxleyes.com/images/contests/street-performers-2/fullsize/Street-Performer-4ee18c0dc0ae9_hires.jpg"},
     ],
     profilePic: {src: "https://kategale.files.wordpress.com/2010/05/venice-beach-street-performers-picture.jpg"},
+    shortVids: [{src: 'assets/short/acrobaticAdam1.mp4'}, 
+    {src:'assets/short/acrobaticAdam2.mp4'}, 
+    {src:'assets/short/acrobaticAdam3.mp4'}],
   },
 };
