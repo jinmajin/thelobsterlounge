@@ -26,16 +26,20 @@ body {
     text-align: center; */
 }
 
-.first, .second{
-	background-color: #D89067;
-	color: white;
+.first, .second, .dropdown-menu li{
+	font-size: 70px;
+	font-weight: 3;
+	/*background-color: #D89067;
+	color: white;*/
 }
-
-.first:hover, .first:active, .second:active, .second:hover, .open>.dropdown-toggle.btn-default{
+#word{
+	font-size: 70px;
+	text-align: center;
+}
+/*.first:hover, .first:active, .second:active, .second:hover, .open>.dropdown-toggle.btn-default{
 	background-color: #AF6A49;
 	color: white;
-}
-
+}*/
 
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a{
 	background-color: #F6D4B0;
