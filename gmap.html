@@ -172,7 +172,7 @@ function setBounce(index){
 
 function zoomInOn(marker){
 	map.setCenter(marker.position);
-	map.setZoom(13);
+	map.setZoom(15);
 }
 
 function addStopAnimationTimeout(marker){
@@ -232,7 +232,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
         
     <div id="map-canvas"></div>
     <div class="right_sidebar">
-            <input type="button" class="btn btn-primary" id="view_performance_list" onclick="showPerformanceList()" value="View As List"> 
+            <input type="button" class="btn btn-primary" id="view_performance_list" onclick="showPerformanceList()" value="Event List"> 
             <div id="performance_list">
             </div>
         </div>
