@@ -78,7 +78,7 @@ $(document).ready(function(){
 
 
     //Video
-    function hoverPlay(name){
+    function hoverPlay(name, handle){
         $('.hover').mouseover(function(){
             this.play();
         })
@@ -89,7 +89,7 @@ $(document).ready(function(){
         $('.hover').on('click', function(){
             var source= $(this)[0].firstElementChild;
             if (source != null){
-                makeModal(source, name);
+                makeModal(source, name, handle);
             };
 
     });
@@ -115,7 +115,7 @@ $(document).ready(function(){
                     for (j =0; j < media.length; j++){
                         if (media[j].type === 'video'){
                             addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
-                            hoverPlay(profileResources[keys[i]]['profileName']);
+                            hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                         }
                     }
                 }else if(genre === 'juggling'&& profileResources[keys[i]]['genre'] === 'Juggling'){
@@ -124,7 +124,7 @@ $(document).ready(function(){
                     for (j =0; j < media.length; j++){
                         if (media[j].type === 'video'){
                             addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
-                            hoverPlay(profileResources[keys[i]]['profileName']);
+                            hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                         }
                     }
                 }else if(genre === 'acrobatics' && profileResources[keys[i]]['genre'] === 'Acrobatics'){
@@ -133,7 +133,7 @@ $(document).ready(function(){
                     for (j =0; j < media.length; j++){
                         if (media[j].type === 'video'){
                             addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
-                            hoverPlay(profileResources[keys[i]]['profileName']);
+                            hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                         }
                     }
                 }
@@ -162,7 +162,7 @@ $(document).ready(function(){
         //link to modal
         var a = document.createElement('a');
         a.className = 'vidClick';
-        a.href = '#';
+        a.href = '';
         a.setAttribute('data-toggle', 'modal');
         a.setAttribute('data-target', '.vidModal');
 
@@ -191,11 +191,12 @@ $(document).ready(function(){
 
 
     //add Modal
-    function makeModal(src, name){
+    function makeModal(src, name, handle){
         removeModalVideo();
 
         var performerName = document.createElement('h4');
         performerName.className = 'lobster';
+        document.getElementById('modalHeader').href = 'profile.html?profile=' + handle;
         document.getElementById('modalHeader').style.textDecoration = 'none';
         performerName.style.textAlign = 'center';
         performerName.innerHTML = name;
@@ -237,7 +238,7 @@ $(document).ready(function(){
                     var profileLink = 'profile.html?profile='+ keys[i];
                     var videoLink = media[j]['src'];
                     addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
-                    hoverPlay(profileResources[keys[i]]['profileName']);
+                    hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                 }
             }
         }
@@ -248,7 +249,8 @@ $(document).ready(function(){
     addAllVideos(profileResources, keys);
 
     // addVideo("assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-    hoverPlay();
+    // hoverPlay();
+    console.log(document.getElementsByClassName('hover')[2].videoWidth);
    
 });
 
