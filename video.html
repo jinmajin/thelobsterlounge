@@ -171,6 +171,7 @@ $(document).ready(function(){
         video.style.marginTop = '10px';
         video.width = '700'; video.height = '400'; //video.type = "video/mp4";
         video.className = 'img-responsive hover';
+        video.loop = true;
         var source = document.createElement('source');
         source.src = src;
 
@@ -230,10 +231,27 @@ $(document).ready(function(){
         }
     }
 
+    //randomize
+    // function shuffle(array) {
+    //       var current = array.length, temp, random ;
+
+    //       while (0 !== current) {
+    //         random = Math.floor(current*Math.random());
+    //         current -= 1;
+
+    //         temp = array[current];
+    //         array[current] = array[random];
+    //         array[random] = temp;
+    //       }
+
+    //       return array;
+    //     }
     function addAllVideos(profileResources,keys){
+        // var keys = shuffle(keys);
         for(var i = 0; i < keys.length; i++){
             var shortVids = profileResources[keys[i]]['shortVids'];
             for (j =0; j < shortVids.length; j++){
+
                 // if (media[j].type === 'video'){
                     var profileLink = 'profile.html?profile='+ keys[i];
                     var videoLink = shortVids[j]['src'];
