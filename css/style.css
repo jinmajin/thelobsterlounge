@@ -204,3 +204,15 @@ label{
         display: none;
     }
 }
+
+.center{
+    text-align: center;
+}
+
+iframe{
+    border: none;
+}
+
+#qrcode{
+    margin-top: 20px;
+}

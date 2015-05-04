@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>QR CODE</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <!-- Load style sheets -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+
+	<!-- Load any supplemental Javascript libraries here -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
+      
+	<!--Custom JS-->
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>-->
+	<script type="text/javascript" src="profile-resources.js"></script>
+	<script>
+	$(document).ready(function(){
+		var url =  getParameterByName('url');
+		var size = Math.min($(document).height(), $(document).width()) - 150;
+		$("#qrcode").prop("src", url + "&size="+size+"x"+size);
+		$("#qrcode").attr("height", size);
+		$("#qrcode").attr("width", size);
+	});
+	function getParameterByName(name) {
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	</script>
+</head>
+	<body>		
+		<div class="center">
+		<iframe id="qrcode" src="#"></iframe>
+		<h1>Check out my profile on <span class="lobster">The Lounge!</span></h1>
+	</div>
+	</body></html>

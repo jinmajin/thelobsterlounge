@@ -94,7 +94,7 @@ var deletedElements = [];
 var displayEditAndQRButtons = function() {
   $('#edit-profile-btn').removeClass('hidden');
   $('#generate-qr-btn').removeClass('hidden').click(function() {
-    window.location.href = 'https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href + '&size=600x600';
+    window.location.href = 'qrcode.html?url=https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href;
   });
   $('#save-profile-btn, #cancel-profile-btn, #follow-btn, #create-message-btn').addClass('hidden');
 };
