@@ -34,6 +34,7 @@ h1 {
     z-index: 1;
     position: absolute;
     width: 200px;
+    pointer-events: none;
 }
 
 .searchbar {
@@ -43,13 +44,14 @@ h1 {
 }
 
 h2{
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 .filters {
     background: white;
     margin: 10px;
     padding: 10px;
+    pointer-events: all;
 }
 
 .hide_bullets {
@@ -75,8 +77,9 @@ h2{
     padding: 10px;
     right: 0px;
     top: 0px;
-    width: 300px;
+    width: 250px;
     pointer-events: none;
+    background: white;
 }
 
 .performance_list {
@@ -85,12 +88,6 @@ h2{
     padding: 10px;
     visibility: hidden;
 }
-
-#view_performance_list {
-    float: right;
-    pointer-events: all;
-}
-
 /*Map search*/
 
 .map-search {
@@ -169,8 +166,6 @@ body{
 }
 #performance_list{
     background-color: white;
-    display: none;
-    margin-top: 45px;
     overflow: scroll;
     pointer-events: all;
 }
@@ -185,4 +180,27 @@ label{
 .performance:hover{
     background-color: #EEE;
     cursor: pointer;
+}
+
+#filter_list, #performance_list{
+    display: none;
+    border-top: 1px solid gray;
+}
+
+#filterclick, #performanceclick{
+    font-size: 25px;
+    cursor: pointer;
+}
+#view_performance_list, #view_filter_list {
+    pointer-events: all;
+    cursor: pointer;        
+}
+.topSpace{
+    margin-top: 10px;
+}
+
+@media (max-width: 500px){
+    .right_sidebar{
+        display: none;
+    }
 }

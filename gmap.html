@@ -142,7 +142,7 @@ function initialize() {
 
 	google.maps.event.addListener(map, 'bounds_changed', generateList);
 
-	$("#performance_list").height($(window).height() - 100);
+	$("#performance_list").height($("#map-canvas").height() - 100);
 }
 function generateList(){
 	$("#performance_list").html("");
@@ -154,7 +154,7 @@ function generateList(){
 		}
 	}
 	if(none){
-		$("#performance_list").append("<div class='content italic'>No events within map bounds</div>");
+		$("#performance_list").append("<div class='topSpace italic'>No events within map bounds</div>");
 	}
 }
 
@@ -213,6 +213,12 @@ function showPerformanceList(){
     $('#performance_list').toggleClass('show');
 }
 
+function toggle(thing){
+	$("#"+thing+"_list").toggleClass('show');
+	$("#"+thing+"click").toggleClass('glyphicon-plus');
+	$("#"+thing+"click").toggleClass('glyphicon-minus');
+}
+
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
@@ -220,20 +226,22 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <body>
   	<div class="left_sidebar_container">
             <div class="filters">
-                <h2>Filters </h2>
-                <h4>Genres</h4>
-                <ul id="genres" class="hide_bullets"> 
-                </ul>
-                <h4>Dates</h4>
-                <ul id="dates" class="hide_bullets"> 
-                </ul>
+                <h2 id="view_filter_list" onclick="toggle('filter')">Filters <span id="filterclick" class="glyphicon glyphicon-plus"></span></h2>
+                <div class="show" id="filter_list">
+	                <h4>Genres</h4>
+    	            <ul id="genres" class="hide_bullets"> 
+        	        </ul>
+              	  <h4>Dates</h4>
+                  <ul id="dates" class="hide_bullets"> 
+               	  </ul>
+               	</div>
             </div>
     </div>
         
     <div id="map-canvas"></div>
     <div class="right_sidebar">
-            <input type="button" class="btn btn-primary" id="view_performance_list" onclick="showPerformanceList()" value="Event List"> 
-            <div id="performance_list">
+ 			<h2 id="view_performance_list" onclick="toggle('performance')">Events As List <span id="performanceclick" class="glyphicon glyphicon-plus"></span></h2>   
+            <div class="show" id="performance_list">
             </div>
         </div>
   </body>
