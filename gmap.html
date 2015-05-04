@@ -149,15 +149,37 @@ function generateList(){
 	var none = true;
 	for(var i = 0; i < markers.length; i++){
 		if(map.getBounds().contains(markers[i].getPosition()) && markers[i].map == map){
-			$("#performance_list").append(markers[i].contentstr + "<hr>");
+			$("#performance_list").append("<div class='performance' onclick='zoomInOn(markers["+i+"])' onmouseenter='setBounce("+i+")'>"+markers[i].contentstr + "</div>");
 			none = false;
 		}
 	}
 	if(none){
-		$("#performance_list").append("<div class='content italic'>No events found within map bounds</div>");
+		$("#performance_list").append("<div class='content italic'>No events within map bounds</div>");
 	}
 }
 
+function setBounce(index){
+	for(var i = 0; i < markers.length; i++){
+		if(i == index){
+			markers[i].setAnimation(google.maps.Animation.BOUNCE);
+			addStopAnimationTimeout(markers[i]);
+		}
+		else
+			markers[i].setAnimation(null);
+	}
+	return false;
+}
+
+function zoomInOn(marker){
+	map.setCenter(marker.position);
+	map.setZoom(13);
+}
+
+function addStopAnimationTimeout(marker){
+	setTimeout(function(){
+		marker.setAnimation(null);
+	}, 700);
+}
 
 function filter(){
 	var checkedgenres = [];
@@ -190,7 +212,6 @@ function handleNoGeolocation(errorFlag) {
 function showPerformanceList(){
     $('#performance_list').toggleClass('show');
 }
-
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
