@@ -33,13 +33,17 @@ h1 {
 .left_sidebar_container {
     z-index: 1;
     position: absolute;
-    width: 300px;
+    width: 200px;
 }
 
 .searchbar {
     background: white;
     margin: 10px;
     padding: 10px;
+}
+
+h2{
+    margin-top: 10px;
 }
 
 .filters {
