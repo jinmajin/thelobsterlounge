@@ -154,16 +154,6 @@ h2{
     visibility: visible !important;
 }
 
-.btn-primary {
-  background-color: #D89067;
-  border-color: #AF6A49;
-}
-
-.btn-primary:hover, .btn-primary:focus {
-  background-color: #AF6A49;
-  border-color: #8D5A46;
-}
-
 .content{
     margin-left: 10px;
     margin-right: 10px;

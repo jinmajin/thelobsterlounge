@@ -151,16 +151,19 @@ $(document).ready(function(){
 <nav class="navbar navbar-default navbar-fixed-top custom-nav">
   <div class="navbar-header">
     <a class="navbar-brand lobster" href="index.html">The Lounge</a>
+    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
   </div>
-  <div class="navbar-form form-inline navbar-right">
+  <div class="navbar-form form-inline navbar-right collapse navbar-collapse" id="navbar-collapse">
     <div class="search form-group">
       <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
       <i class="glyphicon glyphicon-search search-icon"></i>
     </div>
     <div id="userinfo" class="form-group">
-      <button class="btn btn-default hidden" id="edit-profile-btn">Edit Profile</button>
-      <button class="btn btn-default hidden" id="cancel-profile-btn">Cancel</button>
-      <button class="btn btn-primary hidden" id="save-profile-btn">Save Profile</button>
       <a class="proflink" href="profile.html">Jazzy Jeff</a>
       <span data-toggle="tooltip" data-placement="top" title="Followed Users">
         <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="popover" data-placement="bottom" title="Followed Users" data-trigger="focus"></button>
@@ -170,6 +173,7 @@ $(document).ready(function(){
       </span>
     </div>
   </div>
+  <div class="alert alert-success"></div>
 </nav>
 
 <!-- video view -->
