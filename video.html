@@ -110,31 +110,31 @@ $(document).ready(function(){
             for(var i = 0; i < keys.length; i++){
                 console.log('genre',profileResources[keys[i]]['genre']);
                 if (genre === 'music' && profileResources[keys[i]]['genre'] === 'Music'){
-                    console.log("music filter: ", profileResources[keys[i]]['media']);
-                 var media = profileResources[keys[i]]['media'];
-                    for (j =0; j < media.length; j++){
-                        if (media[j].type === 'video'){
-                            addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
+                    // console.log("music filter: ", profileResources[keys[i]]['media']);
+                 var shortVids = profileResources[keys[i]]['shortVids'];
+                    for (j =0; j < shortVids.length; j++){
+                        // if (media[j].type === 'video'){
+                            addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
                             hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        }
+                        // }
                     }
                 }else if(genre === 'juggling'&& profileResources[keys[i]]['genre'] === 'Juggling'){
                     console.log("juggling filter");
-                    var media = profileResources[keys[i]]['media'];
-                    for (j =0; j < media.length; j++){
-                        if (media[j].type === 'video'){
-                            addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
+                    var shortVids = profileResources[keys[i]]['shortVids'];
+                    for (j =0; j < shortVids.length; j++){
+                        // if (media[j].type === 'video'){
+                            addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
                             hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        }
+                        // }
                     }
                 }else if(genre === 'acrobatics' && profileResources[keys[i]]['genre'] === 'Acrobatics'){
                     console.log("acrobatics filter");
-                    var media = profileResources[keys[i]]['media'];
-                    for (j =0; j < media.length; j++){
-                        if (media[j].type === 'video'){
-                            addVideo(media[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
+                    var shortVids = profileResources[keys[i]]['shortVids'];
+                    for (j =0; j < shortVids.length; j++){
+                        // if (media[j].type === 'video'){
+                            addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
                             hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        }
+                        // }
                     }
                 }
             }
@@ -232,14 +232,14 @@ $(document).ready(function(){
 
     function addAllVideos(profileResources,keys){
         for(var i = 0; i < keys.length; i++){
-            var media = profileResources[keys[i]]['media'];
-            for (j =0; j < media.length; j++){
-                if (media[j].type === 'video'){
+            var shortVids = profileResources[keys[i]]['shortVids'];
+            for (j =0; j < shortVids.length; j++){
+                // if (media[j].type === 'video'){
                     var profileLink = 'profile.html?profile='+ keys[i];
-                    var videoLink = media[j]['src'];
+                    var videoLink = shortVids[j]['src'];
                     addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
                     hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                }
+                // }
             }
         }
     }
@@ -248,8 +248,6 @@ $(document).ready(function(){
     $(".selectedFirst").button("toggle");
     addAllVideos(profileResources, keys);
 
-    // addVideo("assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-    // hoverPlay();
     console.log(document.getElementsByClassName('hover')[2].videoWidth);
    
 });
