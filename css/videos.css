@@ -26,8 +26,27 @@ body {
     text-align: center; */
 }
 
+.first, .second{
+	background-color: #D89067;
+	color: white;
+}
+
+.first:hover, .first:active, .second:active, .second:hover, .open>.dropdown-toggle.btn-default{
+	background-color: #AF6A49;
+	color: white;
+}
+
+
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a{
-	background-color: #FF8B1B;
+	background-color: #F6D4B0;
+}
+
+.filter:hover{
+	background-color: #AF6A49;
+	color: white;
+}
+.filter:active {
+	background-color: #AF6A49;
 }
 
 .container{

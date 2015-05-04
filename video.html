@@ -30,6 +30,8 @@
 
 <!-- videos -->
 $(document).ready(function(){
+    // $('#theModal').modal('show');
+
     //Dropdowns
     $(".dropdown-menu li a").click(function(){
         var selText = $(this).text();
@@ -75,15 +77,36 @@ $(document).ready(function(){
         hoverPlay();
     });
 
+    // Modal 
+    $('.vidModal').on('hide.bs.modal', function () {
+        removeModalVideo();
+        // $('#videoInModal')[0].pause();
+    });
+    $('.vidModal').on('show.bs.modal', function (e) {  
+        //add structure to modals?
+        console.log("it's open");
+    });
+
+    //Video
+
+
+
     function hoverPlay(){
-        $('video').mouseover(function(){
+        $('.hover').mouseover(function(){
             console.log('play video now');
             this.play();
         })
-        $('video').mouseout(function(){
+        $('.hover').mouseout(function(){
             console.log('pause video now');
             this.pause();
         });
+
+        $('.hover').on('click', function(){
+            var source= $(this)[0].firstElementChild;
+            console.log('the source', source);
+            makeModal(source);
+            // $('.vidModal').modal()
+    });
     }
     function switchFilter(genre){
         var visibleVids= document.getElementsByClassName('videoThumb');
@@ -110,29 +133,87 @@ $(document).ready(function(){
             addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
         }
 
+        // console.log($('.vidClick'));
 
         /*
-                <a href="#">
-                    <video width="700" height="400" class = 'img-responsive'>
-                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                </a>
+            <a href = '#' data-toggle="modal" data-target=".vidModal"> 
+                <video width="700" height="400" class = 'img-responsive hover'>
+                  <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
+                  Your browser does not support this video. Sorry!
+                </video>
+            </a>
         */
     }
 
     function addVideo(visibleVids, num, src, profileLink){
+        //link to modal
         var a = document.createElement('a');
-        a.href = profileLink;
+        a.className = 'vidClick';
+        a.href = '#';
+        a.setAttribute('data-toggle', 'modal');
+        a.setAttribute('data-target', '.vidModal');
+
+        //video thumbnail
         var video = document.createElement('video');
         video.width = '700'; video.height = '400'; //video.type = "video/mp4";
-        video.className = 'img-responsive';
+        video.className = 'img-responsive hover';
         var source = document.createElement('source');
         source.src = src;
+
+        //append these new elements
         video.appendChild(source);
         a.appendChild(video);
 
         visibleVids[num].appendChild(a);
+    }
+
+    //add Modal
+    /*
+            <div class="modal fade vidModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href='profile.html?profile=usTheDuo'>
+                            <h4 class="modal-title pacifico" id="myModalLabel">Us The Duo</h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <video width="700" height="400" class = 'img-responsive' id = 'videoInModal' controls>
+                          <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
+                          Your browser does not support this video. Sorry!
+                        </video>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>
+          </div>
+        </div>
+    */
+    function makeModal(video, name){
+        
+        if (true){ //change this to performer name
+            console.log($('#videoInModal'));
+            console.log($('#videoInModal')[0].firstElementChild); //need to remove existing video from modal
+            // if ($('#videoInModal')[0].firstElementChild!=null){
+            //     $('#videoInModal')[0].removeChild($('#videoInModal')[0].firstElementChild);
+            // };
+            console.log('holla', video);
+            video.className = 'modalSource';
+            $('#videoInModal').append(video);
+            $(video).load();
+            
+        }
+    }
+
+    function removeModalVideo(){
+        var sources = document.getElementsByClassName('modalSource');
+
+        for (var i=0; i < sources.length; i++){
+            //remove all modal videos
+            $(sources[i]).remove();
+        }
+
     }
 
     //When first load page
@@ -230,23 +311,49 @@ $(document).ready(function(){
         </div>
         <!-- End Button Row -->
 
+
+
+        <!-- Modal Content -->
+        <div class="modal fade vidModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href='profile.html?profile=usTheDuo'>
+                            <h4 class="modal-title pacifico" id="myModalLabel">Us The Duo</h4>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <video width="700" height="400" class = 'img-responsive' id = 'videoInModal' controls>
+                            <!-- <div class = 'videoDiv'></div> -->
+                          <!-- <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
+                          Your browser does not support this video. Sorry! -->
+                        </video>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Modal Content -->
+
+
         <!-- Video Row -->
         <div class="row">
             <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=usTheDuo'>
-                    <video width="700" height="400" class = 'img-responsive'>
+                <!-- <a href='profile.html?profile=usTheDuo'> -->
+                    <a href = '#' data-toggle="modal" data-target=".vidModal"> 
+                        <video width="700" height="400" class = 'img-responsive hover'>
                       <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
                     <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
                 </a>
-         <!--        <h3>
-                </h3>
-                <p></p> -->
+            
             </div>
             <div class="col-md-4 videoThumb">
                 <a href='profile.html?profile=jugglingGeorge'>
-                    <video width="700" height="400" class = 'img-responsive'>
+                    <video width="700" height="400" class = 'img-responsive hover'>
                       <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
@@ -258,7 +365,7 @@ $(document).ready(function(){
             </div>
             <div class="col-md-4 videoThumb">
                 <a href='profile.html?profile=acrobaticAdam'>
-                    <video width="700" height="400" class = 'img-responsive'>
+                    <video width="700" height="400" class = 'img-responsive hover'>
                         <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
@@ -275,7 +382,7 @@ $(document).ready(function(){
         <div class="row">
             <div class="col-md-4 videoThumb">
                 <a href='profile.html?profile=jazzyJeff'>
-                    <video width="700" height="400" class = 'img-responsive'>
+                    <video width="700" height="400" class = 'img-responsive hover'>
                       <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
                       Your browser does not support this video. Sorry!
                     </video>
