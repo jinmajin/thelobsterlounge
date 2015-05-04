@@ -198,3 +198,9 @@ label{
 .topSpace{
     margin-top: 10px;
 }
+
+@media (max-width: 500px){
+    .right_sidebar{
+        display: none;
+    }
+}
