@@ -41,14 +41,14 @@ body {
 	background-color: #F6D4B0;
 }
 
-.filter:hover{
+/*.filter:hover{
 	background-color: #AF6A49;
 	color: white;
 }
 .filter:active {
 	background-color: #AF6A49;
 }
-
+*/
 .container{
 	width:1000px;
 	margin:0px auto;
