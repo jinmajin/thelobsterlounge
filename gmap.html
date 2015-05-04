@@ -172,7 +172,7 @@ function setBounce(index){
 
 function zoomInOn(marker){
 	map.setCenter(marker.position);
-	map.setZoom(15);
+	map.setZoom(Math.max(map.zoom+1,15));
 }
 
 function addStopAnimationTimeout(marker){
