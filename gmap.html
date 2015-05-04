@@ -80,7 +80,7 @@ function initialize() {
 	}
 
 	for(var i = 0; i < genres.length; i++){
-		$("#genres").append('<li><input type="checkbox" class="genrebox" value="'+genres[i]+'"id="checkbox_'+genres[i]+'" onclick="filter()">'+genres[i]+'</li>');
+		$("#genres").append('<li><input type="checkbox" onchange="filter()" class="genrebox" value="'+genres[i]+'"id="checkbox_'+genres[i]+'"><label for="checkbox_'+genres[i]+'">'+genres[i]+'</label></li>');
 	}
 	
 	function datestr(date){
@@ -137,7 +137,7 @@ function initialize() {
 
 	dates.sort();
 	for(var i = 0; i < dates.length; i++){
-		$("#dates").append('<li><input type="checkbox" class="datebox" value="'+dates[i]+'" id="checkbox_'+dates[i]+'" onclick="filter()">'+dates[i]+'</li>');	
+		$("#dates").append('<li ><input type="checkbox" onchange="filter()" class="datebox" value="'+dates[i]+'" id="checkbox_'+dates[i]+'" ><label for="checkbox_'+dates[i]+'">'+dates[i]+'</label></li>');	
 	}
 
 	google.maps.event.addListener(map, 'bounds_changed', generateList);
@@ -146,11 +146,15 @@ function initialize() {
 }
 function generateList(){
 	$("#performance_list").html("");
+	var none = true;
 	for(var i = 0; i < markers.length; i++){
 		if(map.getBounds().contains(markers[i].getPosition()) && markers[i].map == map){
 			$("#performance_list").append(markers[i].contentstr + "<hr>");
-			$("#performance_list").show();
+			none = false;
 		}
+	}
+	if(none){
+		$("#performance_list").append("<div class='content italic'>No events found within map bounds</div>");
 	}
 }
 
@@ -168,7 +172,8 @@ function filter(){
 	});
 	for(var i = 0; i < markers.length; i++){
 		if((checkedgenres.indexOf(markers[i].genre) > -1 || checkedgenres.length == 0) && (checkeddates.indexOf(markers[i].date) > -1 || checkeddates.length == 0)) {
-			markers[i].setMap(map);
+			if(markers[i].map != map)
+				markers[i].setMap(map);
 		}
 		else{
 			markers[i].setMap(null);

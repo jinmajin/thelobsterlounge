@@ -171,3 +171,10 @@ body{
     margin-top: 45px;
     overflow: scroll;
 }
+.italic{
+    font-style: italic;
+}
+
+label{
+    font-weight: normal;
+}
