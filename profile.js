@@ -41,22 +41,8 @@ $(document).ready(function() {
   });
 
   $('#add-performance-btn').click(function() {
-    var i = $('#upcoming-performances-list').children().length;
-    var date = $('<span>').addClass('editable hidden').attr('id', 'performance-date-' + i);
-    var divider = $('<span>').addClass('editable hidden').text(' -- ');
-    var location = $('<span>').addClass('editable hidden').attr('id', 'performance-location-' + i);
-
-    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input'));
-    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input'));
-    var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
-
-    var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
-
-    var details = $('<span>').addClass('editable hidden').attr('id', 'performance-details-' + i);
-
-    var detailsInput = $('<div>').addClass('form-group').html($('<textarea>').addClass('form-control edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input'));
-
-    $('#upcoming-performances-list').append($('<span>').append(dateLoc).append(details).append(detailsInput));
+    profileInfo.upcomingPerformances.push({date: "", location: "", details: ""});
+    populatePerformances(profileInfo.upcomingPerformances, true);
   });
 
   $('#edit-profile-btn').click(function() { toggleEditMode(); });
@@ -109,7 +95,7 @@ var displaySaveCancelButtons = function() {
 }
 
 var displayQRButton = function() {
-  var qrButton = $('<button>').addClass('btn btn-primary about-me-btn').attr('id', 'generate-qr-btn').text('Generate QR Code For This Page');
+  var qrButton = $('<button>').addClass('btn btn-primary about-me-btn').attr('id', 'generate-qr-btn').text('Generate QR Code'); 
   qrButton.click(function() {
     window.location.href = 'https://api.qrserver.com/v1/create-qr-code/?data=' + window.location.href + '&size=600x600';
   });
@@ -121,13 +107,28 @@ var toggleEditableFields = function(nowEditable, save) {
   $('.edit-hidden').toggleClass('hidden');
   $('.editable').each(function(i, element) {
     $(element).toggleClass('hidden');
-    var input = $('#' + $(element).attr('id') + '-input');
-    if (nowEditable) {
-      input.val($(element).text());
-    } else if (save) {
-      $(element).text(input.val());
+    if ($(element).attr('id')) {
+      var input = $('#' + $(element).attr('id') + '-input');
+      if (nowEditable) {
+        if (input.attr('type') == 'date') {
+          input.val(toDateInputFormat($(element).text()));
+        } else {
+          input.val($(element).text());
+        }
+      } else if (save) {
+        if (input.attr('id').startsWith('performance')) {
+          if (input.attr('type') == 'date') {
+            profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = toDateObject(input.val());
+          } else {
+            profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = input.val();
+          }
+        } else {
+          profileResources.jazzyJeff[input.attr('data-field')] = input.val();
+        }
+      }
     }
   });
+  if (!nowEditable) fillInProfileInfo(profileResources.jazzyJeff);
 }
 
 var toggleEditMode = (function() {
@@ -185,16 +186,18 @@ var fillInProfileInfo = function(profileInfo) {
 var populatePerformances = function(upcomingPerformances, editable) {
   var performances = [];
   upcomingPerformances.forEach(function(performance, i) {
-    var date = $('<span>').addClass('editable').attr('id', 'performance-date-' + i).text(performance.date);
+    var date = $('<span>').addClass('editable').attr('id', 'performance-date-' + i).text(performance.date.month + "/" + performance.date.day + "/" + performance.date.year);
     var divider = $('<span>').addClass('editable').text(' -- ');
     var location = $('<span>').addClass('editable').attr('id', 'performance-location-' + i).text(performance.location);
-    dateInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-date-' + i + '-input').val(performance.date));
-    locationInput = $('<div>').addClass('form-group').html($('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Date').attr('id', 'performance-location-' + i + '-input').val(performance.location));
+    dateInput = $('<div>').addClass('form-group').html(
+      $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'date').attr('placeholder', 'Date').attr('data-field', 'date').attr('data-index', i).attr('id', 'performance-date-' + i + '-input'));
+    locationInput = $('<div>').addClass('form-group').html(
+      $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Location').attr('data-field', 'location').attr('data-index', i).attr('id', 'performance-location-' + i + '-input'));
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable').attr('id', 'performance-details-' + i).text(performance.details);
-    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('id', 'performance-details-' + i + '-input').val(performance.details));
+    var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('data-field', 'details').attr('data-index', i).attr('id', 'performance-details-' + i + '-input'));
 
     var performanceListing = $('<span>').append(dateLoc).append(details).append(detailsInput);
 
@@ -300,6 +303,35 @@ var setCarouselActiveIndex = function(activeIndex) {
   $('.carousel-inner .active').removeClass('active');
   $('.carousel-inner .item').eq(activeIndex).addClass('active');
 };
+
+var getFormattedPerformanceDate = function(performance) {
+  return performance.date.month + '/' + performance.date.day + '/' + performance.date.year;
+}
+
+var toDateInputFormat = function(mmddyyyyFormattedDate) {
+  var splitString = mmddyyyyFormattedDate.split('/')
+  var month = splitString[0];
+  var day = splitString[1];
+  var year = splitString[2];
+  return year + '-' + month + '-' + day;
+}
+
+var toFormattedDateFormat = function(yyyymmddFormattedDate) {
+  var splitString = yyyymmddFormattedDate.split('-')
+  var year = splitString[0];
+  var month = splitString[1];
+  var day = splitString[2];
+  return month + '/' + day + '/' + year;
+} 
+
+var toDateObject = function(yyyymmddFormattedDate) {
+  var splitString = yyyymmddFormattedDate.split('-')
+  var year = splitString[0];
+  var month = splitString[1];
+  var day = splitString[2];
+  return {month: month, day: day, year: year};
+}
+
 
 // CODE PROVIDED FROM:
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
