@@ -35,11 +35,17 @@
 
 var map;
 var geocoder;
+var users = [];
+var genres = [];
+var dates = [];
+var markers = [];
+
 
 function initialize() {
 	geocoder = new google.maps.Geocoder();
 	var mapOptions = {
-		zoom: 16
+		zoom: 13,
+		disableDefaultUI: true
 	};	
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -64,26 +70,35 @@ function initialize() {
 		handleNoGeolocation(false);
 	}
 		
-	
-	var users = [];
 	var profNameToUser = {};
 	var keys = Object.keys(profileResources);
 	for(var i = 0; i < keys.length; i++){
 		users.push(profileResources[keys[i]]);
+		if(genres.indexOf(profileResources[keys[i]]["genre"]) < 0)
+			genres.push(profileResources[keys[i]]["genre"]);
 		profNameToUser[profileResources[keys[i]]["profileName"]] = keys[i];
 	}
 
-	function buildResponseFor(i,j, users, perfs) {
+	for(var i = 0; i < genres.length; i++){
+		$("#genres").append('<li><input type="checkbox" class="genrebox" value="'+genres[i]+'"id="checkbox_'+genres[i]+'" onclick="filter()">'+genres[i]+'</li>');
+	}
+	
+	function datestr(date){
+		return date.month + "/" + date.day + "/" + date.year;
+	}
+
+
+	function createEventFor(i,j, users, perfs) {
 		return function(results, status){
 			if(status == "OK"){
 				var loc = results[0]["geometry"]["location"];
-				
-				var contentString = '<div id="content">'+
-				'<h1 id="firstHeading" class="firstHeading"><a href="profile.html?profile='+profNameToUser[users[i]["profileName"]]+'">'+users[i]["profileName"]+'</a></h1>'+
-				'<div id="bodyContent">'+
-				'<p>'+perfs[j]["location"]+'</p>'+
-				'<p>'+perfs[j]["date"]+'</p>'+
-				'<p>'+perfs[j]["details"]+'</p>'+
+				var datestr = perfs[j]["date"].month+"/"+perfs[j]["date"].day+"/"+perfs[j]["date"].year;
+
+				var contentString = '<div class="content">'+
+				'<h4 class="heading"><a href="profile.html?profile='+profNameToUser[users[i]["profileName"]]+'">'+users[i]["profileName"]+'</a></h4>'+
+				'<div class="bodyContent">'+
+				'<div class="locationAndDate">'+datestr+" -- "+perfs[j]["location"]+'</div>'+
+				'<div class="details">'+perfs[j]["details"]+'</div>'+
 				'</div>'+
 				'</div>';
 				
@@ -94,45 +109,105 @@ function initialize() {
 				var marker = new google.maps.Marker({
 					position: loc,
 					map: map,
-					title: users[i]["profileName"]
+					title: users[i]["profileName"],
+					genre: users[i]["genre"],
+					date: datestr,
+					contentstr : contentString
 				});
+
+				markers.push(marker);
+				
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map,marker);
 				});
+
+				generateList();
 			}
 		}
 	}
-	
 	for(var i = 0; i < users.length; i++){
 		perfs = users[i]["upcomingPerformances"];
 		for(var j = 0; j < perfs.length; j++){
-			geocoder.geocode({address : perfs[j]["location"] +" " + users[i]["location"].split(",")[1]}, buildResponseFor(i,j,users, perfs));	
+			if(dates.indexOf(datestr(perfs[j]["date"])) < 0)
+				dates.push(datestr(perfs[j]["date"]));
+			geocoder.geocode({address : perfs[j]["location"] +" " + users[i]["location"].split(",")[1]}, createEventFor(i,j,users, perfs));	
+		}
+	}
+
+	dates.sort();
+	for(var i = 0; i < dates.length; i++){
+		$("#dates").append('<li><input type="checkbox" class="datebox" value="'+dates[i]+'" id="checkbox_'+dates[i]+'" onclick="filter()">'+dates[i]+'</li>');	
+	}
+
+	google.maps.event.addListener(map, 'bounds_changed', generateList);
+
+	$("#performance_list").height($(window).height() - 100);
+}
+function generateList(){
+	$("#performance_list").html("");
+	for(var i = 0; i < markers.length; i++){
+		if(map.getBounds().contains(markers[i].getPosition()) && markers[i].map == map){
+			$("#performance_list").append(markers[i].contentstr + "<hr>");
+			$("#performance_list").show();
 		}
 	}
 }
 
-function handleNoGeolocation(errorFlag) {
-	if (errorFlag) {
-		var content = 'Error: The Geolocation service failed.';
-	} else {
-		var content = 'Error: Your browser doesn\'t support geolocation.';
+
+function filter(){
+	var checkedgenres = [];
+	var checkeddates = [];
+
+	$(".genrebox:checkbox:checked").each(function(){
+		checkedgenres.push(this.value);
+	});
+
+	$(".datebox:checkbox:checked").each(function(){
+		checkeddates.push(this.value);
+	});
+	for(var i = 0; i < markers.length; i++){
+		if((checkedgenres.indexOf(markers[i].genre) > -1 || checkedgenres.length == 0) && (checkeddates.indexOf(markers[i].date) > -1 || checkeddates.length == 0)) {
+			markers[i].setMap(map);
+		}
+		else{
+			markers[i].setMap(null);
+		}
 	}
-
-	var options = {
-		map: map,
-		position: new google.maps.LatLng(42.360091, -71.09416),
-		content: content
-	};
-
-	var infowindow = new google.maps.InfoWindow(options);
-	map.setCenter(options.position);
+	generateList();
 }
+	
+function handleNoGeolocation(errorFlag) {
+	var position = new google.maps.LatLng(42.360091, -71.09416);
+	map.setCenter(position);
+}
+
+function showPerformanceList(){
+    $('#performance_list').toggleClass('show');
+}
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
   </head>
   <body>
+  	<div class="left_sidebar_container">
+            <div class="filters">
+                <h2>Filters </h2>
+                <h4>Genres</h4>
+                <ul id="genres" class="hide_bullets"> 
+                </ul>
+                <h4>Dates</h4>
+                <ul id="dates" class="hide_bullets"> 
+                </ul>
+            </div>
+    </div>
+        
     <div id="map-canvas"></div>
+    <div class="right_sidebar">
+            <input type="button" class="btn btn-primary" id="view_performance_list" onclick="showPerformanceList()" value="Event List"> 
+            <div id="performance_list">
+            </div>
+        </div>
   </body>
 </html>
