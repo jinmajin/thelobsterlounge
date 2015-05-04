@@ -38,7 +38,7 @@ $(document).ready(function(){
 });	
 
 var showAlert = function(message) {
-  $('.alert').text(message).fadeIn();
+  $('.alert').text(message).fadeIn().css('margin-left', '-' + $('.alert').width()/2 + 'px');
   setTimeout(function() {
     $('.alert').fadeOut();
   }, 5000);

@@ -105,12 +105,3 @@ video {
   top: 0px;
   right: 0px;
 }
-
-.btn-primary{
-  background-color: #A0908C !important; 
-  border-color: #A0908C !important;
-}
-
-.btn-primary:hover {
-  text-decoration: underline;
-}

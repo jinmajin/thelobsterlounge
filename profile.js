@@ -14,6 +14,7 @@ $(document).ready(function() {
   $('#send-message-btn').click(function() { showAlert('Message sent!'); });
   $('#upload-media-btn').click(function() { showAlert(profile == 'jazzyJeff' ? 'Media uploaded!' : 'Media has been sent for approval!'); });
 
+  // Check to see if following user and set up following button accordingly
   if (profileResources['jazzyJeff'].following.indexOf(profile) > -1) {
     $('#follow-btn').text('Following').addClass('btn-default');
   } else {
@@ -40,11 +41,13 @@ $(document).ready(function() {
     }
   });
 
+  // Configure the add performance button
   $('#add-performance-btn').click(function() {
     profileInfo.upcomingPerformances.push({date: "", location: "", details: ""});
     populatePerformances(profileInfo.upcomingPerformances, true);
   });
 
+  // Configure the save/cancel buttons
   $('#edit-profile-btn').click(function() { toggleEditMode(); });
   $('#cancel-profile-btn').click(function() {
     toggleEditMode(false);
@@ -115,18 +118,25 @@ var toggleEditableFields = function(nowEditable, save) {
         } else {
           input.val($(element).text());
         }
-      } else if (save) {
-        if (input.attr('id').startsWith('performance')) {
-          if (input.attr('type') == 'date') {
-            profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = toDateObject(input.val());
+      } else {
+        if (save) {
+          if (input.attr('id').startsWith('performance')) {
+            if (input.attr('type') == 'date') {
+              profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = toDateObject(input.val());
+            } else {
+              profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = input.val();
+            }
           } else {
-            profileResources.jazzyJeff.upcomingPerformances[input.attr('data-index')][input.attr('data-field')] = input.val();
+            profileResources.jazzyJeff[input.attr('data-field')] = input.val();
           }
-        } else {
-          profileResources.jazzyJeff[input.attr('data-field')] = input.val();
         }
+        input.val('');
       }
     }
+  });
+  // Delete empty performances
+  profileResources.jazzyJeff.upcomingPerformances = profileResources.jazzyJeff.upcomingPerformances.filter(function(performance) {
+    return performance.date || performance.location || performance.details;
   });
   if (!nowEditable) fillInProfileInfo(profileResources.jazzyJeff);
 }
@@ -186,18 +196,26 @@ var fillInProfileInfo = function(profileInfo) {
 var populatePerformances = function(upcomingPerformances, editable) {
   var performances = [];
   upcomingPerformances.forEach(function(performance, i) {
+    // Grab any existing input changes
+    var dateChanges = $('#performance-date-' + i + '-input').val();
+    var locationChanges = $('#performance-location-' + i + '-input').val();
+    var detailsChanges = $('#performance-details-' + i + '-input').val();
+
     var date = $('<span>').addClass('editable').attr('id', 'performance-date-' + i).text(performance.date.month + "/" + performance.date.day + "/" + performance.date.year);
     var divider = $('<span>').addClass('editable').text(' -- ');
     var location = $('<span>').addClass('editable').attr('id', 'performance-location-' + i).text(performance.location);
     dateInput = $('<div>').addClass('form-group').html(
       $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'date').attr('placeholder', 'Date').attr('data-field', 'date').attr('data-index', i).attr('id', 'performance-date-' + i + '-input'));
+    dateInput.find('input').val(dateChanges || toDateInputFormat(getFormattedPerformanceDate(performance)));
     locationInput = $('<div>').addClass('form-group').html(
       $('<input>').addClass('form-control hidden edit-hidden').attr('type', 'text').attr('placeholder', 'Location').attr('data-field', 'location').attr('data-index', i).attr('id', 'performance-location-' + i + '-input'));
+    locationInput.find('input').val(locationChanges || performance.location);
     var dateLocInputs = $('<span>').addClass('form-inline').append(dateInput).append(locationInput);
     var dateLoc = $('<li>').append(date).append(divider).append(location).append(dateLocInputs);
 
     var details = $('<span>').addClass('editable').attr('id', 'performance-details-' + i).text(performance.details);
     var detailsInput = $('<span>').addClass('form-group').html($('<textarea>').addClass('form-control hidden edit-hidden').attr('rows', '3').attr('placeholder', 'Description').attr('data-field', 'details').attr('data-index', i).attr('id', 'performance-details-' + i + '-input'));
+    detailsInput.find('textarea').val(detailsChanges || performance.details);
 
     var performanceListing = $('<span>').append(dateLoc).append(details).append(detailsInput);
 
@@ -313,7 +331,7 @@ var toDateInputFormat = function(mmddyyyyFormattedDate) {
   var month = splitString[0];
   var day = splitString[1];
   var year = splitString[2];
-  return year + '-' + month + '-' + day;
+  return (year && month && day) ? year + '-' + month + '-' + day : "";
 }
 
 var toFormattedDateFormat = function(yyyymmddFormattedDate) {
@@ -321,7 +339,7 @@ var toFormattedDateFormat = function(yyyymmddFormattedDate) {
   var year = splitString[0];
   var month = splitString[1];
   var day = splitString[2];
-  return month + '/' + day + '/' + year;
+  return (month && day && year) ? month + '/' + day + '/' + year : "";
 } 
 
 var toDateObject = function(yyyymmddFormattedDate) {
@@ -329,7 +347,7 @@ var toDateObject = function(yyyymmddFormattedDate) {
   var year = splitString[0];
   var month = splitString[1];
   var day = splitString[2];
-  return {month: month, day: day, year: year};
+  return (month && day && year) ? {month: month, day: day, year: year} : undefined;
 }
 
 

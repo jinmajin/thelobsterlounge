@@ -1,5 +1,13 @@
+.alert {
+  position: fixed;
+  left: 50%;
+  top: 70px;
+  z-index: 100;
+}
+
 body {
   padding-top: 100px;
+  background-color: #FFFFFE;
 }
 
 .bold{
@@ -102,3 +110,12 @@ nav{
 	filter: grayscale(100%);
 }
 
+.btn-primary {
+  background-color: #FF8B1B;
+  border-color: #CF6F13;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #CF6F13;
+  border-color: #CF6F13;
+}
