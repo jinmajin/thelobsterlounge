@@ -17,9 +17,26 @@
 }*/
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	margin:50px 0px; padding:0px;
+	padding-top: 70px;
+	text-align:center;
+	background-color: #FFFFFE;
+    /*padding-top: 70px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. 
+    margin-left: 100px;
+    text-align: center; */
 }
 
+.dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a{
+	background-color: #FF8B1B;
+}
+
+.container{
+	width:1000px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+	border:1px #333;
+}
 .videoThumb {
     margin-bottom: 25px;
 }
