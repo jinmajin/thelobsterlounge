@@ -93,7 +93,23 @@ label{
     margin-top: 10px;
 }
 
+@media(max-width: 960px){
+     .mainview_title {
+        font-size: 150px;
+    }
+
+}
+
+@media(max-width: 750px){
+    .mainview_title {
+        font-size: 100px;
+    }
+}
+
 @media (max-width: 500px){
+   .mainview_title {
+        font-size: 50px;
+    }
     .right_sidebar{
         display: none;
     }
