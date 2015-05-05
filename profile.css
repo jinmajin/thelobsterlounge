@@ -82,8 +82,12 @@ video {
   cursor: pointer;
 }
 
-.carousel-inner .video {
-  height: 400px;
+.custom-carousel-control {
+  color: #FF8B1B;
+}
+
+.custom-carousel-control:hover, .custom-carousel-control:focus {
+  color: #CF6F13;
 }
 
 .play-btn {
@@ -97,6 +101,10 @@ video {
 
 .play-btn:hover {
   opacity: 1;
+}
+
+.modal-footer {
+  font-size: 16pt;
 }
 
 .media-remove-btn {
