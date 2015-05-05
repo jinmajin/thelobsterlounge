@@ -23,7 +23,7 @@ $(window).scroll(function(){
    if($(window).scrollTop()  > 300 ){
         $("#search_div").stop().fadeTo(100, 0);
         $('#nav_bar').addClass('navbar-fixed-top').removeClass('hide').fadeTo("slow", 1);
-        console.log("scrollTop is less than 10" + $(window).scrollTop());
+   //     console.log("scrollTop is less than 10" + $(window).scrollTop());
    } else {
         $("#search_div").stop().fadeTo("slow", 1);
         $('#nav_right').addClass("show");

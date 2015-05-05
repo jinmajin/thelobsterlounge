@@ -10,10 +10,14 @@ $(document).ready(function(){
     });
 
     $('#videoOption').click(function(){
-        console.log('clickedVideo')
+        $("#video_view").addClass("show");
+        $("#gmap_view").removeClass("show");
     });
     $('#events').click(function(){
-        console.log("clickedEvent");
+        $("#videos_view").removeClass("show");
+        $("#gmap_view").addClass("show");
+        google.maps.event.trigger(map, "resize");
+        goToCity();
     });
 
     $('#boston').click(function(e){
@@ -29,7 +33,7 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources, keys, 'boston');
         CITY = 'boston';
-        
+        goToCity();
     });
 
     $('#newyork').click(function(e){
@@ -45,6 +49,7 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources,keys, 'newYork');
         CITY = 'newYork';
+        goToCity();
     });
 
     // Filter buttons

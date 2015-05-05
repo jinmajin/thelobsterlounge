@@ -10,24 +10,30 @@
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/videos.css" />
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
-
+<style>
+  #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+  }
+</style>
 <!-- Load any supplemental Javascript libraries here -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui.custom.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="profile-resources.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 
+
+<script type="text/javascript" src="profile-resources.js"></script>
 <script type="text/javascript" src="titlebar.js"></script>
 <script type="text/javascript" src="index.js"></script>
 <script type="text/javascript" src="video.js"></script>
-    
-
-<!-- TODO: FROM VIDEOS. DELETE THIS. -->
-<script type="text/javascript">
-</script>    
-    
+<script type="text/javascript" src="infoWindowZ.js"></script>
+<script type="text/javascript" src="gmap.js"></script>
+        
 </head>
 
 <body>
@@ -132,6 +138,30 @@
         </div>
         <!-- End Dropdown Menu Row-->
 
+        <div id="gmap_view">
+<div class="left_sidebar_container">
+            <div class="filters">
+                <h2 id="view_filter_list" onclick="toggle('filter')">Filters <span id="filterclick" class="glyphicon glyphicon-plus"></span></h2>
+                <div class="show" id="filter_list">
+                  <h4>Genres</h4>
+                  <ul id="genres" class="hide_bullets"> 
+                  </ul>
+                  <h4>Dates</h4>
+                  <ul id="dates" class="hide_bullets"> 
+                  </ul>
+                </div>
+            </div>
+    </div>
+        
+    <div id="map-canvas"></div>
+    <div class="right_sidebar">
+      <h2 id="view_performance_list" onclick="toggle('performance')">Events As List <span id="performanceclick" class="glyphicon glyphicon-plus"></span></h2>   
+            <div class="show" id="performance_list">
+            </div>
+    </div>          
+        </div>
+
+        <div id="videos_view" class="show">
         <!-- Button Row -->
         <div class="row">
             <div class="col-lg-12">
@@ -178,7 +208,7 @@
 
         <hr>
 
-
+      </div>
 </div>
     <!-- /.container -->
 
