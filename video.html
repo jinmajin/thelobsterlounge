@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     $('#boston').click(function(e){
         // console.log("clicked boston", $('#selectedFirst'));
-        $('#selectedFirst').button('toggle');
+        $('.selectedFirst').button('toggle');
         var visibleVids = document.getElementsByClassName('videoThumb');
         for (var i=0; visibleVids.length > 0; i++){
             console.log('remove!');
