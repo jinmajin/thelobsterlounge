@@ -203,6 +203,9 @@ label{
     .right_sidebar{
         display: none;
     }
+    .left_sidebar_container {
+        width: 175px;
+    }
 }
 
 .center{
