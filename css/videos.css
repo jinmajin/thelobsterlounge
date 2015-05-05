@@ -5,6 +5,10 @@ body {
 	background-color: #FFFFFE;
 }
 
+/*.first:hover, .first:active, .second:hover, .second:active{
+	background-color: #F6D4B0;
+}*/
+
 .first, .optionMenu{
 	margin-top: -10px;
 	left: 200px;

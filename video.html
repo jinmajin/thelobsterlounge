@@ -41,7 +41,7 @@ $(document).ready(function(){
     });
 
     $('#boston').click(function(e){
-        // console.log("clicked boston", $('#selectedFirst'));
+        console.log("clicked boston", $('.active'));
         $('#selectedFirst').button('toggle');
         var visibleVids = document.getElementsByClassName('videoThumb');
         for (var i=0; visibleVids.length > 0; i++){
