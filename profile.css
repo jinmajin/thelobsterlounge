@@ -126,3 +126,8 @@ video {
 .carousel-control.right {
   right: -85.118px;
 }
+
+.item img {
+  margin-left: auto;
+  margin-right: auto;
+}
