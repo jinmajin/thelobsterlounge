@@ -56,6 +56,18 @@ var setUpFollowedUsers = function() {
   $('#show-followed-btn').data('bs.popover').options.content = followedUsersList;
 }
 
+$(document).on('click', function (e) {
+  if ($(e.target).attr('id') == 'show-followed-btn') {
+    $('#show-followed-btn').popover('toggle');
+    $('#show-inbox-btn').popover('hide');
+  } else if ($(e.target).attr('id') == 'show-inbox-btn') {
+    $('#show-inbox-btn').popover('toggle');
+    $('#show-followed-btn').popover('hide');
+  } else if (!($(e.target).hasClass('popover') || $(e.target).parents().hasClass('popover'))) {
+    $('[data-toggle="popover"]').popover('hide');
+  }
+});
+
 var setUpInbox = function() {
   var messagesList = $('<div>').addClass('list-group');
   profileResources['jazzyJeff'].messages.forEach(function(message) {
