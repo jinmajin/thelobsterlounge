@@ -36,7 +36,7 @@ $(window).scroll(function(){
 $(document).ready(function(){
 
 	$('a[href^="#"]').on('click',function (e) {
-	  e.preventDefault();
+	  // e.preventDefault();
 
 	  var $target = $(this);
 
