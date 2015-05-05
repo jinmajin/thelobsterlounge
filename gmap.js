@@ -14,17 +14,18 @@ var nyCenter = new google.maps.LatLng(40.740083, -73.990349);
 function initialize() {
 	$("#map-canvas").height($(window).height());
 	$("#gmap_view").height($(window).height());
+	var mapOptions = {
+		zoom: 13,
+		disableDefaultUI: true
+	};	
+
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	console.log(map);
 	google.maps.event.addListenerOnce(map, 'idle', function() {
    		google.maps.event.trigger(map, 'resize');
 	});
 	geocoder = new google.maps.Geocoder();
-	var mapOptions = {
-		zoom: 13,
-		disableDefaultUI: true
-	};	
-
+	
 	goToCity();
 	var profNameToUser = {};
 	var keys = Object.keys(profileResources);

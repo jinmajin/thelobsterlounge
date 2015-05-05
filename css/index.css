@@ -13,6 +13,10 @@ body {
     font-family: helvetica;
 }
 
+.in{
+    border: none;
+    color: #333;
+}
 
 #search_div {
     z-index: 1;
