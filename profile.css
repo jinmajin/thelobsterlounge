@@ -110,11 +110,11 @@ video {
   right: 0px;
 }
 
-.modal-dialog {
+#gallery-modal .modal-dialog {
   width: 770.236px;
 }
 
-.modal-body {
+#gallery-modal .modal-body {
   padding-left: 100.118px;
   padding-right: 100.118px;
 }
