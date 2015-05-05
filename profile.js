@@ -77,16 +77,10 @@ $(document).ready(function() {
     var activeIndex = invoker.data('index');
     setCarouselActiveIndex(activeIndex);
   });
-  $('#gallery-modal').on('shown.bs.modal', function(event) {
-    setMediaHeight();
-  });
   $('#gallery-modal').on('hide.bs.modal', function(event) {
     $('video').each(function(i, video) { video.pause(); });
   });
-  $('#gallery-carousel').on('slid.bs.carousel', function(event) {
-    setMediaHeight();
-  });
-  $('.custom-carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); }); setMediaHeight(); });
+  $('.custom-carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); });});
 });
 
 $(document).bind('keyup', function(e) {
@@ -192,12 +186,12 @@ var setMediaHeight = function(ratio) {
   $('.media').each(function(i, media) {
     $(media).height($(media).width() * ratio);
   });
-  $('video').each(function(i, video) {
+  $('.gallery video').each(function(i, video) {
     var currentRatio = $(video).width() / $(video).height();
     var adjustmentRatio = ratio * currentRatio;
     $(video).css('-webkit-transform', 'scaleY(' + adjustmentRatio + ')');
   });
-  $('video').on('loadedmetadata', function(event) {
+  $('.gallery video').on('loadedmetadata', function(event) {
     var video = $(event.target);
     var currentRatio = video.width() / video.height();
     var adjustmentRatio = ratio * currentRatio;

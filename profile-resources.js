@@ -23,6 +23,7 @@ var profileResources = {
     media: [
       {type: 'video', src: "assets/video/jazzyJeff/jazzyJeff1.mp4"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff1.jpg"},
+      {type: 'video', src: "assets/short/jazzyJeff2.mp4"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff2.jpg"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff3.jpg"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff4.jpg"},
@@ -78,6 +79,7 @@ var profileResources = {
       {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge1.mp4"},
       {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge2.mp4"},
       {type: 'image', src: "assets/image/jugglingGeorge/jugglingGeorge1.jpg"},
+      {type: 'video', src: "assets/short/jugglingGeorge3.mp4"},
     ],
     profilePic: {src: "assets/image/jugglingGeorge/jugglingGeorgeProfile.jpg"},
     shortVids: [{src:'assets/short/jugglingGeorge1.mp4'}, 
