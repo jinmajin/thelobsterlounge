@@ -75,10 +75,16 @@ $(document).ready(function() {
     var activeIndex = invoker.data('index');
     setCarouselActiveIndex(activeIndex);
   });
+  $('#gallery-modal').on('shown.bs.modal', function(event) {
+    setMediaHeight();
+  });
   $('#gallery-modal').on('hide.bs.modal', function(event) {
     $('video').each(function(i, video) { video.pause(); });
   });
-  $('.carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); }); });
+  $('#gallery-carousel').on('slid.bs.carousel', function(event) {
+    setMediaHeight();
+  });
+  $('.carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); }); setMediaHeight(); });
   $('video').on('play', function(event) {
     var index = event.currentTarget.parentElement.getAttribute('data-index');
     $('.play-btn[data-index="' + index + '"]').removeClass('glyphicon-play').addClass('glyphicon-pause');
@@ -181,6 +187,18 @@ var setMediaHeight = function(ratio) {
   $('.media').each(function(i, media) {
     $(media).height($(media).width() * ratio);
   });
+  console.log($('video'));
+  $('video').each(function(i, video) {
+    var currentRatio = $(video).width() / $(video).height();
+    var adjustmentRatio = ratio * currentRatio;
+    $(video).css('-webkit-transform', 'scaleY(' + adjustmentRatio + ')');
+  });
+  $('video').on('loadedmetadata', function(event) {
+    var video = $(event.target);
+    var currentRatio = video.width() / video.height();
+    var adjustmentRatio = ratio * currentRatio;
+    video.css('-webkit-transform', 'scaleY(' + adjustmentRatio + ')');
+  });
 }
 
 var fillInProfileInfo = function(profileInfo) {
@@ -277,8 +295,8 @@ var populateGallery = function(profileMedia, editable) {
       $('#media-container .row').last().append($('<div>').addClass('col-md-4').html(media));
     }
   });
-  setMediaHeight();
   populateCarousel();
+  setMediaHeight();
 }
 
 var createPlayButton = function(index) {
