@@ -18,17 +18,9 @@ body {
 .first, .second, .dropdown-menu li{
 	/*margin-top: -10px;*/
 	font-size: 50px;
-	/*margin-bottom: 25px;*/
+	margin-bottom: 25px;
 }
 
-/*.second{
-	margin-top: -33%;
-	left: 90%; 
-}*/
-/*.cityMenu{
-	margin-top: 0%;
-	left: 90%;
-}*/
 
 #in{
 	position: relative;

@@ -151,15 +151,6 @@ $(document).ready(function(){
             }
         }
 
-        /*
-        <div class="col-md-4 videoThumb"> 
-            <a href = '#' data-toggle="modal" data-target=".vidModal"> 
-                <video width="700" height="400" class = 'img-responsive hover'>
-                  <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                  Your browser does not support this video. Sorry!
-                </video>
-            </a>
-        */
     }
 
     function addVideo(src, profileLink, name){ //add name parameter
