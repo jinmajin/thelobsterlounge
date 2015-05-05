@@ -1,3 +1,11 @@
+$(document).ready(function() {
+  if (readProfileResources()) {
+    profileResources.jazzyJeff = readProfileResources();
+  } else {
+    writeProfileResources(profileResources.jazzyJeff);
+  }
+});
+
 var profileResources = {
   // Jeff Profile Info
   jazzyJeff: {
@@ -100,3 +108,29 @@ var profileResources = {
     {src:'assets/short/acrobaticAdam3.mp4'}],
   },
 };
+
+var writeProfileResources = function(profileResources) {
+  setCookie("profileResources", JSON.stringify(profileResources));
+}
+
+var readProfileResources = function() {
+  var profileResources = getCookie('profileResources');
+  return profileResources ? JSON.parse(profileResources) : undefined;
+}
+
+var setCookie = function(name, value) {
+  document.cookie = name + '=' + value;
+}
+
+// CODE PROVIDED FROM:
+// http://www.w3schools.com/js/js_cookies.asp
+var getCookie = function(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
