@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="main.css" />
 <link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="css/videos.css" />
 <link type="text/css" href="css/ui-lightness/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
 
 <!-- Load any supplemental Javascript libraries here -->
@@ -20,122 +21,11 @@
 
 <script type="text/javascript" src="titlebar.js"></script>
 <script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="video.js"></script>
     
 
 <!-- TODO: FROM VIDEOS. DELETE THIS. -->
 <script type="text/javascript">
-$(document).ready(function(){
-    //Dropdowns
-    $(".dropdown-menu li a").click(function(){
-        var selText = $(this).text();
-        $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-    });
-
-    $('#videoOption').click(function(){
-        console.log('clickedVideo')
-    });
-    $('#events').click(function(){
-        console.log("clickedEvent");
-    });
-
-    $('#boston').click(function(e){
-        console.log("clicked boston");
-    });
-
-    $('#newyork').click(function(e){
-        console.log("clicked newyork");
-    });
-
-    // Filter buttons
-    $('#all').on('click', function(e){
-        switchFilter('all');
-        console.log('all');
-        hoverPlay();
-    });
-    $('#music').on('click', function(e){
-        switchFilter('music');
-        console.log('music');
-        hoverPlay();
-    });
-    $('#juggling').on('click', function(e){
-        switchFilter('juggling');
-        hoverPlay();
-    });
-    $('#acrobatics').on('click', function(e){
-        switchFilter('acrobatics');
-        hoverPlay();
-    });
-    $('#other').on('click', function(e){
-        switchFilter('other');
-        hoverPlay();
-    });
-
-    function hoverPlay(){
-        $('video').mouseover(function(){
-            console.log('play video now');
-            this.play();
-        })
-        $('video').mouseout(function(){
-            console.log('pause video now');
-            this.pause();
-        });
-    }
-    function switchFilter(genre){
-        var visibleVids= document.getElementsByClassName('videoThumb');
-        for (var i=0; i < visibleVids.length; i++){
-            //remove all visible videos
-            if (visibleVids[i].firstElementChild !=null){
-                visibleVids[i].removeChild(visibleVids[i].firstElementChild);
-            };
-        }
-        if (genre === 'all'){
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-            addVideo(visibleVids, 2,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
-            addVideo(visibleVids, 3,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
-        }else if (genre === 'music') {
-            addVideo(visibleVids, 0,"assets/video/usTheDuo/usTheDuo2.mp4", 'profile.html?profile=usTheDuo');
-            addVideo(visibleVids, 1,"assets/video/jazzyJeff/jazzyJeff1.mp4", 'profile.html?profile=jazzyJeff');
-            addVideo(visibleVids, 2,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }else if (genre === 'juggling'){
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }else if (genre === 'acrobatics'){
-            addVideo(visibleVids, 1,"assets/video/acrobaticAdam/acrobaticAdam1.mp4", 'profile.html?profile=acrobaticAdam');
-        }else{
-            addVideo(visibleVids, 1,"assets/video/jugglingGeorge/jugglingGeorge1.mp4", 'profile.html?profile=jugglingGeorge');
-        }
-
-
-        /*
-                <a href="#">
-                    <video width="700" height="400" class = 'img-responsive'>
-                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                </a>
-        */
-    }
-
-    function addVideo(visibleVids, num, src, profileLink){
-        var a = document.createElement('a');
-        a.href = profileLink;
-        var video = document.createElement('video');
-        video.width = '700'; video.height = '400'; //video.type = "video/mp4";
-        video.className = 'img-responsive';
-        var source = document.createElement('source');
-        source.src = src;
-        video.appendChild(source);
-        a.appendChild(video);
-
-        visibleVids[num].appendChild(a);
-    }
-
-    //When first load page
-    $(".selectedFirst").button("toggle");
-    hoverPlay();
-   
-});
-
 </script>    
     
 </head>
@@ -204,13 +94,6 @@ $(document).ready(function(){
 
 <!--    TODO: DELETE THIS OLD VIDEO PAGE STUFF-->
 <div class="stuff_to_delete content" id="content">
-
-
-<!-- video view -->
-<!-- <div id = 'dropdown'></div>
-<div id = 'filters'></div>
-<div id = 'videos'></div> -->
-    <!-- Page Content -->
     <div class="container">
 
         <!-- Dropdown Menu Row -->
@@ -220,31 +103,33 @@ $(document).ready(function(){
                     <button class="btn btn-default btn-lg dropdown-toggle dropdown first" type="button" data-toggle="dropdown" aria-expanded="false">
                         Videos <span class="caret"></span>
                     </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href = '#' id = 'videoOption'> Videos </a></li>
+                <ul class="dropdown-menu optionMenu" role="menu">
                     <li><a href = '#' id = 'events'> Events </a></li>
+                    <li><a href = '#' id = 'videoOption'> Videos </a></li>
+                    
                 </ul>
                 </div> 
-                <h1>
-                </h1> 
+                <h1></h1>
+                <h1></h1> 
             </div>  
-            <div class = 'col-md-4'>
-                <h1 id = 'word'> in </h1>
+            <div class = 'col-md-4 img-responsive'>
+                <p id = 'word'> in </p>
             </div>
                 <div class = 'col-md-4'>
                 <div class="btn-group">
                     <button class="btn btn-default btn-lg dropdown-toggle dropdown second" type="button" data-toggle="dropdown" aria-expanded="false">
                         Boston <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href = '#' id = 'boston'> Boston</a></li>
+                    <ul class="dropdown-menu cityMenu" role="menu">
                         <li><a href = '#' id = 'newyork'> New York </a></li>
+                        <li><a href = '#' id = 'boston'> Boston</a></li>
+                        
                     </ul>
                 </div>   
 
             </div>
-                <h1 class="page-header">
-                </h1> 
+               <!--  <h1 class="page-header">
+                </h1>  -->
         </div>
         <!-- End Dropdown Menu Row-->
 
@@ -252,11 +137,11 @@ $(document).ready(function(){
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group btn-group-justified" data-toggle="buttons">
-                  <label class="btn btn-default selectedFirst" id="all"><input type="radio" name="options">All</label>
-                  <label class="btn btn-default" id="music"><input type="radio" name="options">Music</label>
-                  <label class="btn btn-default" id="juggling"><input type="radio" name="options">Juggling</label>
-                  <label class="btn btn-default" id="acrobatics"><input type="radio" name="options" >Acrobatics</label>
-                  <label class="btn btn-default" id="other"><input type="radio" name="options">Other</label>
+                  <label class="filter btn btn-default selectedFirst" id="all"><input type="radio" name="options">All</label>
+                  <label class="filter btn btn-default" id="music"><input type="radio" name="options">Music</label>
+                  <label class="filter btn btn-default" id="juggling"><input type="radio" name="options">Juggling</label>
+                  <label class="filter btn btn-default" id="acrobatics"><input type="radio" name="options" >Acrobatics</label>
+                  <label class="filter btn btn-default" id="other"><input type="radio" name="options">Other</label>
                 </div>
                 <h1 class="page-header">
                     </h1>
@@ -264,100 +149,35 @@ $(document).ready(function(){
         </div>
         <!-- End Button Row -->
 
-        <!-- Video Row -->
-        <div class="row">
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=usTheDuo'>
-                    <video width="700" height="400" class = 'img-responsive'>
-                      <source src="assets/video/usTheDuo/usTheDuo2.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
-         <!--        <h3>
-                </h3>
-                <p></p> -->
+
+
+        <!-- Modal Content -->
+        <div class="modal fade vidModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <a href='#' id = 'modalHeader'>
+                            <!-- <h4 class="modal-title lobster" id="myModalLabel"></h4> -->
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- videos inserted here via jquery -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
             </div>
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=jugglingGeorge'>
-                    <video width="700" height="400" class = 'img-responsive'>
-                      <source src="assets/video/jugglingGeorge/jugglingGeorge1.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
-            <!--     <h3>
-                </h3>
-                <p></p> -->
-            </div>
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=acrobaticAdam'>
-                    <video width="700" height="400" class = 'img-responsive'>
-                        <source src="assets/video/acrobaticAdam/acrobaticAdam1.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
-       <!--          <h3>
-                </h3>
-                <p></p> -->
-            </div>
+          </div>
         </div>
-        <!-- /.row -->
+        <!-- End Modal Content -->
+
 
         <!-- Video Row -->
-        <div class="row">
-            <div class="col-md-4 videoThumb">
-                <a href='profile.html?profile=jazzyJeff'>
-                    <video width="700" height="400" class = 'img-responsive'>
-                      <source src="assets/video/jazzyJeff/jazzyJeff1.mp4" type="video/mp4">
-                      Your browser does not support this video. Sorry!
-                    </video>
-                    <!-- <img class="img-responsive" src="http://placehold.it/700x400" alt=""> -->
-                </a>
-           <!--      <h3>
-                </h3>
-                <p></p> -->
-            </div>
+        <div class="row videoRow">
         </div>
-        <!-- /.row -->
-
-
-        <!-- Video Row -->
-<!--         <div class="row">
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-            <div class="col-md-4 portfolio-item">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
-                <h3>
-                </h3>
-                <p></p>
-            </div>
-        </div> -->
-        <!-- /.row -->
-
-         <hr>
-
         <!-- /.row -->
 
         <hr>
-
 
     </div>
     <!-- /.container -->
