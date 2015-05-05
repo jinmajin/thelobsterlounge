@@ -27,7 +27,6 @@ var profileResources = {
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff2.jpg"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff3.jpg"},
       {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff4.jpg"},
-      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff5.jpg"},
     ],
     profilePic: {src: "assets/image/jazzyJeff/jazzyJeffProfile.png"},
     following: ["usTheDuo", "jugglingGeorge"],
