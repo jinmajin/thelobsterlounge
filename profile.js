@@ -383,16 +383,17 @@ var writeProfileResources = function(profileResources) {
 }
 
 var readProfileResources = function() {
-  return JSON.parse(getCookie('profileResources'));
+  var profileResources = getCookie('profileResources');
+  return profileResources ? JSON.parse(profileResources) : undefined;
 }
 
-function setCookie(name, value) {
+var setCookie = function(name, value) {
   document.cookie = name + '=' + value;
 }
 
 // CODE PROVIDED FROM:
 // http://www.w3schools.com/js/js_cookies.asp
-function getCookie(cname) {
+var getCookie = function(cname) {
   var name = cname + "=";
   var ca = document.cookie.split(';');
   for(var i=0; i<ca.length; i++) {
@@ -405,7 +406,7 @@ function getCookie(cname) {
 
 // CODE PROVIDED FROM:
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-function getParameterByName(name) {
+var getParameterByName = function(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
