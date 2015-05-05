@@ -18,16 +18,16 @@ body {
 .first, .second, .dropdown-menu li{
 	/*margin-top: -10px;*/
 	font-size: 50px;
-	margin-bottom: 25px;
+	/*margin-bottom: 25px;*/
 }
 
+#gmap_view, #videos_view{
+	margin-top: 25px;
+}
 
-#in{
-	position: relative;
+.in{
 	font-size: 50px;
-	/*background-color: green;*/
-	/*left: 45%;*/
-	top:0%;
+	/*margin-bottom: 25px;*/
 }
 
 
@@ -38,8 +38,7 @@ body {
 /*	width: 50%;*/
 }
 /*.first:hover, .first:active, .second:active, .second:hover, .open>.dropdown-toggle.btn-default{
-	background-color: #AF6A49;
-	color: white;
+	background-color: #CF6F13;
 }*/
 
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a{
