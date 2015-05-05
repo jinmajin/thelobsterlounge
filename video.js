@@ -10,7 +10,7 @@ $(document).ready(function(){
     });
 
     $('#videoOption').click(function(){
-        $("#video_view").addClass("show");
+        $("#videos_view").addClass("show");
         $("#gmap_view").removeClass("show");
     });
     $('#events').click(function(){
