@@ -12,8 +12,8 @@ var nyCenter = new google.maps.LatLng(40.740083, -73.990349);
 
 
 function initialize() {
-	$("#map-canvas").height($(window).height());
-	$("#gmap_view").height($(window).height());
+	$("#map-canvas").height($(window).height() - 100);
+	$("#gmap_view").height($(window).height() - 100);
 	var mapOptions = {
 		zoom: 13,
 		disableDefaultUI: true
