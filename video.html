@@ -26,7 +26,7 @@
 <!-- videos -->
 $(document).ready(function(){
     var keys = Object.keys(profileResources);
-
+    var CITY = 'boston';
     //Dropdowns
     $(".dropdown-menu li a").click(function(){
         var selText = $(this).text();
@@ -42,32 +42,50 @@ $(document).ready(function(){
 
     $('#boston').click(function(e){
         console.log("clicked boston");
+        $('#selectedFirst').button('toggle');
+        var visibleVids = document.getElementsByClassName('videoThumb');
+        for (var i=0; visibleVids.length > 0; i++){
+            console.log('remove!');
+            $(visibleVids[0]).remove();
+        }
+        addAllVideos(profileResources, keys, 'boston');
+        CITY = 'boston;'
+        
     });
 
     $('#newyork').click(function(e){
         console.log("clicked newyork");
+        console.log($('.selectedFirst'));
+        $(".selectedFirst").button("toggle");
+        if ($('#empty')!=null){
+            $('#empty').remove();
+        }
+        var visibleVids = document.getElementsByClassName('videoThumb');
+        for (var i=0; visibleVids.length > 0; i++){
+            console.log('remove!');
+            $(visibleVids[0]).remove();
+        }
+        addAllVideos(profileResources,keys, 'newYork');
+        CITY = 'newYork';
+        
     });
 
     // Filter buttons
     $('#all').on('click', function(e){
         switchFilter('all');
-        // hoverPlay();
     });
     $('#music').on('click', function(e){
         switchFilter('music');
-        // hoverPlay();
     });
     $('#juggling').on('click', function(e){
         switchFilter('juggling');
-        // hoverPlay();
     });
     $('#acrobatics').on('click', function(e){
         switchFilter('acrobatics');
-        // hoverPlay();
     });
     $('#other').on('click', function(e){
         switchFilter('other');
-        // hoverPlay();
+
     });
 
     // Modal 
@@ -75,6 +93,15 @@ $(document).ready(function(){
         // console.log($('.videoInModal')[0]);
         $('.videoInModal')[0].pause();
     });
+
+    //empty
+    function noVids(){
+        var empty = document.createElement('h1');
+        empty.innerHTML = 'Sorry, no videos of this genre yet!';
+        empty.id = 'empty';
+        empty.style.textAlign = 'center';
+        $(empty).insertAfter($('.videoRow'));
+    }
 
 
     //Video
@@ -96,47 +123,49 @@ $(document).ready(function(){
     }
     function switchFilter(genre){
         var visibleVids = document.getElementsByClassName('videoThumb');
-        console.log(visibleVids, visibleVids.length);
         for (var i=0; visibleVids.length > 0; i++){
             console.log('remove!');
             $(visibleVids[0]).remove();
         }
 
-        if (genre === 'all'){
+        if ($('#empty')!=null){
+            $('#empty').remove();
+        }
 
-                addAllVideos(profileResources,keys);
+        if (genre === 'all'){
+                addAllVideos(profileResources,keys, CITY);
 
         }else{
             for(var i = 0; i < keys.length; i++){
-                console.log('genre',profileResources[keys[i]]['genre']);
+                console.log(keys[i]);
                 if (genre === 'music' && profileResources[keys[i]]['genre'] === 'Music'){
-                    // console.log("music filter: ", profileResources[keys[i]]['media']);
-                 var shortVids = profileResources[keys[i]]['shortVids'];
-                    for (j =0; j < shortVids.length; j++){
-                        // if (media[j].type === 'video'){
-                            addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
-                            hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        // }
+                    if (CITY === profileResources[keys[i]]['area']){
+                     var shortVids = profileResources[keys[i]]['shortVids'];
+                        for (j =0; j < shortVids.length; j++){
+                                addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
+                                hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
+                        }
                     }
                 }else if(genre === 'juggling'&& profileResources[keys[i]]['genre'] === 'Juggling'){
-                    console.log("juggling filter");
-                    var shortVids = profileResources[keys[i]]['shortVids'];
-                    for (j =0; j < shortVids.length; j++){
-                        // if (media[j].type === 'video'){
-                            addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
-                            hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        // }
+                    if (CITY === profileResources[keys[i]]['area']){
+                        var shortVids = profileResources[keys[i]]['shortVids'];
+                        for (j =0; j < shortVids.length; j++){
+                                addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
+                                hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
+                        }
                     }
                 }else if(genre === 'acrobatics' && profileResources[keys[i]]['genre'] === 'Acrobatics'){
-                    console.log("acrobatics filter");
-                    var shortVids = profileResources[keys[i]]['shortVids'];
-                    for (j =0; j < shortVids.length; j++){
-                        // if (media[j].type === 'video'){
+                    if (CITY === profileResources[keys[i]]['area']){
+                        var shortVids = profileResources[keys[i]]['shortVids'];
+                        for (j =0; j < shortVids.length; j++){
                             addVideo(shortVids[j]['src'], 'profile.html?profile='+ keys[i], profileResources[keys[i]]['profileName']);
                             hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                        // }
+                        }
                     }
                 }
+            }
+            if (document.getElementsByClassName('videoThumb').length == 0){
+                noVids();
             }
         }
 
@@ -204,14 +233,6 @@ $(document).ready(function(){
         performerName.id = 'myModalLabel';
         console.log($('#modalHeader'));
         $('#modalHeader').append(performerName);
-        // <h4 class="modal-title lobster" id="myModalLabel"></h4>
-          // <div class="modal-header">
-          //               <a href='#' id = 'modalHeader'>
-          //                   <!-- <h4 class="modal-title lobster" id="myModalLabel"></h4> -->
-          //               </a>
-          //           </div>
-
-
         var video = document.createElement('video');
         video.width = '700'; video.height = '400'; //video.type = "video/mp4";
         video.className = 'img-responsive videoInModal';
@@ -232,41 +253,61 @@ $(document).ready(function(){
     }
 
     //randomize
-    // function shuffle(array) {
-    //       var current = array.length, temp, random ;
+    //from stackoverflow: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
 
-    //       while (0 !== current) {
-    //         random = Math.floor(current*Math.random());
-    //         current -= 1;
-
-    //         temp = array[current];
-    //         array[current] = array[random];
-    //         array[random] = temp;
-    //       }
-
-    //       return array;
-    //     }
-    function addAllVideos(profileResources,keys){
-        // var keys = shuffle(keys);
+    function addAllVideos(profileResources,keys,city){
+        var notShuffled = [];
         for(var i = 0; i < keys.length; i++){
-            var shortVids = profileResources[keys[i]]['shortVids'];
-            for (j =0; j < shortVids.length; j++){
-
-                // if (media[j].type === 'video'){
-                    var profileLink = 'profile.html?profile='+ keys[i];
-                    var videoLink = shortVids[j]['src'];
-                    addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
-                    hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
-                // }
+            
+            if (city === 'boston'){
+                if (keys[i] === 'jazzyJeff' || keys[i] === 'jugglingGeorge'){
+                    var shortVids = profileResources[keys[i]]['shortVids'];
+                    for (j =0; j < shortVids.length; j++){
+                        var profileLink = 'profile.html?profile='+ keys[i];
+                        var videoLink = shortVids[j]['src'];
+                        notShuffled.push([videoLink, profileLink, profileResources[keys[i]]['profileName'], keys[i]]);
+                        // addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
+                        // hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
+                    }
+                }
+            }else if (city === 'newYork'){
+                if (keys[i] === 'acrobaticAdam' || keys[i] === 'usTheDuo'){
+                    var shortVids = profileResources[keys[i]]['shortVids'];
+                    for (j =0; j < shortVids.length; j++){
+                        var profileLink = 'profile.html?profile='+ keys[i];
+                        var videoLink = shortVids[j]['src'];
+                        notShuffled.push([videoLink, profileLink, profileResources[keys[i]]['profileName'], keys[i]]);
+                        // addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
+                        // hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
+                    }
+                }
             }
         }
+        var shuffled = shuffleArray(notShuffled);
+        for (var j = 0; j < shuffled.length; j++){
+            var vid = shuffled[j][0];
+            var profile = shuffled[j][1];
+            var realName = shuffled[j][2];
+            var handle = shuffled[j][3];
+            console.log(vid, profile, realName, handle);
+            addVideo(vid, profile, realName);
+            hoverPlay(realName,handle);
+        }
+
     }
 
     //When first load page
     $(".selectedFirst").button("toggle");
-    addAllVideos(profileResources, keys);
-
-    console.log(document.getElementsByClassName('hover')[2].videoWidth);
+    addAllVideos(profileResources, keys, 'boston');
    
 });
 
@@ -305,10 +346,6 @@ $(document).ready(function(){
   <div class="alert alert-success"></div>
 </nav>
 
-<!-- video view -->
-<!-- <div id = 'dropdown'></div>
-<div id = 'filters'></div>
-<div id = 'videos'></div> -->
     <!-- Page Content -->
     <div class="container">
 
@@ -319,15 +356,16 @@ $(document).ready(function(){
                     <button class="btn btn-default btn-lg dropdown-toggle dropdown first" type="button" data-toggle="dropdown" aria-expanded="false">
                         Videos <span class="caret"></span>
                     </button>
-                <ul class="dropdown-menu colorMenu" role="menu">
-                    <li><a href = '#' id = 'videoOption'> Videos </a></li>
+                <ul class="dropdown-menu optionMenu" role="menu">
                     <li><a href = '#' id = 'events'> Events </a></li>
+                    <li><a href = '#' id = 'videoOption'> Videos </a></li>
+                    
                 </ul>
                 </div> 
-                <h1>
-                </h1> 
+                <h1></h1>
+                <h1></h1> 
             </div>  
-            <div class = 'col-md-4'>
+            <div class = 'col-md-4 img-responsive'>
                 <p id = 'word'> in </p>
             </div>
                 <div class = 'col-md-4'>
@@ -335,9 +373,10 @@ $(document).ready(function(){
                     <button class="btn btn-default btn-lg dropdown-toggle dropdown second" type="button" data-toggle="dropdown" aria-expanded="false">
                         Boston <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu colorMenu" role="menu">
-                        <li><a href = '#' id = 'boston'> Boston</a></li>
+                    <ul class="dropdown-menu cityMenu" role="menu">
                         <li><a href = '#' id = 'newyork'> New York </a></li>
+                        <li><a href = '#' id = 'boston'> Boston</a></li>
+                        
                     </ul>
                 </div>   
 
@@ -390,8 +429,6 @@ $(document).ready(function(){
         <div class="row videoRow">
         </div>
         <!-- /.row -->
-
-         <hr>
 
         <hr>
 

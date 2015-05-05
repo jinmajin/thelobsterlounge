@@ -1,39 +1,26 @@
-/*#dropdown{
-	background-color: blue;
-	height: 500px;
-	width: 500px;
-}
-
-#filters{
-	background-color: green;
-	height: 400px;
-	width: 300px;
-}
-
-#videos{
-	background-color: purple;
-	height: 300px;
-	width: 300px;
-}*/
-
 body {
 	margin:50px 0px; padding:0px;
-	padding-top: 70px;
+	padding-top: 40px;
 	text-align:center;
 	background-color: #FFFFFE;
-    /*padding-top: 70px;  Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. 
-    margin-left: 100px;
-    text-align: center; */
 }
 
-.first, .second, .dropdown-menu li{
-	font-size: 70px;
-	font-weight: 3;
-	/*background-color: #D89067;
-	color: white;*/
+.first, .optionMenu{
+	margin-top: -10px;
+	left: 200px;
 }
+.first, .second, .dropdown-menu li{
+	font-size: 50px;
+}
+
+.second, .cityMenu{
+	margin-top: -10px;
+	left: -100px;
+}
+
+
 #word{
-	font-size: 70px;
+	font-size: 50px;
 	text-align: center;
 }
 /*.first:hover, .first:active, .second:active, .second:hover, .open>.dropdown-toggle.btn-default{

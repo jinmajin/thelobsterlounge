@@ -34,6 +34,7 @@ var profileResources = {
   usTheDuo: {
     profileName: "Us The Duo",
     location: "New York, NY",
+    area:'newYork',
     genre: "Music",
     quote: '"We like to play music"',
     aboutMe: "Three years ago, two emerging solo artists from opposite sides of the country randomly collided, fell in love, and combined their talents to form Us The Duo. A few successful YouTube videos (28+ million views) encouraged these pop songwriters to write their own music together, leading them to produce their first self-titled album. After its release, Michael & Carissa got married and have been traveling and playing music together ever since.",
@@ -57,6 +58,7 @@ var profileResources = {
   jugglingGeorge: {
     profileName: "Juggling George",
     location: "Cambridge, MA",
+    area: 'boston',
     genre: "Juggling",
     quote: '"Jugglin\' all day every day"',
     aboutMe: "I've been juggling for 47 years now. I started in my youth, and it has brought me to where I am today. I don't see juggling as a hobby so much as a way of life. I encourage you to join me. Join the revolution!",
@@ -79,6 +81,7 @@ var profileResources = {
   acrobaticAdam: {
     profileName: "Acrobatic Adam",
     location: "New York, NY",
+    area: 'newYork',
     genre: "Acrobatics",
     quote: '"I like to jump over things"',
     aboutMe: "I've been into acrobatics for 10 years. I enjoy jumping, flipping, and free-running. Come watch me to cool things with gravity and rotational inertia.",
