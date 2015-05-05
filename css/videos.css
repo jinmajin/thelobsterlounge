@@ -22,7 +22,7 @@ body {
 	margin-top: 25px;
 }
 
-.in{
+.inWord{
 	font-size: 50px;
 }
 
@@ -76,7 +76,7 @@ body {
 }*/
 
 @media (max-width: 600px){
-    .first, .second, .dropdown-menu li, .in {
+    .first, .second, .dropdown-menu li, .inWord {
          font-size: 40px;
 	}
 	#gmap_view, #videos_view{
@@ -85,7 +85,7 @@ body {
 }
 
 @media (max-width: 505px){
-    .first, .second, .dropdown-menu li, .in {
+    .first, .second, .dropdown-menu li, .inWord {
          font-size: 30px;
      }
      .filter{
@@ -97,7 +97,7 @@ body {
  }
 
  @media (max-width: 490px){
-    .first, .second, .dropdown-menu li, .in {
+    .first, .second, .dropdown-menu li, .inWord {
          font-size: 25px;
      }
  }
