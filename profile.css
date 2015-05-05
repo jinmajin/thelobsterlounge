@@ -71,7 +71,7 @@ h2 {
 
 video {
   width: 100%;
-  height: 100%;
+  -webkit-transform-origin: 0 0 0;
 }
 
 .gallery video {
