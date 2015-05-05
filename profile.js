@@ -86,15 +86,16 @@ $(document).ready(function() {
   $('#gallery-carousel').on('slid.bs.carousel', function(event) {
     setMediaHeight();
   });
-  $('.carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); }); setMediaHeight(); });
-  $('video').on('play', function(event) {
-    var index = event.currentTarget.parentElement.getAttribute('data-index');
-    $('.play-btn[data-index="' + index + '"]').removeClass('glyphicon-play').addClass('glyphicon-pause');
-  });
-  $('video').on('pause', function(event) {
-    var index = event.currentTarget.parentElement.getAttribute('data-index');
-    $('.play-btn[data-index="' + index + '"]').removeClass('glyphicon-pause').addClass('glyphicon-play');
-  });
+  $('.custom-carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); }); setMediaHeight(); });
+});
+
+$(document).bind('keyup', function(e) {
+  if (e.which == 39) {
+    $('#gallery-carousel').carousel('next');
+  }
+  else if (e.which == 37) {
+    $('#gallery-carousel').carousel('prev');
+  }
 });
 
 var deletedElements = [];
@@ -306,11 +307,7 @@ var createPlayButton = function(index) {
   var playButton = $('<button>').addClass('btn btn-default glyphicon glyphicon-play play-btn').attr('data-index', index);
   playButton.click(function() {
     var video = $('.item[data-index="' + index + '"] video').get(0);
-    if (playButton.hasClass('glyphicon-play')) {
-      video.play();
-    } else {
-      video.pause();
-    }
+    video.play();
   });
   return playButton;
 } 
@@ -330,7 +327,7 @@ var populateCarousel = function() {
     var div = $('<div>').addClass('item').addClass(i == 0 ? 'active' : '').attr('data-index', i).append(m);
     if ($(m).prop('tagName') == 'VIDEO') {
       div.addClass('video');
-      div.append(createPlayButton(i));
+      $(m).attr('controls', '');
     }
     slides.push(div);
   });
