@@ -103,13 +103,26 @@ video {
   opacity: 1;
 }
 
-.modal-footer {
-  font-size: 16pt;
-}
-
 .media-remove-btn {
   z-index: 10;
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+.modal-dialog {
+  width: 770.236px;
+}
+
+.modal-body {
+  padding-left: 100.118px;
+  padding-right: 100.118px;
+}
+
+.carousel-control.left {
+  left: -85.118px;
+}
+
+.carousel-control.right {
+  right: -85.118px;
 }
