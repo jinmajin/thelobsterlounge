@@ -1,5 +1,10 @@
 $(document).ready(function() {
   var profile = getParameterByName('profile') || 'jazzyJeff';
+  if (readProfileResources()) {
+    profileResources.jazzyJeff = readProfileResources();
+  } else {
+    writeProfileResources(profileResources.jazzyJeff);
+  }
   var profileInfo = profileResources[profile];
   fillInProfileInfo(profileInfo);
   populateGallery(profileInfo.media);
@@ -29,6 +34,7 @@ $(document).ready(function() {
       $('#follow-btn').toggleClass('btn-primary btn-default').text('Following');
       showAlert('Now Following ' + profile);
     }
+    writeProfileResources(profileResources.jazzyJeff);
     setUpFollowedUsers();
   }).hover(function() {
     if ($('#follow-btn').hasClass('btn-default')) {
@@ -59,6 +65,7 @@ $(document).ready(function() {
     };
     populateGallery(profileResources.jazzyJeff.media);
     populatePerformances(profileResources.jazzyJeff.upcomingPerformances);
+    writeProfileResources(profileResources.jazzyJeff);
   });
   $('#save-profile-btn').click(function() {
     if (isValidPerformanceFields()) {
@@ -147,6 +154,7 @@ var toggleEditableFields = function(nowEditable, save) {
     return performance.date || performance.location || performance.details;
   });
   if (!nowEditable) fillInProfileInfo(profileResources.jazzyJeff);
+  writeProfileResources(profileResources.jazzyJeff);
 }
 
 var toggleEditMode = (function() {
@@ -177,6 +185,7 @@ var setMediaDraggable = function() {
       profileResources.jazzyJeff.media[toIndex] = temp;
       populateGallery(profileResources.jazzyJeff.media, true);
       setMediaDraggable();
+      writeProfileResources(profileResources.jazzyJeff);
     }
   });
 };
@@ -187,7 +196,6 @@ var setMediaHeight = function(ratio) {
   $('.media').each(function(i, media) {
     $(media).height($(media).width() * ratio);
   });
-  console.log($('video'));
   $('video').each(function(i, video) {
     var currentRatio = $(video).width() / $(video).height();
     var adjustmentRatio = ratio * currentRatio;
@@ -370,6 +378,30 @@ var toDateObject = function(yyyymmddFormattedDate) {
   return (month && day && year) ? {month: month, day: day, year: year} : undefined;
 }
 
+var writeProfileResources = function(profileResources) {
+  setCookie("profileResources", JSON.stringify(profileResources));
+}
+
+var readProfileResources = function() {
+  return JSON.parse(getCookie('profileResources'));
+}
+
+function setCookie(name, value) {
+  document.cookie = name + '=' + value;
+}
+
+// CODE PROVIDED FROM:
+// http://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
 
 // CODE PROVIDED FROM:
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
