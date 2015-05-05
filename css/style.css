@@ -106,6 +106,12 @@ label{
     }
 }
 
+@media(max-width: 800px){
+    .navbar-brand{
+        font-size: 30px;
+    }
+}
+
 @media (max-width: 500px){
    .mainview_title {
         font-size: 50px;
