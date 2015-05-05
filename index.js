@@ -20,15 +20,16 @@ var prevScrollPos = 0;
 
 
 $(window).scroll(function(){
-   if($(window).scrollTop()  > 300 ){
+   if($(window).scrollTop()  > 100 ){
         $("#search_div").stop().fadeTo(100, 0);
         $('#nav_bar').addClass('navbar-fixed-top').removeClass('hide').fadeTo("slow", 1);
    //     console.log("scrollTop is less than 10" + $(window).scrollTop());
+  // 		$("#content").css("top", 100);
    } else {
         $("#search_div").stop().fadeTo("slow", 1);
         $('#nav_right').addClass("show");
         $('#nav_bar').removeClass('navbar-fixed-top').addClass('hide');
-        console.log("scrollTop is greater than " + $(window).scrollTop());
+    //    console.log("scrollTop is greater than " + $(window).scrollTop());
    }
 });
 
@@ -45,9 +46,9 @@ $(document).ready(function(){
 	  $('html, body')
 	    .stop()
 	    .animate({
-	      'scrollTop': $target.offset().top - 50
+	      'scrollTop': $target.offset().top
 	    }, 900, 'swing', function(){
-	      window.location.hash = '[target]';
+	      window.location.hash = 'content';
 	    })
 	//     e.preventDefault();
 
