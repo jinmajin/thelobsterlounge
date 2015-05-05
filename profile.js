@@ -1,10 +1,5 @@
 $(document).ready(function() {
   var profile = getParameterByName('profile') || 'jazzyJeff';
-  if (readProfileResources()) {
-    profileResources.jazzyJeff = readProfileResources();
-  } else {
-    writeProfileResources(profileResources.jazzyJeff);
-  }
   var profileInfo = profileResources[profile];
   fillInProfileInfo(profileInfo);
   populateGallery(profileInfo.media);
@@ -376,32 +371,6 @@ var toDateObject = function(yyyymmddFormattedDate) {
   var month = splitString[1];
   var day = splitString[2];
   return (month && day && year) ? {month: month, day: day, year: year} : undefined;
-}
-
-var writeProfileResources = function(profileResources) {
-  setCookie("profileResources", JSON.stringify(profileResources));
-}
-
-var readProfileResources = function() {
-  var profileResources = getCookie('profileResources');
-  return profileResources ? JSON.parse(profileResources) : undefined;
-}
-
-var setCookie = function(name, value) {
-  document.cookie = name + '=' + value;
-}
-
-// CODE PROVIDED FROM:
-// http://www.w3schools.com/js/js_cookies.asp
-var getCookie = function(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0)==' ') c = c.substring(1);
-    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-  }
-  return "";
 }
 
 // CODE PROVIDED FROM:
