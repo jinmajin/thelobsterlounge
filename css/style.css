@@ -33,7 +33,8 @@ h1 {
 .left_sidebar_container {
     z-index: 1;
     position: absolute;
-    width: 300px;
+    width: 200px;
+    pointer-events: none;
 }
 
 .searchbar {
@@ -42,10 +43,15 @@ h1 {
     padding: 10px;
 }
 
+h2{
+    margin-top: 0px;
+}
+
 .filters {
     background: white;
     margin: 10px;
     padding: 10px;
+    pointer-events: all;
 }
 
 .hide_bullets {
@@ -70,8 +76,10 @@ h1 {
     margin: 10px;
     padding: 10px;
     right: 0px;
-    top: 170px;
-    width: 300px;
+    top: 0px;
+    width: 250px;
+    pointer-events: none;
+    background: white;
 }
 
 .performance_list {
@@ -80,11 +88,6 @@ h1 {
     padding: 10px;
     visibility: hidden;
 }
-
-#view_performance_list {
-    float: right;
-}
-
 /*Map search*/
 
 .map-search {
@@ -147,16 +150,72 @@ h1 {
 }
 
 .show {
-    visibility: visible;
+    display: block !important;
 }
 
-.btn-primary {
-  background-color: #D89067;
-  border-color: #AF6A49;
+.content{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.locationAndDate{
+    font-weight: bold;
+}
+body{
+    height: 100%;
+    overflow: hidden;
+}
+#performance_list{
+    background-color: white;
+    overflow: scroll;
+    pointer-events: all;
+}
+.italic{
+    font-style: italic;
 }
 
-.btn-primary:hover, .btn-primary:focus {
-  background-color: #AF6A49;
-  border-color: #8D5A46;
+label{
+    font-weight: normal;
 }
 
+.performance:hover{
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+#filter_list, #performance_list{
+    display: none;
+    border-top: 1px solid gray;
+}
+
+#filterclick, #performanceclick{
+    font-size: 25px;
+    cursor: pointer;
+}
+#view_performance_list, #view_filter_list {
+    pointer-events: all;
+    cursor: pointer;        
+}
+.topSpace{
+    margin-top: 10px;
+}
+
+@media (max-width: 500px){
+    .right_sidebar{
+        display: none;
+    }
+    .left_sidebar_container {
+        width: 175px;
+    }
+}
+
+.center{
+    text-align: center;
+}
+
+iframe{
+    border: none;
+}
+
+#qrcode{
+    margin-top: 20px;
+}

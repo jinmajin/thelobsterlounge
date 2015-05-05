@@ -8,24 +8,26 @@ var profileResources = {
     aboutMe: "I've been playing jazz in the Boston area for about 7 years now. " +
       "Before that, I used to play in Central Park NYC for 12 years. I love playing the guitar and the piano.",
     upcomingPerformances: [
-      {date: "March 5, 2015", location: "Harvard Square", details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"},
-      {date: "March 10, 2015", location: "Kendall Station", details: "I'll play my guitar on the inbound platform all day long"},
-      {date: "April 1, 2015", location: "Boston Common Park", details: "I'll be playing guitar by the green line station entrance"}
+      {date: {month: "05", day: "06", year: "2015"}, location: "Harvard Square", details: "I'll be playing my piano in the middle of the square from 5:00pm to 9:00pm"},
+      {date: {month: "05", day: "07", year: "2015"}, location: "Kendall Station", details: "I'll play my guitar on the inbound platform all day long"},
+      {date: {month: "05", day: "09", year: "2015"}, location: "Boston Common Park", details: "I'll be playing guitar by the green line station entrance"}
     ],
     media: [
-      {type: 'video', src: "assets/videos/jazzyJeff/SYTAP 30 second guitar riff.mp4"},
-      {type: 'image', src: "http://www.conquerblog.com/wp-content/uploads/2013/01/street-performer.jpg"},
-      {type: 'image', src: "http://diymusician.cdbaby.com/wp-content/uploads/2012/05/shutterstock_82623235.jpg"},
-      {type: 'image', src: "https://lifeintheblueridges.files.wordpress.com/2012/07/img_3765.jpg"},
-      {type: 'image', src: "http://quirkytravelguy.com/wp-content/uploads/2012/06/street-performer.jpg"},
-      {type: 'image', src: "http://nyulocal.com/wp-content/uploads/2012/04/1054.jpg"},
+      {type: 'video', src: "assets/video/jazzyJeff/jazzyJeff1.mp4"},
+      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff1.jpg"},
+      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff2.jpg"},
+      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff3.jpg"},
+      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff4.jpg"},
+      {type: 'image', src: "assets/image/jazzyJeff/jazzyJeff5.jpg"},
     ],
-    profilePic: {src: "http://doge2048.com/meta/doge-600.png"},
+    profilePic: {src: "assets/image/jazzyJeff/jazzyJeffProfile.png"},
     following: ["usTheDuo", "jugglingGeorge"],
     messages: [
       {from: "usTheDuo", body: "Hey Jeff! We'd love to have you join our band! Come meet us this sunday"},
       {from: "acrobaticAdam", body: "I saw you perform last Saturday. Love your work bro!"},
     ],
+    shortVids: [{src: 'assets/short/jazzyJeff1.mp4'},
+    {src:'assets/short/jazzyJeff2.mp4'}],
   },
 
   // Us The Duo Profile Info
@@ -36,16 +38,19 @@ var profileResources = {
     quote: '"We like to play music"',
     aboutMe: "Three years ago, two emerging solo artists from opposite sides of the country randomly collided, fell in love, and combined their talents to form Us The Duo. A few successful YouTube videos (28+ million views) encouraged these pop songwriters to write their own music together, leading them to produce their first self-titled album. After its release, Michael & Carissa got married and have been traveling and playing music together ever since.",
     upcomingPerformances: [
-      {date: "April 13, 2015", location: "Museum of Arts & Design", details: "We'll be playing some wicked sweet jams in front of the Museum."},
-      {date: "April 14, 2015", location: "Central Park", details: "We'll be playing some moderately tasty jams."},
+      {date: {month: "05", day: "06", year: "2015"}, location: "Museum of Arts & Design", details: "We'll be playing some wicked sweet jams in front of the Museum."},
+      {date: {month: "05", day: "08", year: "2015"}, location: "Central Park", details: "We'll be playing some moderately tasty jams."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/usTheDuo/Us The Duo sings 'Thinking Out Loud, Outside, Wiggle & One Last Time' Teaser.mp4"},
-      {type: 'video', src: "assets/videos/usTheDuo/TV Show Medley- Part I - Us The Duo.mp4"},
-      {type: 'video', src: "assets/videos/usTheDuo/TV Show Medley- Part II - Us The Duo.mp4"},
-      {type: 'image', src: "http://www.ustheduo.com/files/2014/12/UsTheDuoSingapore.jpg"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo1.mp4"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo2.mp4"},
+      {type: 'video', src: "assets/video/usTheDuo/usTheDuo3.mp4"},
+      {type: 'image', src: "assets/image/usTheDuo/usTheDuo1.jpg"},
     ],
-    profilePic: {src: "http://www.ustheduo.com/files/2014/05/UsTheDuoFeaturedImage-283x270.jpg"},
+    profilePic: {src: "assets/image/usTheDuo/usTheDuoProfile.jpg"},
+    shortVids: [{src:'assets/short/usTheDuo1.mp4'}, 
+    {src: 'assets/short/usTheDuo2.mp4'}, 
+    {src: 'assets/short/usTheDuo3.mp4'}],
   },
 
   // Juggling George's Profile
@@ -56,15 +61,18 @@ var profileResources = {
     quote: '"Jugglin\' all day every day"',
     aboutMe: "I've been juggling for 47 years now. I started in my youth, and it has brought me to where I am today. I don't see juggling as a hobby so much as a way of life. I encourage you to join me. Join the revolution!",
     upcomingPerformances: [
-      {date: "April 13, 2015", location: "Kendall Square", details: "I'll be juggling and playing my piano in the outbound side of the T-station."},
-      {date: "April 14, 2015", location: "MIT Kresge Auditorium", details: "I'll be joining the MIT Juggling Club to do some amazing juggling."},
+      {date: {month:"05", day: "07", year: "2015"}, location: "Kendall Square", details: "I'll be juggling and playing my piano in the outbound side of the T-station."},
+      {date: {month:"05", day: "08", year: "2015"}, location: "MIT Kresge Auditorium", details: "I'll be joining the MIT Juggling Club to do some amazing juggling."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/jugglingGeorge/Worlds Fastest Piano Juggler Part - 2 The Son..mp4"},
-      {type: 'video', src: "assets/videos/jugglingGeorge/Worlds Fastest Piano Juggler Part 8 Christmas.mp4"},
-      {type: 'image', src: "http://pianojuggler.com/press_photos/Piano_Juggler_19Print.jpg"},
+      {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge1.mp4"},
+      {type: 'video', src: "assets/video/jugglingGeorge/jugglingGeorge2.mp4"},
+      {type: 'image', src: "assets/image/jugglingGeorge/jugglingGeorge1.jpg"},
     ],
-    profilePic: {src: "http://pianojuggler.com/images/big/39-03-82Print.jpg"},
+    profilePic: {src: "assets/image/jugglingGeorge/jugglingGeorgeProfile.jpg"},
+    shortVids: [{src:'assets/short/jugglingGeorge1.mp4'}, 
+    {src: 'assets/short/jugglingGeorge2.mp4'}, 
+    {src: 'assets/short/jugglingGeorge3.mp4'}],
   },
 
   // Acrobatic Adam's Profile
@@ -75,14 +83,17 @@ var profileResources = {
     quote: '"I like to jump over things"',
     aboutMe: "I've been into acrobatics for 10 years. I enjoy jumping, flipping, and free-running. Come watch me to cool things with gravity and rotational inertia.",
     upcomingPerformances: [
-      {date: "April 13, 2015", location: "Battery Park", details: "Me and the NYC Acrobatics Street Performers group will be doing some sweet stunts."},
-      {date: "April 14, 2015", location: "Rockefeller Center", details: "I'll be jumping over more things in front of the Rockefeller Center."},
+      {date: {month:"05", day: "06", year: "2015"}, location: "Battery Park", details: "Me and the NYC Acrobatics Street Performers group will be doing some sweet stunts."},
+      {date: {month:"05", day: "09", year: "2015"}, location: "Rockefeller Center", details: "I'll be jumping over more things in front of the Rockefeller Center."},
     ],
     media: [
-      {type: 'video', src: "assets/videos/acrobaticAdam/The New York City Acrobats at Battery Park Street Performers.mp4"},
-      {type: 'video', src: "assets/videos/acrobaticAdam/The New York City Acrobats Street Performers at Battery Park.mp4"},
-      {type: 'image', src: "http://www.pxleyes.com/images/contests/street-performers-2/fullsize/Street-Performer-4ee18c0dc0ae9_hires.jpg"},
+      {type: 'video', src: "assets/video/acrobaticAdam/acrobaticAdam1.mp4"},
+      {type: 'video', src: "assets/video/acrobaticAdam/acrobaticAdam2.mp4"},
+      {type: 'image', src: "assets/image/acrobaticAdam/acrobaticAdam1.jpg"},
     ],
-    profilePic: {src: "https://kategale.files.wordpress.com/2010/05/venice-beach-street-performers-picture.jpg"},
+    profilePic: {src: "assets/image/acrobaticAdam/acrobaticAdamProfile.jpg"},
+    shortVids: [{src: 'assets/short/acrobaticAdam1.mp4'}, 
+    {src:'assets/short/acrobaticAdam2.mp4'}, 
+    {src:'assets/short/acrobaticAdam3.mp4'}],
   },
 };

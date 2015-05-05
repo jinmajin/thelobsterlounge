@@ -30,48 +30,51 @@
 <nav class="navbar navbar-default navbar-fixed-top custom-nav">
   <div class="navbar-header">
     <a class="navbar-brand lobster" href="index.html">The Lounge</a>
+    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
   </div>
-  <div class="navbar-form form-inline navbar-right">
+  <div class="navbar-form form-inline navbar-right collapse navbar-collapse" id="navbar-collapse">
     <div class="search form-group">
       <input type="text" id="titlebar-search" class="search-bar form-control" placeholder="Enter Performer's Name...">
       <i class="glyphicon glyphicon-search search-icon"></i>
     </div>
     <div id="userinfo" class="form-group">
-      <button class="btn btn-default hidden" id="edit-profile-btn">Edit Profile</button>
-      <button class="btn btn-default hidden" id="cancel-profile-btn">Cancel</button>
-      <button class="btn btn-primary hidden" id="save-profile-btn">Save Profile</button>
       <a class="proflink" href="profile.html">Jazzy Jeff</a>
       <span data-toggle="tooltip" data-placement="top" title="Followed Users">
-        <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="popover" data-placement="bottom" title="Followed Users" data-trigger="focus"></button>
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-user" id="show-followed-btn" data-toggle="popover" data-placement="bottom" title="Followed Users" data-trigger="manual"></button>
       </span>
       <span data-toggle="tooltip" data-placement="top" title="Inbox">
-        <button class="btn btn-primary navbar-btn glyphicon glyphicon-envelope" id="show-inbox-btn" data-toggle="popover" data-placement="bottom" title="Inbox" data-trigger="focus"></button>
+        <button class="btn btn-primary navbar-btn glyphicon glyphicon-envelope" id="show-inbox-btn" data-toggle="popover" data-placement="bottom" title="Inbox" data-trigger="manual"></button>
       </span>
     </div>
   </div>
+  <div class="alert alert-success"></div>
 </nav>
-<div class="alert alert-success"></div>
 <div class="main">
 <div class="header-group">
   <!-- profile code here -->
 
   <div class="row text-center profile-header pacifico">
     <h1 class="editable" id="profile-name"></h1>
-    <input class="form-control edit-hidden hidden" id="profile-name-input" type="text" placeholder="Profile Name">
+    <input class="form-control edit-hidden hidden" id="profile-name-input" type="text" placeholder="Profile Name" data-field="profileName">
   </div>
 
   <div class="row profile-subheader">
     <div class="col-md-4 text-left">
       <span class="editable" id="location"></span>
-      <input class="form-control edit-hidden hidden" id="location-input" type="text" placeholder="Location">
+      <input class="form-control edit-hidden hidden" id="location-input" type="text" placeholder="Location" data-field="location">
     </div>
     <div class="col-md-4 text-center">
       <span class="editable" id="quote"></span>
-      <input class="form-control edit-hidden hidden" id="quote-input" type="text" placeholder="Quote">
+      <input class="form-control edit-hidden hidden" id="quote-input" type="text" placeholder="Quote" data-field="quote">
     </div>
     <div class="col-md-4 text-right">
       <span class="editable" id="genre"></span>
-      <input class="form-control edit-hidden hidden" id="genre-input" type="text" placeholder="Genre">
+      <input class="form-control edit-hidden hidden" id="genre-input" type="text" placeholder="Genre" data-field="genre">
     </div>
   </div>
 </div>
@@ -81,7 +84,7 @@
     <div class="row about-me">
       <div class="row buttons">
         <div class="col-md-6 text-center"><button class="btn about-me-btn" id="follow-btn">Follow</button></div>
-        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" data-toggle="modal" data-target="#message-modal">Message</button></div>
+        <div class="col-md-6 text-center"><button class="btn btn-primary about-me-btn" data-toggle="modal" data-target="#message-modal" id="create-message-btn">Message</button></div>
         <!-- Modal -->
         <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="Send Message" aria-hidden="true">
           <div class="modal-dialog">
@@ -102,6 +105,14 @@
         </div>
 
       </div>
+      <div class="row buttons">
+        <div class="col-md-6"><button class="btn btn-primary about-me-btn hidden" id="generate-qr-btn">QR Code</button></div>
+        <div class="col-md-6"><button class="btn btn-primary about-me-btn hidden" id="edit-profile-btn">Edit Profile</button></div>
+      </div>
+      <div class="row buttons">
+        <div class="col-md-6"><button class="btn btn-default about-me-btn hidden" id="cancel-profile-btn">Cancel</button></div>
+        <div class="col-md-6"><button class="btn btn-primary about-me-btn hidden" id="save-profile-btn">Save Profile</button></div>
+      </div>
       <div class="row thumbnail text-center">
       </div>
       <div class="row text-center">
@@ -112,7 +123,7 @@
       <div class="row text-justify">
         <div class="col-md-12">
           <p class="editable" id="about-me-details"></p>
-          <textarea class="edit-hidden hidden form-control" id="about-me-details-input" rows="6"></textarea>
+          <textarea class="edit-hidden hidden form-control" id="about-me-details-input" rows="6" data-field="aboutMe"></textarea>
         </div>
       </div>
     </div>

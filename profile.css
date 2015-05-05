@@ -71,7 +71,7 @@ h2 {
 
 video {
   width: 100%;
-  height: 100%;
+  -webkit-transform-origin: 0 0 0;
 }
 
 .gallery video {
@@ -104,13 +104,4 @@ video {
   position: absolute;
   top: 0px;
   right: 0px;
-}
-
-.btn-primary{
-  background-color: #A0908C !important; 
-  border-color: #A0908C !important;
-}
-
-.btn-primary:hover {
-  text-decoration: underline;
 }
