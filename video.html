@@ -41,21 +41,23 @@ $(document).ready(function(){
     });
 
     $('#boston').click(function(e){
-        console.log("clicked boston");
-        $('#selectedFirst').button('toggle');
+        // console.log("clicked boston", $('#selectedFirst'));
+        $('.selectedFirst').button('toggle');
         var visibleVids = document.getElementsByClassName('videoThumb');
         for (var i=0; visibleVids.length > 0; i++){
             console.log('remove!');
             $(visibleVids[0]).remove();
         }
+        if ($('#empty')!=null){
+            $('#empty').remove();
+        }
         addAllVideos(profileResources, keys, 'boston');
-        CITY = 'boston;'
+        CITY = 'boston';
         
     });
 
     $('#newyork').click(function(e){
         console.log("clicked newyork");
-        console.log($('.selectedFirst'));
         $(".selectedFirst").button("toggle");
         if ($('#empty')!=null){
             $('#empty').remove();
@@ -67,7 +69,6 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources,keys, 'newYork');
         CITY = 'newYork';
-        
     });
 
     // Filter buttons
@@ -97,7 +98,7 @@ $(document).ready(function(){
     //empty
     function noVids(){
         var empty = document.createElement('h1');
-        empty.innerHTML = 'Sorry, no videos of this genre yet!';
+        empty.innerHTML = 'Sorry, no videos in this city of this genre yet!';
         empty.id = 'empty';
         empty.style.textAlign = 'center';
         $(empty).insertAfter($('.videoRow'));
@@ -275,8 +276,6 @@ $(document).ready(function(){
                         var profileLink = 'profile.html?profile='+ keys[i];
                         var videoLink = shortVids[j]['src'];
                         notShuffled.push([videoLink, profileLink, profileResources[keys[i]]['profileName'], keys[i]]);
-                        // addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
-                        // hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                     }
                 }
             }else if (city === 'newYork'){
@@ -286,8 +285,6 @@ $(document).ready(function(){
                         var profileLink = 'profile.html?profile='+ keys[i];
                         var videoLink = shortVids[j]['src'];
                         notShuffled.push([videoLink, profileLink, profileResources[keys[i]]['profileName'], keys[i]]);
-                        // addVideo(videoLink, profileLink, profileResources[keys[i]]['profileName']);
-                        // hoverPlay(profileResources[keys[i]]['profileName'], keys[i]);
                     }
                 }
             }
@@ -298,7 +295,6 @@ $(document).ready(function(){
             var profile = shuffled[j][1];
             var realName = shuffled[j][2];
             var handle = shuffled[j][3];
-            console.log(vid, profile, realName, handle);
             addVideo(vid, profile, realName);
             hoverPlay(realName,handle);
         }
