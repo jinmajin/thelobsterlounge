@@ -38,6 +38,11 @@ $(document).ready(function(){
 
 });	
 
+$(window).resize(function() {
+  $('[data-toggle="popover"]').popover('hide');
+  $('.ui-autocomplete-input').autocomplete('close');
+});
+
 var showAlert = function(message) {
   $('.alert').text(message).fadeIn().css('margin-left', '-' + $('.alert').width()/2 + 'px');
   setTimeout(function() {
