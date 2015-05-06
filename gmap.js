@@ -119,7 +119,6 @@ function setBounce(index){
 	for(var i = 0; i < markers.length; i++){
 		if(i == index){
 			markers[i].setAnimation(google.maps.Animation.BOUNCE);
-			addStopAnimationTimeout(markers[i]);
 		}
 		else
 			markers[i].setAnimation(null);
@@ -130,12 +129,6 @@ function setBounce(index){
 function zoomInOn(marker){
 	map.setCenter(marker.position);
 	map.setZoom(Math.max(map.zoom+1,13));
-}
-
-function addStopAnimationTimeout(marker){
-	setTimeout(function(){
-		marker.setAnimation(null);
-	}, 700);
 }
 
 function filter(){
@@ -165,10 +158,6 @@ function goToCity() {
 	var position = ((CITY == 'boston') ? bostonCenter: nyCenter);
 	map.setCenter(position);
 	map.setZoom(13);
-}
-
-function showPerformanceList(){
-    $('#performance_list').toggleClass('show');
 }
 
 function toggle(thing){
