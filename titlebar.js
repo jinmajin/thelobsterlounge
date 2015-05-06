@@ -35,6 +35,7 @@ $(document).ready(function(){
   setUpInbox();
 
   $('.alert').hide();
+
 });	
 
 var showAlert = function(message) {
