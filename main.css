@@ -5,7 +5,7 @@
 }
 
 body {
-  padding-top: 100px;
+  padding-top: 70px;
   background-color: #FFFFFE;
 }
 
@@ -117,4 +117,15 @@ nav{
 .btn-primary:hover, .btn-primary:focus {
   background-color: #CF6F13;
   border-color: #CF6F13;
+}
+
+
+@media(max-width: 800px){
+    .navbar-brand{
+        font-size: 30px;
+    }
+}
+
+nav{
+	box-shadow: 0 2px 1px -1px gray;
 }

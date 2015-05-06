@@ -80,7 +80,7 @@ $(document).ready(function() {
   $('#gallery-modal').on('hide.bs.modal', function(event) {
     $('video').each(function(i, video) { video.pause(); });
   });
-  $('.carousel-control').click(function() { $('video').each(function(i, video) { video.pause(); });});
+  $('.carousel-control, .carousel-indicators').click(function() { $('video').each(function(i, video) { video.pause(); });});
 });
 
 $(document).bind('keyup', function(e) {
