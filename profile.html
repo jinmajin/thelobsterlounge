@@ -196,6 +196,10 @@
 <div class="modal fade" id="gallery-modal" tabindex="-1" role="dialog" aria-labelledby="Gallery Carousel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Gallery</h4>
+      </div>
       <div class="modal-body">
         <!-- Gallery Carousel --!>
         <div id="gallery-carousel" class="carousel slide" data-interval="false" data-ride="carousel">
@@ -216,18 +220,17 @@
             </div>
             --!>
           </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#gallery-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#gallery-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-      </div>
-      <div class="modal-footer">
-        <a class="pull-left custom-carousel-control" href="#gallery-carousel" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="pull-left custom-carousel-control" href="#gallery-carousel" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
       </div>
     </div>
   </div>
