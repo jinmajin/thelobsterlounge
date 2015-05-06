@@ -60,7 +60,7 @@ h2{
 }
 #performance_list{
     background-color: white;
-    overflow: scroll;
+    overflow: auto
     pointer-events: all;
 }
 .italic{
