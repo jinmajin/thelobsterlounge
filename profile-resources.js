@@ -10,6 +10,7 @@ var profileResources = {
   // Jeff Profile Info
   jazzyJeff: {
     profileName: "Jazzy Jeff's Jumpin' Jam",
+    area: 'boston',
     location: "Cambridge, MA",
     genre: "Music",
     quote: '"To play is to live"',
