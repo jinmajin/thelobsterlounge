@@ -27,10 +27,6 @@ body {
 	max-height: 900px;
 }
 
-#userinfo input:hover{
-  text-decoration: underline;
-}
-
 .list-group {
   margin-bottom: 0px;
 }

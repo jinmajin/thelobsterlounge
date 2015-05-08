@@ -54,13 +54,16 @@ var setUpFollowedUsers = function() {
   var container = $('<div>');
   var followedUsersList = $('<div>').attr('id', 'followed-users-list').addClass('list-group');
   profileResources['jazzyJeff'].following.forEach(function(user) {
-    followedUsersList.append($('<a>').addClass('list-group-item').text(user).attr('href', 'profile.html?profile=' + user));
+    var profileName = profileResources[user].profileName;
+    followedUsersList.append($('<a>').addClass('list-group-item').text(profileName).attr('href', 'profile.html?profile=' + user).attr('data-user', user));
   });
   var filter = $('<div>').append($('<input>').addClass('form-control').attr('id', 'followed-users-filter').attr('placeholder', 'Enter User\'s Username')
   .on('input propertychange paste', function() {
     var value = $('#followed-users-filter').val().toLowerCase();
     followedUsersList.children().each(function(i, link) {
-      if ($(link).text().toLowerCase().indexOf(value) == -1) {
+      var profileName = $(link).text().toLowerCase();
+      var username = $(link).attr('data-user').toLowerCase();
+      if (profileName.indexOf(value) == -1 && username.indexOf(value) == -1) {
         $(link).addClass('hidden');
       } else {
         $(link).removeClass('hidden');
@@ -91,7 +94,7 @@ var setUpInbox = function() {
   var container = $('<div>');
   var messagesList = $('<div>').attr('id', 'inbox').addClass('list-group');
   profileResources['jazzyJeff'].messages.forEach(function(message) {
-    var from = $('<div>').append($('<a>').text(message.from).attr('href', 'profile.html?profile=' + message.from));
+    var from = $('<div>').append($('<a>').text(profileResources[message.from].profileName).attr('href', 'profile.html?profile=' + message.from).attr('data-user', message.from));
     var body = $('<p>').text(message.body);
     messagesList.append($('<div>').addClass('list-group-item').append(from).append(body));
   });
@@ -100,10 +103,11 @@ var setUpInbox = function() {
     var value = $('#inbox-filter').val().toLowerCase();
     messagesList.children().each(function(i, message) {
       var from = $(message).find('a').text().toLowerCase();
+      var fromUserName = $(message).find('a').attr('data-user').toLowerCase();
       var body = $(message).find('p').text().toLowerCase();
       console.log(from);
       console.log(body);
-      if (from.indexOf(value) == -1 && body.indexOf(value) == -1) {
+      if (from.indexOf(value) == -1 && fromUserName.indexOf(value) == -1 && body.indexOf(value) == -1) {
         $(message).addClass('hidden');
       } else {
         $(message).removeClass('hidden');
