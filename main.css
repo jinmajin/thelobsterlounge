@@ -13,10 +13,18 @@ body {
 	font-weight: bold;
 }
 
-#userinfo input{
-	color: white;
-	background-color: #A0908C !important; 
-	border-color: #A0908C !important;
+#followed-users-list {
+	overflow-y: auto;
+	max-height: 900px;
+}
+
+#inbox-filter {
+	width: 100%;
+}
+
+#inbox {
+	overflow-y: auto;
+	max-height: 900px;
 }
 
 #userinfo input:hover{
