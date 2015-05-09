@@ -14,24 +14,18 @@ $(document).ready(function(){
   // });
 
     document.body.onload = function(){
-        console.log(window.localStorage['CITY']==='newYork');
         if (window.localStorage['VIEWSTATE'] === 'videos'){
             $('#videoOption').click();
         }else if (window.localStorage['VIEWSTATE'] === 'events'){
             $('#events').click();
         }
-        console.log(window.localStorage['CITY']==='newYork');
         if (window.localStorage['CITY'] === 'boston'){
             $('#boston').click();
         }else if (window.localStorage['CITY'] === 'newYork'){
-            console.log("CCLICKIEDD");
             $('#newyork').click();
-            console.log("REALLY CLICKED");
         }
     }
-// document.body.onbeforeunload = function(){
-//     console.log('beforeunload, ', VIEWSTATE);
-// }
+
 
     //Dropdowns
     $(".dropdown-menu li a").click(function(){
@@ -40,14 +34,11 @@ $(document).ready(function(){
     });
 
     $('#videoOption').click(function(){
-
         VIEWSTATE = 'videos';
         console.log(CITY);
         window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
-        console.log('videoOptionfirst', window.localStorage);
         $("#videos_view").addClass("show");
         $("#gmap_view").removeClass("show");
-        console.log('vidoption', window.localStorage['CITY']==='newYork');
     });
 
     $('#events').click(function(){
@@ -57,7 +48,6 @@ $(document).ready(function(){
         $("#gmap_view").addClass("show");
         google.maps.event.trigger(map, "resize");
         goToCity();
-        console.log('eventoption',window.localStorage['CITY']==='newYork');
     });
 
     $('#boston').click(function(e){
@@ -73,11 +63,8 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources, keys, 'boston');
         CITY = 'boston';
-
-        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
         window.localStorage.setItem('CITY', CITY);
         goToCity();
-        console.log('bostonoption',window.localStorage['CITY']==='newYork');
     });
 
     $('#newyork').click(function(e){
@@ -92,12 +79,8 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources,keys, 'newYork');
         CITY = 'newYork';
-
-        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
-        console.log("NEWYORK", CITY);
         window.localStorage.setItem('CITY', CITY);
         goToCity();
-        console.log('nyyoption', window.localStorage['CITY']==='newYork');
     });
 
     // Filter buttons
