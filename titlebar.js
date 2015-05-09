@@ -6,6 +6,13 @@ function logout(){
 }
 
 $(document).ready(function(){
+
+  $('.navbar-header').on('click', function(e){
+    e.preventDefault();
+    window.localStorage.clear();
+    window.location.href = 'index.html';
+  });
+
 	var users = [];
 	var keys = Object.keys(profileResources);
 	var profNameToUser = {};
