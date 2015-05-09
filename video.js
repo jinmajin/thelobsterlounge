@@ -1,8 +1,38 @@
 var CITY = 'boston';
+var VIEWSTATE = 'videos';
+
 <!-- videos -->
 $(document).ready(function(){
     var keys = Object.keys(profileResources);
-    
+
+      //reset window.localStorage when click back to main page
+  // $('#mainLogo').click(function(e){
+  //   e.preventDefault();
+  //   console.log("HELLO");
+  //   window.localStorage.clear();
+  //   console.log(window.localStorage);
+  // });
+
+    document.body.onload = function(){
+        console.log(window.localStorage['CITY']==='newYork');
+        if (window.localStorage['VIEWSTATE'] === 'videos'){
+            $('#videoOption').click();
+        }else if (window.localStorage['VIEWSTATE'] === 'events'){
+            $('#events').click();
+        }
+        console.log(window.localStorage['CITY']==='newYork');
+        if (window.localStorage['CITY'] === 'boston'){
+            $('#boston').click();
+        }else if (window.localStorage['CITY'] === 'newYork'){
+            console.log("CCLICKIEDD");
+            $('#newyork').click();
+            console.log("REALLY CLICKED");
+        }
+    }
+// document.body.onbeforeunload = function(){
+//     console.log('beforeunload, ', VIEWSTATE);
+// }
+
     //Dropdowns
     $(".dropdown-menu li a").click(function(){
         var selText = $(this).text();
@@ -10,14 +40,24 @@ $(document).ready(function(){
     });
 
     $('#videoOption').click(function(){
+
+        VIEWSTATE = 'videos';
+        console.log(CITY);
+        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
+        console.log('videoOptionfirst', window.localStorage);
         $("#videos_view").addClass("show");
         $("#gmap_view").removeClass("show");
+        console.log('vidoption', window.localStorage['CITY']==='newYork');
     });
+
     $('#events').click(function(){
+        VIEWSTATE = 'events';
+        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
         $("#videos_view").removeClass("show");
         $("#gmap_view").addClass("show");
         google.maps.event.trigger(map, "resize");
         goToCity();
+        console.log('eventoption',window.localStorage['CITY']==='newYork');
     });
 
     $('#boston').click(function(e){
@@ -33,11 +73,14 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources, keys, 'boston');
         CITY = 'boston';
+
+        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
+        window.localStorage.setItem('CITY', CITY);
         goToCity();
+        console.log('bostonoption',window.localStorage['CITY']==='newYork');
     });
 
     $('#newyork').click(function(e){
-        console.log("clicked newyork");
         $(".selectedFirst").button("toggle");
         if ($('#empty')!=null){
             $('#empty').remove();
@@ -49,7 +92,12 @@ $(document).ready(function(){
         }
         addAllVideos(profileResources,keys, 'newYork');
         CITY = 'newYork';
+
+        window.localStorage.setItem('VIEWSTATE', VIEWSTATE);
+        console.log("NEWYORK", CITY);
+        window.localStorage.setItem('CITY', CITY);
         goToCity();
+        console.log('nyyoption', window.localStorage['CITY']==='newYork');
     });
 
     // Filter buttons
